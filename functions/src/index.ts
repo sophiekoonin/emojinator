@@ -1,17 +1,19 @@
 import * as functions from 'firebase-functions';
 import * as express from 'express'
+// @ts-ignore
+import * as expressParser from 'express-multipart-file-parser'
 
+import rotate from './rotate'
 const app = express()
+app.use(expressParser)
 
-app.get('/', (req: express.Request, res: express.Response) => {
-  res.send("hello world!")
+app.get('/thing', (req: express.Request, res: express.Response) => {
+  res.send("hello thing!")
 })
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+
+app.post('/rotate', rotate)
+app.get('/', (req: express.Request, res: express.Response) => {
+  return res.send("hello world!")
+})
 
 exports.tools = functions.https.onRequest(app)
