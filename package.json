@@ -1,0 +1,32 @@
+{
+  "name": "emoji-toolbox",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "repository": "git@github.com:sophiekoonin/emoji-toolbox.git",
+  "author": "Sophie Koonin <sophie@localghost.dev>",
+  "license": "MIT",
+  "engines": {
+    "node": "12"
+  },
+  "scripts": {
+    "gcp-build": "tsc -p .",
+    "start": "NODE_ENV=prod node dist/server.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'node_modules/.bin/ts-node' src/server.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "typescript": "^4.0.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "eslint": "^7.12.1",
+    "nodemon": "^2.0.6",
+    "ts-node": "^9.0.0"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "semi": false,
+    "singleQuote": true
+  }
+}
