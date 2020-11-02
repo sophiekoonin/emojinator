@@ -1,0 +1,25 @@
+{{ define "main" }}
+
+  <form class="emojifier-form" onsubmit="statusFormSubmit(event);">
+    <label htmlFor="file">Image to statusify</label>
+    <img src="/images/fire.png" id="fire" alt=""  width="0" height="0">
+    <img src="/images/check.png" id="check" alt="" width="0" height="0">
+    <input
+            name="image"
+            id="file"
+            type="file"
+            onchange="onImageSelect(event, img)"
+            accept=".jpg, .jpeg, .png"></input>
+    <label htmlFor="status">Status
+            <select
+              id="status"
+              name="status">
+        <option value="fire">🔥 Fire</option>
+        <option value="check">✅ Done</option>
+      </select>
+    </label>
+    <button type="submit" id="submit" disabled>Submit</button>
+  </form>
+  <img id="output"/>
+
+{{ end }}

@@ -56,7 +56,6 @@ async function onImageSelect(event) {
   const src = await toBase64(image);
   img.src = src;
   img.onload = () => {
-    console.log('loaded!');
     document.getElementById('submit').removeAttribute('disabled');
   };
 }

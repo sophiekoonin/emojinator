@@ -1,13 +1,12 @@
-{{ $whatInput := resources.Get "/js/what-input.min.js" }}
 {{ $gif := resources.Get "/js/gif.js" | minify  }}
 {{ $gifWorker := resources.Get "/js/gif.worker.js" | minify  }}
-{{ $emojinator := resources.Get "/js/emojinator.js" }}
-{{ $rotatinator := resources.Get "/js/rotatinator.js" }}
 {{ $index := resources.Get "/js/index.js" | minify }}
 {{ $scripts := slice  $index  | resources.Concat "/js/bundle.js" | fingerprint }}
-<script src="{{ $whatInput.Permalink }}" defer="defer"></script>
+<script src="/js/what-input.min.js" defer="defer"></script>
 <script src="{{ $scripts.Permalink }}" defer="defer" integrity="{{ $scripts.Data.Integrity }}"></script>
 <script src="{{ $gifWorker.Permalink }}" defer="defer"></script>
 <script src="{{ $gif.Permalink }}" defer="defer"></script>
-<script src="{{ $emojinator.Permalink }}" defer="defer"></script>
-<script src="{{ $rotatinator.Permalink }}" defer="defer"></script>
+<script src="/js/emojinator.js" defer="defer"></script>
+<script src="/js/statusifier.js" defer="defer"></script>
+<script src="/js/partyizer.js" defer="defer"></script>
+<script src="/js/rotatinator.js" defer="defer"></script>
