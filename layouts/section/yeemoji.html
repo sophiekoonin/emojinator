@@ -1,22 +1,19 @@
 {{ define "main" }}
-  <form class="emojifier-form" onsubmit="rotatorFormSubmit(event);">
-    <label htmlFor="file">Image to rotatify (max 128kb)</label>
+  <img src="/images/cowboy-hat.png" alt="" id="cowboy-hat"/>
+  <form class="emojifier-form" onsubmit="yeeFormSubmit(event);">
+    <label htmlFor="file">Image to yee-ify (max 128kb)</label>
     <input
             name="image"
             id="file"
             type="file"
             onchange="onImageSelect(event, img)"
             accept=".jpg, .jpeg, .png"></input>
-    <label htmlFor="speed">Speed
-            <select
-              id="speed"
-              name="speed">
-        <option value="0.5">0.5x</option>
-        <option value="1" selected>1x</option>
-        <option value="2">2x</option>
-      </select>
-    </label>
     <button type="submit" id="submit" disabled>Submit</button>
   </form>
+  <canvas id="yee-canvas"></canvas>
+  <button type="button" id="scale-up">+</button>
+  <button type="button" id="scale-down">-</button>
+  <button type="button" id="rotate-l">L</button>
+  <button type="button" id="rotate-r">R</button>
   <img id="output"/>
 {{ end }}
