@@ -1,0 +1,13 @@
+{{ define "title" }}
+<h2 class="bold-title is-1">{{ i18n "404_title" . }}</h2>
+{{ end }}
+
+{{ define "main" }}
+<div class="markdown top-pad">
+    {{ i18n "404_description" . | markdownify }}
+</div>
+{{ end }}
+
+{{ define "footer" }}
+{{ partial "footer/footer.html" . }}
+{{ end }}

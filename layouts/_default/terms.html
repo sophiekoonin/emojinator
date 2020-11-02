@@ -1,0 +1,10 @@
+{{ define "main" }}
+<section class="full-width">
+<h2>All tags</h2>
+    <ul class="section tags-list">
+        {{- range $key, $value:= .Data.Terms -}}
+        <li><a class="tag-cloud" href="{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}">{{ $key }}&nbsp;({{ $value.Count }})</a></li>
+        {{- end -}}
+    </ul>
+</section>
+{{ end }}
