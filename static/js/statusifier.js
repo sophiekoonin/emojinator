@@ -7,7 +7,7 @@ async function statusify(image, status) {
     return makeRedVersion(image);
   }
 
-  ctx.drawImage(image, 0, 0, width - width / 6, height - height / 6);
+  ctx.drawImage(image, 0, 0, width - width / 7, height - height / 7);
   const emoji = document.getElementById(status);
   const emojiSize = canvas.width / 2;
   ctx.drawImage(

@@ -1,9 +1,15 @@
 {{ define "main" }}
-
+  <p>Something a little bit on fire? Need a quick way to say something is done? Something down?
+<br/>Add a status to your emoji.</p>
+  <div class="status-examples">
+    <img src="/images/robot-done.png" alt=""/>
+    <img src="/images/robot-fire.png" alt=""/>
+    <img src="/images/robot-red.png" alt=""/>
+  </div>
   <form class="emojifier-form" onsubmit="statusFormSubmit(event);">
-    <label htmlFor="file">Image to statusify</label>
     <img src="/images/fire.png" id="fire" alt=""  width="0" height="0">
     <img src="/images/check.png" id="check" alt="" width="0" height="0">
+    <label htmlFor="file">Choose an image</label>
     <input
             name="image"
             id="file"
@@ -11,14 +17,14 @@
             onchange="onImageSelect(event, img)"
             accept=".jpg, .jpeg, .png"></input>
     <label htmlFor="status">Status
-            <select
+    </label>
+    <select
               id="status"
               name="status">
-        <option value="fire">🔥 Fire</option>
-        <option value="check">✅ Done</option>
-        <option value="red">Red</option>
-      </select>
-    </label>
+      <option value="fire">🔥 Fire</option>
+      <option value="check">✅ Done</option>
+      <option value="red">Red</option>
+    </select>
     <button type="submit" id="submit" disabled>Submit</button>
   </form>
   <img id="output"/>

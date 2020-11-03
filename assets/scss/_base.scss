@@ -10,7 +10,7 @@
 
 *:focus {
   outline: none;
-  border-bottom: 4px solid var(--accent-color);
+  border-bottom: 4px solid var(--link-color);
 }
 /* suppress focus ring on focusable things for mouse users */
 [data-whatinput='mouse'] *:focus,
