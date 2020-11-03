@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+  <form class="emojifier-form" onsubmit="embiggenFormSubmit(event);">
+    <label htmlFor="file">Image to embiggen</label>
+    <img src="/images/fire.png" id="fire" alt=""  width="0" height="0">
+    <img src="/images/check.png" id="check" alt="" width="0" height="0">
+    <input
+            name="image"
+            id="file"
+            type="file"
+            onchange="onImageSelect(event, img)"
+            accept=".jpg, .jpeg, .png"></input>
+
+    <button type="submit" id="submit" disabled>Submit</button>
+  </form>
+  <div class="embiggener-output">
+    <img id="output1"/>
+    <img id="output2"/>
+    <img id="output3"/>
+    <img id="output4"/>
+  </div>
+
+{{ end }}
