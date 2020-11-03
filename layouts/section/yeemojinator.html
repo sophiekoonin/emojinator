@@ -1,5 +1,6 @@
 {{ define "main" }}
   <img src="/images/cowboy-hat.png" class="visually-hidden" alt="" id="cowboy-hat"/>
+  <p>Add a cowboy hat. Add two cowboy hats. Go wild! Add <em>three</em> cowboy hats.</p>
   <form class="emojifier-form" onsubmit="yeeFormSubmit(event);">
     <label htmlFor="file">Choose an image</label>
     <input
@@ -17,4 +18,5 @@
     <button id="download" type="button">Download</button>
   </div>
   <img id="output"/>
+  <a href="/" class="back-link">back</a>
 {{ end }}

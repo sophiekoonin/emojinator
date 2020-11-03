@@ -63,7 +63,8 @@ h4 {
 
 h1 {
   color: var(--h1-color);
-  font-size: unquote('min(max(1.5rem, 4vw), 30px)');
+  font-size: unquote('min(max(1.5rem, 6vw), 40px)');
+  margin-bottom: 1rem;
 }
 
 h2 {
@@ -136,17 +137,27 @@ ul {
     text-align: center;
   }
   a {
+    h3 {
+      margin: 0;
+      margin-bottom: 1rem;
+    }
     background: var(--link-background-color);
     border-radius: 6px;
     height: 100%;
     transition: color 0.15s ease, background-color 0.15s ease;
     display: block;
-    padding: 1rem;
+    padding: 2rem;
+    font-variation-settings: 'wght' 450;
+    color: var(--body-color);
     &:hover,
     &:active,
     &:focus {
       background-color: var(--link-background-color-hover);
       text-decoration: none;
+    }
+
+    .motion-warning {
+      font-size: 0.9rem;
     }
   }
 }

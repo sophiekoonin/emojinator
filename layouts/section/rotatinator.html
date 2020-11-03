@@ -1,23 +1,23 @@
 {{ define "main" }}
-
-  <form class="emojifier-form" onsubmit="rotatorFormSubmit(event);">
-    <label htmlFor="file">Image to rotatinate (max 128kb)</label>
-    <input
+  <p>Make an image go round and round and round. Choose from three speeds. 
+    <form class="emojifier-form" onsubmit="rotatorFormSubmit(event);">
+      <label htmlFor="file">Choose an image</label>
+      <input
             name="image"
             id="file"
             type="file"
             onchange="onImageSelect(event, img)"
             accept=".jpg, .jpeg, .png"></input>
-    <label htmlFor="speed">Speed
+      <label htmlFor="speed">Speed
             <select
               id="speed"
               name="speed">
-        <option value="0.5">0.5x</option>
-        <option value="1" selected>1x</option>
-        <option value="2">2x</option>
-      </select>
-    </label>
-    <button type="submit" id="submit" disabled>Submit</button>
-  </form>
-  <img id="output"/>
-{{ end }}
+          <option value="0.5">0.5x</option>
+          <option value="1" selected>1x</option>
+          <option value="2">2x</option>
+        </select>
+      </label>
+      <button type="submit" id="submit" disabled>Submit</button>
+    </form>
+    <img id="output"/>
+  {{ end }}
