@@ -1,9 +1,66 @@
 .emojifier {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
   @include content-box;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+  input {
+    padding: 12px 8px;
+    background-color: var(--link-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+  }
+  &-form {
+    @include mq($from: tablet) {
+      max-width: 50%;
+    }
+    display: inline-flex;
+    flex-direction: column;
+    * + * {
+      margin-bottom: 1rem;
+    }
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+  button {
+    border-radius: 6px;
+    border: 0;
+    background: var(--button-background-color);
+    color: var(--button-color);
+    padding: 6px 8px;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      background: var(--button-hover-color);
+    }
+
+    &[disabled] {
+      border: 1px solid var(--border-color);
+      background-color: var(--link-background-color);
+      cursor: not-allowed;
+      color: grey;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--aqua-84);
+    }
+  }
 }
 
-#yee-canvas canvas {
-  background-color: greenyellow;
+.hidden {
+  display: none;
+}
+
+#yee-canvas {
+  border: 1px solid var(--border-color);
 }

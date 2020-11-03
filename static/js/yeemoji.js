@@ -1,6 +1,8 @@
 function yeeify(image) {
   const { width, height } = image;
-  const hatImg = document.getElementById('cowboy-hat');
+  document.getElementById('yee-actions').classList.remove('hidden');
+  const hatImg = document.getElementById('cowboy-hat').cloneNode();
+  hatImg.classList.remove('visually-hidden');
   const hatHeight = (width / hatImg.width) * hatImg.height;
   hatImg.width = width;
   hatImg.height = hatHeight;

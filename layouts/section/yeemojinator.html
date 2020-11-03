@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <img src="/images/cowboy-hat.png" class="visually-hidden" alt="" id="cowboy-hat"/>
+  <form class="emojifier-form" onsubmit="yeeFormSubmit(event);">
+    <label htmlFor="file">Choose an image</label>
+    <input
+            name="image"
+          id="file"
+            type="file"
+            onchange="onImageSelect(event, img)"
+            accept=".jpg, .jpeg, .png"></input>
+    <button type="submit" id="submit" disabled>Submit</button>
+  </form>
+  <div id="yee-canvas"></div>
+  <div id="yee-actions" class="hidden">
+    <p>Double-click in the canvas to deselect the hat.</p>
+    <button id="add-hat" type="button">Add another hat</button>
+    <button id="download" type="button">Download</button>
+  </div>
+  <img id="output"/>
+{{ end }}

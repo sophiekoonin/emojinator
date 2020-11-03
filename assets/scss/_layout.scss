@@ -1,4 +1,5 @@
 .full-width {
+  text-align: center;
   max-width: 900px;
   margin: 0.5rem;
   @include mq($from: tablet) {
@@ -12,6 +13,10 @@
     padding: 2rem;
     padding-top: 0;
   }
+}
+
+.main-container {
+  margin-bottom: 3rem;
 }
 
 .top-pad {

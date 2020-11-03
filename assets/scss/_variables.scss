@@ -15,6 +15,7 @@
   --gunmetal-20: rgb(140, 143, 146);
   --gunmetal-12: hsla(212, 14%, 12%, 1);
   --yellow: hsla(47, 100%, 60%, 1);
+  --pacific-blue-60: hsla(187, 100%, 60%, 1);
   --pacific-blue: hsla(187, 100%, 40%, 1);
   --paradise-pink: hsla(349, 78%, 72%, 1);
   --family-monospace: 'Diary of an 8-bit Mage', monospace;
@@ -35,6 +36,9 @@
   --content-box-color: hsla(239, 15%, 12%, 0.95);
   --header-stars-display: inline-block;
   --body-font-weight: 'wght' 375;
+  --border-color: rgba(255, 255, 255, 0.2);
+  --link-background-color: rgba(255, 255, 255, 0.05);
+  --link-background-color-hover: rgba(255, 255, 255, 0.15);
 }
 
 :root {
@@ -48,7 +52,13 @@
   --h3-color: var(--lilac-67);
   --h4-color: var(--purple-68);
   --link-hover-color: var(--purple-68);
-  --content-box-color: rgba(255, 255, 255, 0.8);
+  --content-box-color: rgb(255, 255, 255);
+  --border-color: hsla(0, 2%, 93%, 1);
+  --link-background-color: hsla(0, 2%, 98%, 1);
+  --link-background-color-hover: hsla(0, 2%, 95%, 1);
+  --button-background-color: var(--pacific-blue);
+  --button-hover-color: var(--pacific-blue-60);
+  --button-color: white;
 }
 
 @media (prefers-color-scheme: dark) {
