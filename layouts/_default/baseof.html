@@ -27,7 +27,11 @@
                 {{ end}}
                 <div class="emojifier-wrapper">
                     {{ block "main" . }}{{ end }}
+                    {{ if not .IsHome}}
+                        <a href="/" class="back-link">back</a>
+                    {{ end }}
                 </div>
+
             </article>
         </main>
 

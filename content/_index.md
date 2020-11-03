@@ -1,4 +1,3 @@
 ---
-title: "Testing"
-draft: true
+title: "emojinator"
 ---
