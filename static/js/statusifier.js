@@ -58,3 +58,6 @@ function statusFormSubmit(event) {
   const status = event.target[1].value;
   statusify(img, status);
 }
+
+document.getElementById('status-input').onchange = onImageSelect;
+document.getElementById('status-form').onsubmit = statusFormSubmit;

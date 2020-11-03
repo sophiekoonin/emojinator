@@ -104,3 +104,6 @@ function yeeFormSubmit(event) {
   event.preventDefault();
   yeeify(img);
 }
+
+document.getElementById('yee-input').onchange = onImageSelect;
+document.getElementById('yee-form').onsubmit = yeeFormSubmit;

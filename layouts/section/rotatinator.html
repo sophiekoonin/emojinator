@@ -2,15 +2,14 @@
   <p>Make an image go round and round and round. Choose from three speeds. </p>
   <img src="/images/rotating-robot.gif" alt=""/>
 
-  <form class="emojifier-form" onsubmit="rotatorFormSubmit(event);">
-    <label htmlFor="file">Choose an image</label>
+  <form id="rotate-form" class="emojifier-form">
+    <label for="rotate-input">Choose an image</label>
     <input
             name="image"
-            id="file"
+            id="rotate-input"
             type="file"
-            onchange="onImageSelect(event, img)"
             accept=".jpg, .jpeg, .png"></input>
-    <label htmlFor="speed">Speed
+    <label for="speed">Speed
             <select
               id="speed"
               name="speed">

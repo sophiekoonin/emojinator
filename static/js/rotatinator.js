@@ -44,3 +44,6 @@ function rotatorFormSubmit(event) {
   const speed = event.target[1].value;
   rotate(img, speed);
 }
+
+document.getElementById('rotate-input').onchange = onImageSelect;
+document.getElementById('rotate-form').onsubmit = rotatorFormSubmit;

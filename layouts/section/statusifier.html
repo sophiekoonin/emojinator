@@ -6,17 +6,16 @@
     <img src="/images/robot-fire.png" alt=""/>
     <img src="/images/robot-red.png" alt=""/>
   </div>
-  <form class="emojifier-form" onsubmit="statusFormSubmit(event);">
+  <form id="status-form" class="emojifier-form">
     <img src="/images/fire.png" id="fire" alt=""  width="0" height="0">
     <img src="/images/check.png" id="check" alt="" width="0" height="0">
-    <label htmlFor="file">Choose an image</label>
+    <label for="status-input">Choose an image</label>
     <input
             name="image"
-            id="file"
+            id="status-input"
             type="file"
-            onchange="onImageSelect(event, img)"
             accept=".jpg, .jpeg, .png"></input>
-    <label htmlFor="status">Status
+    <label for="status">Status
     </label>
     <select
               id="status"

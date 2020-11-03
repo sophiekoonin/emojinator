@@ -64,3 +64,6 @@ function embiggenFormSubmit(event) {
   event.preventDefault();
   embiggen(img);
 }
+
+document.getElementById('embiggen-input').onchange = onImageSelect;
+document.getElementById('embiggen-form').onsubmit = embiggenFormSubmit;

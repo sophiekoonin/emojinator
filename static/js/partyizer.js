@@ -55,3 +55,6 @@ function partyizerFormSubmit(event) {
   event.preventDefault();
   partyize(img);
 }
+
+document.getElementById('party-input').onchange = onImageSelect;
+document.getElementById('party-form').onsubmit = partyizerFormSubmit;
