@@ -19,20 +19,39 @@ function yeeify(image) {
     image,
     x: width / 4,
     y: height / 4,
+    draggable: true,
   });
 
   baseLayer.add(baseImg);
   baseLayer.draw();
+
+  const tr = new Konva.Transformer({
+    nodes: [],
+    keepRatio: true,
+    boundBoxFunc: (oldBox, newBox) => {
+      if (newBox.width < 10 || newBox.height < 10) {
+        return oldBox;
+      }
+      return newBox;
+    },
+  });
+
+  baseLayer.add(tr);
+
   addHat(numHats++);
 
   document.getElementById('add-hat').addEventListener('click', (e) => {
     addHat(numHats++);
   });
-  function addHat(numHats) {
-    // draw the hat on a new layer
-    const hatLayer = new Konva.Layer();
-    stage.add(hatLayer);
 
+  document.getElementById('download').addEventListener('click', (e) => {
+    tr.nodes([]);
+    var dataURL = stage.toDataURL();
+    downloadURI(dataURL, `yee${filename}.png`);
+    false;
+  });
+
+  function addHat(numHats) {
     const hat = new Konva.Image({
       width: hatImg.width,
       image: hatImg,
@@ -42,22 +61,41 @@ function yeeify(image) {
       name: `hat-${numHats}`,
       draggable: true,
     });
-    hatLayer.add(hat);
-
-    const tr = new Konva.Transformer({
-      nodes: [hat],
-      keepRatio: true,
-      boundBoxFunc: (oldBox, newBox) => {
-        if (newBox.width < 10 || newBox.height < 10) {
-          return oldBox;
-        }
-        return newBox;
-      },
-    });
-
-    hatLayer.add(tr);
-    hatLayer.batchDraw();
+    baseLayer.add(hat);
+    const nodes = tr.nodes().concat([hat]);
+    tr.nodes(nodes);
+    baseLayer.batchDraw();
   }
+
+  stage.on('click tap', function (e) {
+    // if we click on empty area - remove all selections
+    if (e.target === stage) {
+      tr.nodes([]);
+      baseLayer.draw();
+      return;
+    }
+
+    // do we pressed shift or ctrl?
+    const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey;
+    const isSelected = tr.nodes().indexOf(e.target) >= 0;
+
+    if (!metaPressed && !isSelected) {
+      // if no key pressed and the node is not selected
+      // select just one
+      tr.nodes([e.target]);
+    } else if (metaPressed && isSelected) {
+      // if we pressed keys and node was selected
+      // we need to remove it from selection:
+      const nodes = tr.nodes().slice(); // use slice to have new copy of array
+      // remove node from array
+      nodes.splice(nodes.indexOf(e.target), 1);
+      tr.nodes(nodes);
+    } else if (metaPressed && !isSelected) {
+      // add the node into selection
+      const nodes = tr.nodes().concat([e.target]);
+      tr.nodes(nodes);
+    }
+  });
 }
 
 function yeeFormSubmit(event) {

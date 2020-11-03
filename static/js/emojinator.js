@@ -10,7 +10,9 @@ const toBase64 = (file) =>
 
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
-img = new Image();
+const img = new Image();
+
+let filename = '';
 
 function scaleDimensions(longerSide, shorterSide) {
   const longScaled =
@@ -53,9 +55,20 @@ function getScaledImageDimensions(width, height) {
 
 async function onImageSelect(event) {
   const image = event.target.files[0];
+  filename = event.target.files[0].name.split('.')[0];
   const src = await toBase64(image);
   img.src = src;
   img.onload = () => {
     document.getElementById('submit').removeAttribute('disabled');
   };
+}
+
+function downloadURI(uri, name) {
+  const link = document.createElement('a');
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  delete link;
 }
