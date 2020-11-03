@@ -1,24 +1,10 @@
-.header-height {
-  height: 30vh;
-  @include mq($from: desktop) {
-    height: 50vh;
-  }
-  @include mq($from: extrawide) {
-    height: 35vh;
-  }
-}
-
 .header {
-  @extend .header-height;
-
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, 1fr);
   position: relative;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 30vh;
 
   .header-text {
     grid-area: 2 / 1 / 3 / 1;
@@ -27,7 +13,6 @@
     font-display: swap;
     text-align: center;
     text-transform: lowercase;
-    margin: 0;
     font-size: 2.75rem;
     @include mq($from: tablet) {
       font-size: 4rem;
@@ -79,7 +64,7 @@
       border-radius: 25px;
       height: 1.6rem;
       border: 2px solid var(--aqua-84);
-      background-color: var(--aqua-90);
+      background-color: var(--sky-blue);
       &:after {
         content: '';
         display: inline-block;
