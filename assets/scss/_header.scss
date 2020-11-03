@@ -29,7 +29,7 @@
     right: 1rem;
     &:focus-within {
       .toggle-slider {
-        box-shadow: 0 0 2px 4px var(--sky-blue-60);
+        box-shadow: 0 0 2px 4px var(--pacific-blue);
         [data-whatinput='mouse'] &,
         [data-whatinput='touch'] & {
           box-shadow: none;
