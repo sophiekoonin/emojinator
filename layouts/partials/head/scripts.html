@@ -1,3 +1,4 @@
+{{ $konva := resources.Get "/js/konva.js" | minify }}
 {{ $gif := resources.Get "/js/gif.js" | minify  }}
 {{ $gifWorker := resources.Get "/js/gif.worker.js" | minify  }}
 {{ $index := resources.Get "/js/index.js" | minify }}
@@ -11,3 +12,6 @@
 <script src="/js/partyizer.js" defer="defer"></script>
 <script src="/js/rotatinator.js" defer="defer"></script>
 <script src="/js/yeemoji.js" defer="defer"></script>
+{{ if eq .Title "Yeemojinator"}}
+  <script src="{{ $konva.Permalink}}" defer="defer"></script>
+{{end}}
