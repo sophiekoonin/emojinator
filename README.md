@@ -1,9 +1,12 @@
 # emojifier
 
-A very stupid website for stupid reasons.
+A very stupid website for stupid reasons. Extremely specific emoji generator, based on some of the memes in my work Slack.
 
-Built using Hugo. 
+Built with Canvas using [Hugo](https://gohugo.io), with a little help from [Konva](https://github.com/konvajs/konva) for some of the more complicated transforms. 
 
+## Why?
+
+why not?
 
 ## Local development
 
