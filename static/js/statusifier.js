@@ -2,12 +2,12 @@ async function statusify(image, status) {
   const { width, height } = getScaledImageDimensions(image.width, image.height);
   canvas.width = width;
   canvas.height = height;
-  ctx.drawImage(image, 0, 0, width, height);
 
   if (status === 'red') {
     return makeRedVersion(image);
   }
 
+  ctx.drawImage(image, 0, 0, width - width / 6, height - height / 6);
   const emoji = document.getElementById(status);
   const emojiSize = canvas.width / 2;
   ctx.drawImage(
@@ -21,6 +21,8 @@ async function statusify(image, status) {
   document.getElementById('output').src = canvas.toDataURL();
 
   function makeRedVersion(image) {
+    ctx.drawImage(image, 0, 0, width, height);
+
     let imgData = ctx.getImageData(0, 0, width, height),
       x,
       y,
