@@ -23,6 +23,9 @@
 {{ if eq .Title "Embiggener"}}
   <script src="/js/embiggener.js" defer="defer"></script>
 {{end}}
-{{ if eq .Title "Yeemojinator"}}
+{{ if (or (eq .Title "Superimposerizer") (eq .Title "Yeemojinator"))}}
   <script src="{{ $konva.Permalink}}" defer="defer"></script>
+{{end}}
+{{ if eq .Title "Superimposerizer" }}
+  <script src="/js/superimposerizer.js" defer="defer"></script>
 {{end}}
