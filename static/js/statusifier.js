@@ -18,8 +18,13 @@ async function statusify(image, status) {
     emojiSize
   );
 
-  document.getElementById('output').src = canvas.toDataURL();
-
+  const output = document.getElementById('output');
+  output.src = canvas.toDataURL();
+  const downloadButton = document.getElementById('download');
+  downloadButton.onclick = function (event) {
+    downloadURI(output.src, `${filename}-${status}.png`);
+  };
+  downloadButton.classList.remove('hidden');
   function makeRedVersion(image) {
     ctx.drawImage(image, 0, 0, width, height);
 
