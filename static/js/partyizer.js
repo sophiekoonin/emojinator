@@ -33,7 +33,13 @@ function partyize(image) {
       '/js/gif.worker.min.js',
   });
   gif.on('finished', function (blob) {
-    document.getElementById('output').src = URL.createObjectURL(blob);
+    const output = document.getElementById('output');
+    output.src = URL.createObjectURL(blob);
+    const downloadButton = document.getElementById('download');
+    downloadButton.onclick = function (event) {
+      downloadURI(output.src, `party${filename}.png`);
+    };
+    downloadButton.classList.remove('hidden');
     gif.freeWorkers.forEach((w) => w.terminate());
   });
 

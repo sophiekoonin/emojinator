@@ -50,7 +50,13 @@ async function statusify(image, status) {
     ctx.fillStyle = '#cc0000';
     ctx.globalAlpha = 0.6;
     ctx.fillRect(0, 0, width, height);
-    document.getElementById('output').src = canvas.toDataURL();
+    const output = document.getElementById('output');
+    output.src = canvas.toDataURL();
+    const downloadButton = document.getElementById('download');
+    downloadButton.onclick = function (event) {
+      downloadURI(output.src, `${filename}-${status}.png`);
+    };
+    downloadButton.classList.remove('hidden');
   }
 }
 function statusFormSubmit(event) {
