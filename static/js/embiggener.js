@@ -1,6 +1,10 @@
 function embiggen(image) {
-  const width = image.width / 2;
-  const height = image.height / 2;
+  const { width: scaledWidth, height: scaledHeight } = getScaledImageDimensions(
+    image.width,
+    image.height
+  );
+  const width = scaledWidth / 2;
+  const height = scaledHeight / 2;
   canvas.width = width;
   canvas.height = height;
 
@@ -18,7 +22,7 @@ function embiggen(image) {
   ctx.clearRect(0, 0, width, height);
   ctx.restore();
 
-  ctx.drawImage(image, image.width / 2, 0, width, height, 0, 0, width, height);
+  ctx.drawImage(image, width, 0, width, height, 0, 0, width, height);
   const img2 = canvas.toDataURL();
   document.getElementById('output2').src = img2;
   const link2 = document.getElementById('link2');
@@ -29,7 +33,7 @@ function embiggen(image) {
   ctx.clearRect(0, 0, width, height);
   ctx.restore();
 
-  ctx.drawImage(image, 0, image.height / 2, width, height, 0, 0, width, height);
+  ctx.drawImage(image, 0, height, width, height, 0, 0, width, height);
   const img3 = canvas.toDataURL();
   document.getElementById('output3').src = img3;
 
@@ -41,17 +45,7 @@ function embiggen(image) {
   ctx.clearRect(0, 0, width, height);
   ctx.restore();
 
-  ctx.drawImage(
-    image,
-    image.width / 2,
-    image.height / 2,
-    width,
-    height,
-    0,
-    0,
-    width,
-    height
-  );
+  ctx.drawImage(image, width, height, width, height, 0, 0, width, height);
   const img4 = canvas.toDataURL();
   document.getElementById('output4').src = img4;
   const link4 = document.getElementById('link4');

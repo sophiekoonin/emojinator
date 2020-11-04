@@ -1,5 +1,5 @@
-const MAX_CANVAS_SIZE = 64;
-
+const MAX_GIF_SIZE = 128;
+const MAX_SIZE = 720;
 const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -14,20 +14,19 @@ const img = new Image();
 
 let filename = '';
 
-function scaleDimensions(longerSide, shorterSide) {
-  const longScaled =
-    longerSide > MAX_CANVAS_SIZE ? MAX_CANVAS_SIZE : longerSide;
+function scaleDimensions(longerSide, shorterSide, maxSize) {
+  const longScaled = longerSide > maxSize ? maxSize : longerSide;
   const shortScaled = (longScaled / longerSide) * shorterSide;
   return [longScaled, shortScaled];
 }
 
-function getScaledImageDimensions(width, height) {
+function getScaledImageDimensions(width, height, maxSize = MAX_GIF_SIZE) {
   if (width === 0 || height === 0)
     throw new Error('Width or height cannot be zero!');
   const imageAspectRatio = width / height;
   // width < height
   if (imageAspectRatio < 1) {
-    const [newHeight, newWidth] = scaleDimensions(height, width);
+    const [newHeight, newWidth] = scaleDimensions(height, width, maxSize);
 
     return {
       width: newWidth,
@@ -37,7 +36,7 @@ function getScaledImageDimensions(width, height) {
 
   // width > height
   if (imageAspectRatio > 1) {
-    const [newWidth, newHeight] = scaleDimensions(width, height);
+    const [newWidth, newHeight] = scaleDimensions(width, height, maxSize);
 
     return {
       width: newWidth,
@@ -46,7 +45,7 @@ function getScaledImageDimensions(width, height) {
   }
 
   // width = height
-  const newSize = width > MAX_CANVAS_SIZE ? MAX_CANVAS_SIZE : width;
+  const newSize = Math.min(width, maxSize);
   return {
     width: newSize,
     height: newSize,
