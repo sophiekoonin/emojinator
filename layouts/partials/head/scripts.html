@@ -4,7 +4,7 @@
 {{ $index := resources.Get "/js/index.js" | minify }}
 {{ $scripts := slice  $index  | resources.Concat "/js/bundle.js" | fingerprint }}
 <script src="/js/what-input.min.js" defer="defer"></script>
-<script src="{{ $scripts.Permalink }}" defer="defer" crossorigin="anonymous" integrity="{{ $scripts.Data.Integrity }}"></script>
+<script src="{{ $scripts.Permalink }}" defer="defer"></script>
 <script src="{{ $gifWorker.Permalink }}" defer="defer"></script>
 <script src="{{ $gif.Permalink }}" defer="defer"></script>
 <script src="/js/emojinator.js" defer="defer"></script>
