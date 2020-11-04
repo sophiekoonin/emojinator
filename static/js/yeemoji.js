@@ -1,5 +1,9 @@
 function yeeify(image) {
-  const { width, height } = image;
+  const { width, height } = getScaledImageDimensions(
+    image.width,
+    image.height,
+    MAX_SIZE
+  );
   document.getElementById('yee-actions').classList.remove('hidden');
   const hatImg = document.getElementById('cowboy-hat').cloneNode();
   hatImg.classList.remove('visually-hidden');
