@@ -1,4 +1,4 @@
-# emojifier
+# emojinator
 
 A very stupid website for stupid reasons. Extremely specific emoji generator, based on some of the memes in my work Slack.
 
