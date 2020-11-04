@@ -38,3 +38,22 @@
   width: 1.25rem;
   height: 1.25rem;
 }
+
+.intro {
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  @include mq($from: tablet) {
+    max-width: 75%;
+  }
+
+  .strong {
+    font-variation-settings: 'wght' 600;
+    margin-bottom: 1rem;
+  }
+}
+
+.grid h2,
+.intro h2 {
+  margin-bottom: 1rem;
+}
