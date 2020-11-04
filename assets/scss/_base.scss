@@ -124,20 +124,28 @@ ul {
 }
 
 .grid {
-  padding: 0;
   list-style-type: none;
+  padding: 0;
   margin: 0 auto;
-  margin-top: 2rem;
-  width: 80%;
-  display: grid;
-  grid-row-gap: 1rem;
-  grid-column-gap: 1rem;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+
+  @include mq($from: tablet) {
+    margin-top: 2rem;
+    width: 80%;
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
 
   li {
     text-align: center;
   }
   a {
+    @include mq($until: tablet) {
+      margin-bottom: 1rem;
+    }
     h3 {
       margin: 0;
       margin-bottom: 1rem;
