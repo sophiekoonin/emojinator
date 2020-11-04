@@ -15,7 +15,7 @@ const img = new Image();
 let filename = '';
 
 function scaleDimensions(longerSide, shorterSide, maxSize) {
-  const longScaled = longerSide > maxSize ? maxSize : longerSide;
+  const longScaled = Math.min(longerSide, maxSize);
   const shortScaled = (longScaled / longerSide) * shorterSide;
   return [longScaled, shortScaled];
 }
@@ -45,7 +45,7 @@ function getScaledImageDimensions(width, height, maxSize = MAX_GIF_SIZE) {
   }
 
   // width = height
-  const newSize = Math.min(width, maxSize);
+  const newSize = Math.max(Math.min(width, maxSize), MAX_GIF_SIZE);
   return {
     width: newSize,
     height: newSize,
