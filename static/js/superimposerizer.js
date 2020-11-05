@@ -1,4 +1,5 @@
 document.getElementById('superimposer-form').onsubmit = superimpose;
+document.getElementById('superimposer-form').onreset = reset;
 
 let numImages = 2;
 let loadedImages = 0;
@@ -6,6 +7,13 @@ const images = {
   img1: new Image(),
   img2: new Image(),
 };
+
+function reset(event) {
+  event.target.reset();
+  document.getElementById('more-imgs-wrapper').classList.add('hidden');
+  document.getElementById('more-imgs').classList.remove('hidden');
+  document.getElementById('submit').setAttribute('disabled', 1);
+}
 
 function onAddMore() {
   document.getElementById('more-imgs-wrapper').classList.remove('hidden');
@@ -30,9 +38,8 @@ async function onImagesLoad(event) {
     const file = event.target.files.item(i);
     numImages++;
     const image = new Image();
-    img.src = await toBase64(file);
-    debugger;
-    img.onload = () => {
+    image.src = await toBase64(file);
+    image.onload = () => {
       images[`img${numImages}`] = image;
       loadedImages++;
       if (loadedImages === numImages) {
@@ -58,11 +65,10 @@ function superimpose(event) {
 
   Object.keys(images).forEach((i) => {
     const image = images[i];
-    console.log(image);
     const { width, height } = getScaledImageDimensions(
       image.width,
       image.height,
-      MAX_SIZE
+      MAX_SIZE / 2
     );
 
     const konvaImg = new Konva.Image({
@@ -123,11 +129,21 @@ function superimpose(event) {
     }
   });
 
-  const downloadButton = document.getElementById('download');
-  downloadButton.onclick = function (event) {
-    downloadURI(output.src, 'superimposer.png');
+  document.getElementById('download').addEventListener('click', (e) => {
+    tr.nodes([]);
+    var dataURL = stage.toDataURL();
+    downloadURI(dataURL, `yee${filename}.png`);
+    false;
+  });
+  document.getElementById('move-up').onclick = () => {
+    tr.nodes().forEach((node) => node.moveToTop());
+    baseLayer.draw();
   };
-  downloadButton.classList.remove('hidden');
+  document.getElementById('move-down').onclick = () => {
+    tr.nodes().forEach((node) => node.moveToBottom());
+    baseLayer.draw();
+  };
+  document.getElementById('actions').classList.remove('hidden');
 }
 
 document.getElementById('more-imgs').onclick = onAddMore;

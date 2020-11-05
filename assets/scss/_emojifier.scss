@@ -29,39 +29,18 @@
     * + * {
       margin-bottom: 1rem;
     }
+
+    #more-imgs-wrapper:not(.hidden) {
+      display: grid;
+    }
   }
 
   label {
     margin-bottom: 0.5rem;
   }
-  button {
-    border-radius: 6px;
-    border: 0;
-    background: var(--button-background-color);
-    color: var(--button-color);
-    padding: 6px 8px;
-    cursor: pointer;
-
-    &:hover,
-    &:active {
-      background: var(--button-hover-color);
-    }
-
-    &[disabled] {
-      border: 1px solid var(--border-color);
-      background-color: var(--link-background-color);
-      cursor: not-allowed;
-      color: grey;
-    }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px var(--aqua-84);
-    }
-  }
 }
 
-#yee-canvas {
+.canvas-border {
   border: 1px solid var(--border-color);
 }
 

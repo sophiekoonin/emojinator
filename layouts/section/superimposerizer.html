@@ -14,7 +14,7 @@
             type="file"
             accept=".jpg, .jpeg, .png"></input>
     <div class="hidden" id="more-imgs-wrapper">
-      <label for="imgs">More images (you can select more than one)</label>
+      <label for="imgs">More images<br/>(you can select more than one)</label>
       <input
             name="image"
             id="imgs"
@@ -22,9 +22,16 @@
             multiple
             accept=".jpg, .jpeg, .png"></input>
     </div>
-    <button type="button" id="more-imgs">Add more images!</button>
+    <button type="button" id="more-imgs" class="secondary">Add more images</button>
     <button type="submit" id="submit" disabled>Submit</button>
+    <button type="reset" class="secondary">Reset</button>
   </form>
-  <div id="superimposer-canvas"></div>
-  <button id="download" class="hidden" type="button">Download</button>
+  <div id="superimposer-canvas" class="canvas-border"></div>
+
+  <div class="hidden" id="actions">
+    <p>Select images by double-clicking them. Click in blank areas of the canvas to deselect.</p>
+    <button id="move-up" type="button">Move selected layer to top</button>
+    <button id="move-down" type="button">Move selected layer to back</button>
+    <button id="download" type="button">Download</button>
+  </div>
 {{ end }}
