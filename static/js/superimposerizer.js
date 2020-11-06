@@ -50,33 +50,40 @@ async function onImagesLoad(event) {
   }
 }
 
-function superimpose(event) {
-  event.preventDefault();
-  event.target.reset();
+// TODO
+// function superimpose(event) {
+//   event.preventDefault();
+//   event.target.reset();
+function superimpose() {
+  const img1 = document.getElementById('robot-img');
+  const img2 = document.getElementById('bin-img');
+  // TODO
   const konvaImages = [];
   const stage = new Konva.Stage({
     container: 'superimposer-canvas',
-    width: MAX_SIZE,
-    height: MAX_SIZE,
+    width: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
+    height: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
   });
 
   const baseLayer = new Konva.Layer();
   stage.add(baseLayer);
 
-  Object.keys(images).forEach((i) => {
-    const image = images[i];
+  [img1, img2].forEach((i) => {
+    const image = i;
+    console.log({ image });
     const { width, height } = getScaledImageDimensions(
       image.width,
       image.height,
-      MAX_SIZE / 2
+      MAX_GIF_SIZE / 2
     );
 
     const konvaImg = new Konva.Image({
       width,
       height,
+      name: 'img',
       image,
-      x: MAX_SIZE / 2,
-      y: MAX_SIZE / 2,
+      x: MAX_GIF_SIZE / 4,
+      y: MAX_GIF_SIZE / 4,
       draggable: true,
     });
 
@@ -99,7 +106,12 @@ function superimpose(event) {
   baseLayer.add(tr);
   baseLayer.batchDraw();
 
+  baseLayer.add(selectionRectangle);
+
   stage.on('click tap', function (e) {
+    if (selectionRectangle.visible()) {
+      return;
+    }
     // if we click on empty area - remove all selections
     if (e.target === stage) {
       tr.nodes([]);
@@ -129,6 +141,16 @@ function superimpose(event) {
     }
   });
 
+  stage.on('mousedown touchstart', (event) => {
+    drawSelectionRectangle(event, stage, baseLayer);
+  });
+  stage.on('mousemove touchmove', () => {
+    expandSelectionRectangle(stage, baseLayer);
+  });
+  stage.on('mouseup touchend', () => {
+    endSelectionRectangle(stage, tr, baseLayer);
+  });
+
   document.getElementById('download').addEventListener('click', (e) => {
     tr.nodes([]);
     var dataURL = stage.toDataURL();
@@ -150,3 +172,4 @@ document.getElementById('more-imgs').onclick = onAddMore;
 document.getElementById('img1').onchange = onImageLoad;
 document.getElementById('img2').onchange = onImageLoad;
 document.getElementById('imgs').onchange = onImagesLoad;
+superimpose();

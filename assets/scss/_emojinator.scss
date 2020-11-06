@@ -1,4 +1,4 @@
-.emojifier {
+.emojinator {
   &-wrapper {
     display: flex;
     justify-content: center;
@@ -68,4 +68,8 @@
 
 .hidden {
   display: none;
+}
+
+#selectionRectangle {
+  fill: var(--selection-rectangle-fill, rgba(0, 0, 0, 0.5));
 }

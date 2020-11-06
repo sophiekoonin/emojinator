@@ -1,3 +1,4 @@
 ---
 title: "Yeemojinator"
+includeKonva: true
 ---

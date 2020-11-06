@@ -1,3 +1,4 @@
 ---
 title: "Superimposerizer"
+includeKonva: true
 ---
