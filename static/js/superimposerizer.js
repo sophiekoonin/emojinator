@@ -109,36 +109,7 @@ function superimpose() {
   baseLayer.add(selectionRectangle);
 
   stage.on('click tap', function (e) {
-    if (selectionRectangle.visible()) {
-      return;
-    }
-    // if we click on empty area - remove all selections
-    if (e.target === stage) {
-      tr.nodes([]);
-      baseLayer.draw();
-      return;
-    }
-
-    // do we pressed shift or ctrl?
-    const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey;
-    const isSelected = tr.nodes().indexOf(e.target) >= 0;
-
-    if (!metaPressed && !isSelected) {
-      // if no key pressed and the node is not selected
-      // select just one
-      tr.nodes([e.target]);
-    } else if (metaPressed && isSelected) {
-      // if we pressed keys and node was selected
-      // we need to remove it from selection:
-      const nodes = tr.nodes().slice(); // use slice to have new copy of array
-      // remove node from array
-      nodes.splice(nodes.indexOf(e.target), 1);
-      tr.nodes(nodes);
-    } else if (metaPressed && !isSelected) {
-      // add the node into selection
-      const nodes = tr.nodes().concat([e.target]);
-      tr.nodes(nodes);
-    }
+    clearSelection(e, stage, tr, baseLayer);
   });
 
   stage.on('mousedown touchstart', (event) => {
@@ -154,7 +125,7 @@ function superimpose() {
   document.getElementById('download').addEventListener('click', (e) => {
     tr.nodes([]);
     var dataURL = stage.toDataURL();
-    downloadURI(dataURL, `yee${filename}.png`);
+    downloadURI(dataURL, `superimposerizer.png`);
     false;
   });
   document.getElementById('move-up').onclick = () => {

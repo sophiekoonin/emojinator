@@ -57,3 +57,36 @@ function endSelectionRectangle(stage, tr, layer) {
   );
   tr.nodes(selected);
 }
+
+function clearSelection(e, stage, tr, layer) {
+  if (selectionRectangle.visible()) {
+    return;
+  }
+  // if we click on empty area - remove all selections
+  if (e.target === stage) {
+    tr.nodes([]);
+    layer.draw();
+    return;
+  }
+
+  // do we pressed shift or ctrl?
+  const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey;
+  const isSelected = tr.nodes().indexOf(e.target) >= 0;
+
+  if (!metaPressed && !isSelected) {
+    // if no key pressed and the node is not selected
+    // select just one
+    tr.nodes([e.target]);
+  } else if (metaPressed && isSelected) {
+    // if we pressed keys and node was selected
+    // we need to remove it from selection:
+    const nodes = tr.nodes().slice(); // use slice to have new copy of array
+    // remove node from array
+    nodes.splice(nodes.indexOf(e.target), 1);
+    tr.nodes(nodes);
+  } else if (metaPressed && !isSelected) {
+    // add the node into selection
+    const nodes = tr.nodes().concat([e.target]);
+    tr.nodes(nodes);
+  }
+}

@@ -45,6 +45,7 @@ function yeeify(image) {
   baseLayer.add(tr);
 
   addHat(numHats++);
+  baseLayer.add(selectionRectangle);
 
   document.getElementById('add-hat').addEventListener('click', (e) => {
     addHat(numHats++);
@@ -74,6 +75,9 @@ function yeeify(image) {
   }
 
   stage.on('click tap', function (e) {
+    if (selectionRectangle.visible()) {
+      return;
+    }
     // if we click on empty area - remove all selections
     if (e.target === stage) {
       tr.nodes([]);
