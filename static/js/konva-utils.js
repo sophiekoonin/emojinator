@@ -90,3 +90,30 @@ function clearSelection(e, stage, tr, layer) {
     tr.nodes(nodes);
   }
 }
+
+const fitToScreen = (stage, tr, layer) => {
+  tr.remove();
+  // get layers
+  const layerSize = layer.getClientRect({
+    relativeTo: stage,
+  });
+  layer.add(tr);
+
+  const tween = new Konva.Tween({
+    duration: 0.35,
+    easing: Konva.Easings.EaseInOut,
+    node: stage,
+    onFinish: this.destroy,
+    width: layerSize.width,
+    height: layerSize.height,
+  });
+
+  // get the x and y coords of the transform layer with our images
+  const { x, y } = tr.position();
+  tween.play();
+  tr.nodes().forEach((node) => {
+    node.x(node.x() - x);
+    node.y(node.y() - y);
+  });
+  stage.batchDraw();
+};

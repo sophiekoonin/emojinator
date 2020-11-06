@@ -40,10 +40,6 @@
   }
 }
 
-.canvas-border {
-  border: 1px solid var(--border-color);
-}
-
 .back-link {
   display: block;
   margin-top: 2rem;
@@ -72,4 +68,35 @@
 
 #selectionRectangle {
   fill: var(--selection-rectangle-fill, rgba(0, 0, 0, 0.5));
+}
+
+.action-button {
+  @extend button.secondary;
+  font-size: 0.8rem;
+  font-variation-settings: 'wght' 500;
+  padding: 0.5rem;
+
+  &:hover {
+    background: var(--link-color);
+  }
+}
+
+.canvas {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-column-gap: 1.5rem;
+  justify-items: center;
+  align-items: center;
+
+  &-actions {
+    display: flex;
+    flex-direction: column;
+    button {
+      margin-bottom: 0.25rem;
+    }
+  }
+  .canvas-border canvas {
+    margin: 0;
+    border: 1px solid var(--border-color) !important;
+  }
 }

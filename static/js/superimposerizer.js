@@ -70,7 +70,6 @@ function superimpose() {
 
   [img1, img2].forEach((i) => {
     const image = i;
-    console.log({ image });
     const { width, height } = getScaledImageDimensions(
       image.width,
       image.height,
@@ -122,12 +121,13 @@ function superimpose() {
     endSelectionRectangle(stage, tr, baseLayer);
   });
 
-  document.getElementById('download').addEventListener('click', (e) => {
+  document.getElementById('download').onclick = (e) => {
     tr.nodes([]);
     var dataURL = stage.toDataURL();
     downloadURI(dataURL, `superimposerizer.png`);
     false;
-  });
+  };
+
   document.getElementById('move-up').onclick = () => {
     tr.nodes().forEach((node) => node.moveToTop());
     baseLayer.draw();
@@ -136,6 +136,10 @@ function superimpose() {
     tr.nodes().forEach((node) => node.moveToBottom());
     baseLayer.draw();
   };
+  document.getElementById('shrink').onclick = () => {
+    fitToScreen(stage, tr, baseLayer);
+  };
+
   document.getElementById('actions').classList.remove('hidden');
 }
 
