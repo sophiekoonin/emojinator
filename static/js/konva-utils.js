@@ -104,7 +104,7 @@ function clearSelection(e) {
   }
 }
 
-const fitToScreen = () => {
+const fitToScreen = (callback) => {
   tr.remove();
   // get layers
   const layerSize = baseLayer.getClientRect({
@@ -116,7 +116,9 @@ const fitToScreen = () => {
     duration: 0.35,
     easing: Konva.Easings.EaseInOut,
     node: stage,
-    onFinish: this.destroy,
+    onFinish: () => {
+      callback != null && callback();
+    },
     width: layerSize.width,
     height: layerSize.height,
   });
@@ -124,6 +126,7 @@ const fitToScreen = () => {
   // get the x and y coords of the transform baseLayer with our images
   const { x, y } = tr.position();
   tween.play();
+  tr.nodes(konvaImages);
   tr.nodes().forEach((node) => {
     node.x(node.x() - x);
     node.y(node.y() - y);
@@ -137,6 +140,7 @@ function rotate(deg) {
 }
 
 function init() {
+  document.getElementById('info').classList.remove('hidden');
   document.getElementById('move-up').onclick = () => {
     tr.nodes().forEach((node) => node.moveToTop());
     baseLayer.draw();
@@ -144,9 +148,6 @@ function init() {
   document.getElementById('move-down').onclick = () => {
     tr.nodes().forEach((node) => node.moveToBottom());
     baseLayer.draw();
-  };
-  document.getElementById('shrink').onclick = () => {
-    fitToScreen(stage, tr, baseLayer);
   };
   document.getElementById('select-all').onclick = () => {
     tr.nodes(konvaImages);

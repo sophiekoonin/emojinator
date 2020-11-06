@@ -22,7 +22,7 @@ function onAddMore() {
 }
 
 const stage = new Konva.Stage({
-  container: 'superimposer-canvas',
+  container: 'canvas',
   width: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
   height: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
 });
@@ -99,10 +99,11 @@ function superimpose() {
   baseLayer.add(selectionRectangle);
 
   document.getElementById('download').onclick = (e) => {
-    tr.nodes([]);
-    var dataURL = stage.toDataURL();
-    downloadURI(dataURL, `superimposerizer.png`);
-    false;
+    fitToScreen(() => {
+      tr.nodes([]);
+      var dataURL = stage.toDataURL();
+      downloadURI(dataURL, `superimposerizer.png`);
+    });
   };
 
   document.getElementById('actions').classList.remove('hidden');

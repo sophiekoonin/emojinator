@@ -62,10 +62,6 @@
   grid-column-gap: 2px;
 }
 
-.hidden {
-  display: none;
-}
-
 #selectionRectangle {
   fill: var(--selection-rectangle-fill, rgba(0, 0, 0, 0.5));
 }
@@ -113,4 +109,8 @@
     margin: 0;
     border: 1px solid var(--border-color) !important;
   }
+}
+
+.hidden {
+  display: none;
 }

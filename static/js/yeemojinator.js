@@ -1,23 +1,30 @@
+const stage = new Konva.Stage({
+  container: 'canvas',
+});
+
+const konvaImages = [];
+
 function yeeify(image) {
   const { width, height } = getScaledImageDimensions(
     image.width,
     image.height,
     MAX_SIZE
   );
-  document.getElementById('yee-actions').classList.remove('hidden');
+
+  stage.width(width + width / 2);
+  stage.height(height + height / 2);
+  init();
+  document.getElementById('actions').classList.remove('hidden');
+  document.getElementById('add-hat').classList.remove('hidden');
+
   const hatImg = document.getElementById('cowboy-hat').cloneNode();
   hatImg.classList.remove('visually-hidden');
   const hatHeight = (width / hatImg.width) * hatImg.height;
   hatImg.width = width;
   hatImg.height = hatHeight;
-  const stage = new Konva.Stage({
-    container: 'yee-canvas',
-    width: width + width / 2,
-    height: height + height / 2,
-  });
 
   let numHats = 0;
-  const baseLayer = new Konva.Layer();
+
   stage.add(baseLayer);
   const baseImg = new Konva.Image({
     width,
@@ -28,19 +35,9 @@ function yeeify(image) {
     draggable: true,
   });
 
+  konvaImages.push(baseImg);
   baseLayer.add(baseImg);
   baseLayer.draw();
-
-  const tr = new Konva.Transformer({
-    nodes: [],
-    keepRatio: true,
-    boundBoxFunc: (oldBox, newBox) => {
-      if (newBox.width < 10 || newBox.height < 10) {
-        return oldBox;
-      }
-      return newBox;
-    },
-  });
 
   baseLayer.add(tr);
 
@@ -52,10 +49,11 @@ function yeeify(image) {
   });
 
   document.getElementById('download').addEventListener('click', (e) => {
-    tr.nodes([]);
-    var dataURL = stage.toDataURL();
-    downloadURI(dataURL, `yee${filename}.png`);
-    false;
+    fitToScreen(() => {
+      tr.nodes([]);
+      var dataURL = stage.toDataURL();
+      downloadURI(dataURL, `yee${filename}.png`);
+    });
   });
 
   function addHat(numHats) {
@@ -68,44 +66,12 @@ function yeeify(image) {
       name: `hat-${numHats}`,
       draggable: true,
     });
+    konvaImages.push(hat);
     baseLayer.add(hat);
     const nodes = tr.nodes().concat([hat]);
     tr.nodes(nodes);
     baseLayer.batchDraw();
   }
-
-  stage.on('click tap', function (e) {
-    if (selectionRectangle.visible()) {
-      return;
-    }
-    // if we click on empty area - remove all selections
-    if (e.target === stage) {
-      tr.nodes([]);
-      baseLayer.draw();
-      return;
-    }
-
-    // do we pressed shift or ctrl?
-    const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey;
-    const isSelected = tr.nodes().indexOf(e.target) >= 0;
-
-    if (!metaPressed && !isSelected) {
-      // if no key pressed and the node is not selected
-      // select just one
-      tr.nodes([e.target]);
-    } else if (metaPressed && isSelected) {
-      // if we pressed keys and node was selected
-      // we need to remove it from selection:
-      const nodes = tr.nodes().slice(); // use slice to have new copy of array
-      // remove node from array
-      nodes.splice(nodes.indexOf(e.target), 1);
-      tr.nodes(nodes);
-    } else if (metaPressed && !isSelected) {
-      // add the node into selection
-      const nodes = tr.nodes().concat([e.target]);
-      tr.nodes(nodes);
-    }
-  });
 }
 
 function yeeFormSubmit(event) {
