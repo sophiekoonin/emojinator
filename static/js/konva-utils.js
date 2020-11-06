@@ -161,6 +161,15 @@ function init() {
     rotate(90, tr, baseLayer);
   };
 
+  document.getElementById('flip-horizontal').onclick = () => {
+    tr.nodes().forEach((node) => node.scaleX(-node.scaleX()));
+    baseLayer.batchDraw();
+  };
+  document.getElementById('flip-vertical').onclick = () => {
+    tr.nodes().forEach((node) => node.scaleY(-node.scaleY()));
+    baseLayer.batchDraw();
+  };
+
   stage.on('click tap', function (e) {
     clearSelection(e, stage, tr, baseLayer);
   });

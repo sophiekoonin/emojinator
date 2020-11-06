@@ -8,6 +8,8 @@ const images = {
   img2: new Image(),
 };
 
+const konvaImages = [];
+
 function reset(event) {
   event.target.reset();
   document.getElementById('more-imgs-wrapper').classList.add('hidden');
@@ -57,20 +59,14 @@ async function onImagesLoad(event) {
 }
 
 // TODO
-// function superimpose(event) {
-//   event.preventDefault();
-//   event.target.reset();
-function superimpose() {
+function superimpose(event) {
+  event.preventDefault();
+  event.target.reset();
   init();
-  const img1 = document.getElementById('robot-img');
-  const img2 = document.getElementById('bin-img');
-  // TODO
-  const konvaImages = [];
-
   stage.add(baseLayer);
 
-  [img1, img2].forEach((i) => {
-    const image = i;
+  Object.keys(images).forEach((i) => {
+    const image = images[i];
     const { width, height } = getScaledImageDimensions(
       image.width,
       image.height,
@@ -82,9 +78,11 @@ function superimpose() {
       height,
       name: 'img',
       image,
-      x: MAX_GIF_SIZE / 4,
-      y: MAX_GIF_SIZE / 4,
+      x: MAX_GIF_SIZE / 4 + width / 2,
+      y: MAX_GIF_SIZE / 4 + height / 2,
       draggable: true,
+      offsetX: width / 2,
+      offsetY: height / 2,
     });
 
     konvaImages.push(konvaImg);
@@ -113,4 +111,3 @@ document.getElementById('more-imgs').onclick = onAddMore;
 document.getElementById('img1').onchange = onImageLoad;
 document.getElementById('img2').onchange = onImageLoad;
 document.getElementById('imgs').onchange = onImagesLoad;
-superimpose();

@@ -1,5 +1,6 @@
 {{ define "main" }}
   <p>Stick something on top of something else. Standard.</p>
+  <img src="/images/robot-bin.png" alt="" width="100"/>
   <form id="superimposer-form" class="emojinator-form">
     <label for="img1">First image</label>
     <input
@@ -26,7 +27,6 @@
     <button type="submit" id="submit" disabled>Submit</button>
     <button type="reset" class="secondary">Reset</button>
   </form>
-  <img src="/images/robot.png" id="robot-img"/>
-  <img src="/images/bin.png" id="bin-img"/>
+  <img src="/images/bin.png" class="visually-hidden" id="bin-img"/>
   {{ partial "canvas/canvas-area.html" . }}
 {{ end }}

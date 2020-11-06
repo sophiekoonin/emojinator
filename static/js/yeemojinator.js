@@ -30,9 +30,11 @@ function yeeify(image) {
     width,
     height,
     image,
-    x: width / 4,
-    y: height / 4,
+    x: width / 4 + width / 2,
+    y: height / 4 + height / 2,
     draggable: true,
+    offsetX: width / 2,
+    offsetY: height / 2,
   });
 
   konvaImages.push(baseImg);
@@ -61,10 +63,12 @@ function yeeify(image) {
       width: hatImg.width,
       image: hatImg,
       height: hatImg.height,
-      x: 0,
-      y: 0,
+      x: hatImg.width / 2,
+      y: hatImg.height / 2,
       name: `hat-${numHats}`,
       draggable: true,
+      offsetX: hatImg.width / 2,
+      offsetY: hatImg.height / 2,
     });
     konvaImages.push(hat);
     baseLayer.add(hat);
