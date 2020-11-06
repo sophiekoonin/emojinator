@@ -1,9 +1,28 @@
 <div class="canvas hidden" id="actions">
-  <div class="canvas-actions">
-    <button id="move-up" class="action-button" type="button">Move to top</button>
-    <button id="move-down" class="action-button" type="button">Move to back</button>
-    <button id="select-all" class="action-button" type="button">Select all</button>
-    <button id="select-none" class="action-button" type="button">Deselect all</button>
+  <div class="controls">
+    <button id="move-up" class="action-button" type="button" title="Bring to front">
+      <span class="visually-hidden">Bring to front</span>{{ partial "canvas/bring-to-front.html" . }}
+    </button>
+    <button id="move-down" class="action-button" type="button" title="Move to back">
+      <span class="visually-hidden">Move to back</span>{{ partial "canvas/move-to-back.html" . }}
+    </button>
+    <button id="rotate-left" class="action-button" type="button" title="Rotate anticlockwise">
+      <span class="visually-hidden">Rotate anticlockwise</span>{{ partial "canvas/rotate.html" . }}
+    </button>
+    <button id="rotate-right" class="action-button" type="button" title="Rotate clockwise">
+      <span class="visually-hidden">Rotate clockwise</span>{{ partial "canvas/rotate.html" . }}
+    </button>
+    <button id="flip-horizontal" class="action-button" type="button" title="Flip horizontally">
+      <span class="visually-hidden">Flip horizontally</span>{{ partial "canvas/flip.html" . }}
+    </button>
+    <button id="flip-vertical" class="action-button" type="button" title="Flip vertically">
+      <span class="visually-hidden">Flip vertically</span>{{ partial "canvas/flip.html" . }}
+    </button>
+
+    <button id="select-all" class="action-button" type="button" title="Select all">
+      <span class="visually-hidden">Select all</span>{{ partial "canvas/select-all.html" . }}
+    </button>
+
   </div>
   <div id="superimposer-canvas" class="canvas-border"></div>
   <div class="canvas-actions">

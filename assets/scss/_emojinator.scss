@@ -74,7 +74,7 @@
   @extend button.secondary;
   font-size: 0.8rem;
   font-variation-settings: 'wght' 500;
-  padding: 0.5rem;
+  padding: 0;
 
   &:hover {
     background: var(--link-color);
@@ -88,6 +88,20 @@
   justify-items: center;
   align-items: center;
 
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
+
+    #rotate-left svg {
+      transform: scale(-1, 1);
+    }
+
+    #flip-horizontal svg {
+      transform: rotate(90deg);
+    }
+  }
   &-actions {
     display: flex;
     flex-direction: column;

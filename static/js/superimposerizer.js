@@ -21,6 +21,12 @@ function onAddMore() {
   document.getElementById('submit').setAttribute('disabled', 1);
 }
 
+const stage = new Konva.Stage({
+  container: 'superimposer-canvas',
+  width: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
+  height: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
+});
+
 async function onImageLoad(event) {
   const image = event.target.files[0];
   images[event.target.id].src = await toBase64(image);
@@ -55,17 +61,12 @@ async function onImagesLoad(event) {
 //   event.preventDefault();
 //   event.target.reset();
 function superimpose() {
+  init();
   const img1 = document.getElementById('robot-img');
   const img2 = document.getElementById('bin-img');
   // TODO
   const konvaImages = [];
-  const stage = new Konva.Stage({
-    container: 'superimposer-canvas',
-    width: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
-    height: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
-  });
 
-  const baseLayer = new Konva.Layer();
   stage.add(baseLayer);
 
   [img1, img2].forEach((i) => {
@@ -91,53 +92,17 @@ function superimpose() {
     baseLayer.add(konvaImg);
   });
 
-  const tr = new Konva.Transformer({
-    nodes: konvaImages,
-    keepRatio: true,
-    boundBoxFunc: (oldBox, newBox) => {
-      if (newBox.width < 10 || newBox.height < 10) {
-        return oldBox;
-      }
-      return newBox;
-    },
-  });
-
   baseLayer.add(tr);
+  tr.nodes(konvaImages);
   baseLayer.batchDraw();
 
   baseLayer.add(selectionRectangle);
-
-  stage.on('click tap', function (e) {
-    clearSelection(e, stage, tr, baseLayer);
-  });
-
-  stage.on('mousedown touchstart', (event) => {
-    drawSelectionRectangle(event, stage, baseLayer);
-  });
-  stage.on('mousemove touchmove', () => {
-    expandSelectionRectangle(stage, baseLayer);
-  });
-  stage.on('mouseup touchend', () => {
-    endSelectionRectangle(stage, tr, baseLayer);
-  });
 
   document.getElementById('download').onclick = (e) => {
     tr.nodes([]);
     var dataURL = stage.toDataURL();
     downloadURI(dataURL, `superimposerizer.png`);
     false;
-  };
-
-  document.getElementById('move-up').onclick = () => {
-    tr.nodes().forEach((node) => node.moveToTop());
-    baseLayer.draw();
-  };
-  document.getElementById('move-down').onclick = () => {
-    tr.nodes().forEach((node) => node.moveToBottom());
-    baseLayer.draw();
-  };
-  document.getElementById('shrink').onclick = () => {
-    fitToScreen(stage, tr, baseLayer);
   };
 
   document.getElementById('actions').classList.remove('hidden');
