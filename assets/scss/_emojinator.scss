@@ -7,8 +7,9 @@
     text-align: center;
   }
 
-  p {
-    margin-top: 0rem;
+  .blurb {
+    font-size: 0.9rem;
+    margin: 1rem 0;
   }
   @include content-box;
   padding: 1.5rem;
@@ -77,6 +78,10 @@
   }
 }
 
+#add-hat {
+  margin-bottom: 1rem;
+}
+
 .canvas {
   @include mq($from: tablet) {
     display: grid;
@@ -87,7 +92,12 @@
   }
   .controls {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin: 1rem auto;
+    grid-template-columns: repeat(7, 1fr);
+    @include mq($from: tablet) {
+      margin: 0;
+      grid-template-columns: 1fr 1fr;
+    }
     grid-column-gap: 2px;
     grid-row-gap: 2px;
 
@@ -106,9 +116,16 @@
       margin-bottom: 0.25rem;
     }
   }
-  .canvas-border canvas {
-    margin: 0;
-    border: 1px solid var(--border-color) !important;
+
+  .canvas-border {
+    display: flex;
+    justify-content: center;
+    @include mq($until: tablet) {
+      margin-bottom: 1rem;
+    }
+    canvas {
+      border: 1px solid var(--border-color) !important;
+    }
   }
 }
 

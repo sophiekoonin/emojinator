@@ -8,7 +8,7 @@ function yeeify(image) {
   const { width, height } = getScaledImageDimensions(
     image.width,
     image.height,
-    MAX_SIZE
+    MAX_GIF_SIZE
   );
 
   stage.width(width + width / 2);
