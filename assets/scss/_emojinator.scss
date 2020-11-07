@@ -78,12 +78,13 @@
 }
 
 .canvas {
-  display: grid;
-  grid-template-columns: 0.5fr 1fr 0.5fr;
-  grid-column-gap: 1.5rem;
-  justify-items: center;
-  align-items: center;
-
+  @include mq($from: tablet) {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-column-gap: 1.5rem;
+    justify-items: center;
+    align-items: center;
+  }
   .controls {
     display: grid;
     grid-template-columns: 1fr 1fr;
