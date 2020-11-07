@@ -1,3 +1,4 @@
 ---
 title: "Partyizer"
+includeGif: true
 ---

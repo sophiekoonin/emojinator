@@ -17,6 +17,7 @@ const tr = new Konva.Transformer({
   },
   nodes: [],
 });
+
 let x1, y1, x2, y2;
 function drawSelectionRectangle(event) {
   // do nothing if we mousedown on eny shape

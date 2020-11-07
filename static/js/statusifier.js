@@ -1,3 +1,8 @@
+const Emoji = {
+  fire: '🔥',
+  done: '✅',
+};
+
 async function statusify(image, status) {
   const { width, height } = getScaledImageDimensions(image.width, image.height);
   canvas.width = width;
@@ -6,17 +11,13 @@ async function statusify(image, status) {
   if (status === 'red') {
     return makeRedVersion(image);
   }
+  const emojiSize = canvas.width / 2;
 
   ctx.drawImage(image, 0, 0, width - width / 7, height - height / 7);
-  const emoji = document.getElementById(status);
-  const emojiSize = canvas.width / 2;
-  ctx.drawImage(
-    emoji,
-    width - emojiSize,
-    height - emojiSize,
-    emojiSize,
-    emojiSize
-  );
+  // The size of the emoji is set with the font
+  ctx.font = `70px serif`;
+  ctx.textBaseline = 'top';
+  ctx.fillText(Emoji[status], width - emojiSize, height - emojiSize);
 
   const output = document.getElementById('output');
   output.src = canvas.toDataURL();
