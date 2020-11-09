@@ -1,7 +1,7 @@
 {{ define "main" }}
   <p>Party cry! Party scream! Party pizza! Party your colleagues! Party yourself!</p>
   <img src="/images/party-robot.gif" alt=""/>
-  <form class="emojinator-form" id="party-form">
+  <form class="emojinator-form" id="form">
     <label for="party-input">Image to partyize</label>
     <input
             name="image"
@@ -10,6 +10,7 @@
             accept=".jpg, .jpeg, .png"></input>
 
     <button type="submit" id="submit" disabled>Submit</button>
+    <button type="reset" class="secondary">Reset</button>
   </form>
   <img id="output"/>
   <button id="download" class="hidden" type="button">Download</button>

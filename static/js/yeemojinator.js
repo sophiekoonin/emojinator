@@ -4,7 +4,14 @@ const stage = new Konva.Stage({
 
 const konvaImages = [];
 
-function yeeify(image) {
+function reset(event) {
+  event.target.reset();
+  document.getElementById('actions').classList.add('hidden');
+  document.getElementById('add-hat').classList.add('hidden');
+  document.getElementById('submit').setAttribute('disabled', 1);
+}
+
+function yeeify(event, image) {
   const { width, height } = getScaledImageDimensions(
     image.width,
     image.height,
@@ -16,6 +23,7 @@ function yeeify(image) {
   init();
   document.getElementById('actions').classList.remove('hidden');
   document.getElementById('add-hat').classList.remove('hidden');
+  event.target.reset();
 
   const hatImg = document.getElementById('cowboy-hat').cloneNode();
   hatImg.classList.remove('visually-hidden');
@@ -80,8 +88,9 @@ function yeeify(image) {
 
 function yeeFormSubmit(event) {
   event.preventDefault();
-  yeeify(img);
+  yeeify(event, img);
 }
 
 document.getElementById('yee-input').onchange = onImageSelect;
-document.getElementById('yee-form').onsubmit = yeeFormSubmit;
+document.getElementById('form').onsubmit = yeeFormSubmit;
+document.getElementById('form').onreset = reset;

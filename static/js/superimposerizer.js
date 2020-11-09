@@ -1,5 +1,5 @@
-document.getElementById('superimposer-form').onsubmit = superimpose;
-document.getElementById('superimposer-form').onreset = reset;
+document.getElementById('form').onsubmit = superimpose;
+document.getElementById('form').onreset = reset;
 
 let numImages = 2;
 let loadedImages = 0;

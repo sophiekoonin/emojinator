@@ -1,3 +1,10 @@
+function reset(event) {
+  event.target.reset();
+  document.getElementById('download').classList.add('hidden');
+  document.getElementById('output').src = '';
+  document.getElementById('submit').setAttribute('disabled', 1);
+}
+
 function rotate(image, speed = 1) {
   const { width, height } = getScaledImageDimensions(image.width, image.height);
   const canvasWidth = width + width / 2;
@@ -52,4 +59,5 @@ function rotatorFormSubmit(event) {
 }
 
 document.getElementById('rotate-input').onchange = onImageSelect;
-document.getElementById('rotate-form').onsubmit = rotatorFormSubmit;
+document.getElementById('form').onsubmit = rotatorFormSubmit;
+document.getElementById('form').onreset = reset;

@@ -2,7 +2,7 @@
   <p>Make an image go round and round and round. Choose from three speeds. </p>
   <img src="/images/rotating-robot.gif" alt=""/>
 
-  <form id="rotate-form" class="emojinator-form">
+  <form id="form" class="emojinator-form">
     <label for="rotate-input">Choose an image</label>
     <input
             name="image"
@@ -19,6 +19,8 @@
       </select>
     </label>
     <button type="submit" id="submit" disabled>Submit</button>
+    <button type="reset" class="secondary">Reset</button>
+
   </form>
   <img id="output"/>
   <button id="download" class="hidden" type="button">Download</button>
