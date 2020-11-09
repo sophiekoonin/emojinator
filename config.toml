@@ -3,4 +3,4 @@ languageCode = "en-gb"
 title = "emojinator"
 
 [minify]
-  disableSVG: true
+  disableSVG = true
