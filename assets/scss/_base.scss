@@ -70,7 +70,7 @@ h1 {
 h2 {
   margin: 0;
   font-size: 2rem;
-  font-size: unquote('min(max(1.25rem, 4vw), 25px)');
+  font-size: unquote('min(max(1.25rem, 2.5vw), 25px)');
 
   color: var(--h2-color);
 
@@ -132,13 +132,14 @@ ul {
 
   @include mq($from: tablet) {
     margin-top: 2rem;
-    width: 80%;
     display: grid;
     grid-row-gap: 1rem;
     grid-column-gap: 1rem;
     grid-template-columns: 1fr 1fr;
   }
-
+  @include mq($from: desktop) {
+    width: 80%;
+  }
   li {
     text-align: center;
   }
@@ -150,12 +151,13 @@ ul {
       margin: 0;
       margin-bottom: 1rem;
     }
+
+    padding: 2rem;
     background: var(--link-background-color);
     border-radius: 6px;
     height: 100%;
     transition: color 0.15s ease, background-color 0.15s ease;
     display: block;
-    padding: 2rem;
     font-variation-settings: 'wght' 450;
     color: var(--body-color);
     &:hover,

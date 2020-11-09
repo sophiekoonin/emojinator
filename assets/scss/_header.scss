@@ -4,8 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30vh;
 
+  height: 18vh;
+  @include mq($from: desktop) {
+    height: 30vh;
+  }
   .header-text {
     color: var(--header-color);
     font-family: 'Diary of an 8-bit mage', monospace;
