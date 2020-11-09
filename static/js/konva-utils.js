@@ -141,7 +141,6 @@ function rotate(deg) {
 }
 
 function init() {
-  document.querySelector('form').classList.add('hidden');
   document.getElementById('info').classList.remove('hidden');
   document.getElementById('move-up').onclick = () => {
     tr.nodes().forEach((node) => node.moveToTop());
