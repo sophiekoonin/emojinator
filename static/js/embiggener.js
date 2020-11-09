@@ -1,8 +1,15 @@
-function embiggen(image) {
+function reset(event) {
+  event.target.reset();
+  document.getElementById('output').classList.add('hidden');
+  document.getElementById('submit').setAttribute('disabled', 1);
+}
+
+function embiggen(event, image) {
   const { width: scaledWidth, height: scaledHeight } = getScaledImageDimensions(
     image.width,
     image.height
   );
+  event.target.reset();
 
   const segmentWidth = scaledWidth / 2;
   const segmentHeight = scaledHeight / 2;
@@ -113,8 +120,8 @@ function embiggen(image) {
 
 function embiggenFormSubmit(event) {
   event.preventDefault();
-  embiggen(img);
+  embiggen(event, img);
 }
 
 document.getElementById('embiggen-input').onchange = onImageSelect;
-document.getElementById('embiggen-form').onsubmit = embiggenFormSubmit;
+document.getElementById('form').onsubmit = embiggenFormSubmit;

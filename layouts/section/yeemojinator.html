@@ -1,8 +1,8 @@
 {{ define "main" }}
   <img src="/images/cowboy-hat.png" class="visually-hidden" alt="" id="cowboy-hat"/>
+  <img src="/images/yeerobot.png" width="64" alt=""/>
   <p>Add a cowboy hat. Add two cowboy hats. Go wild! Add <em>three</em> cowboy hats.</p>
-  <img src="/images/yeerobot.png" width="128" alt=""/>
-  <form class="emojifier-form" id="yee-form">
+  <form class="emojinator-form" id="form">
     <label for="yee-input">Choose an image</label>
     <input
             name="image"
@@ -10,12 +10,8 @@
             type="file"
             accept=".jpg, .jpeg, .png"></input>
     <button type="submit" id="submit" disabled>Submit</button>
+    <button type="reset" class="secondary">Reset</button>
   </form>
-  <div id="yee-canvas"></div>
-  <div id="yee-actions" class="hidden">
-    <p>Double-click in the canvas to deselect the hat.</p>
-    <button id="add-hat" type="button">Add another hat</button>
-    <button id="download" type="button">Download</button>
-  </div>
-  <img id="output"/>
+  <button id="add-hat" type="button" class="hidden">Add another hat</button>
+  {{ partial "canvas/canvas-area.html" .}}
 {{ end }}

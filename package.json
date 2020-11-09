@@ -1,5 +1,5 @@
 {
-  "name": "emojifier",
+  "name": "emojinator",
   "version": "1.0.0",
   "description": "",
   "main": "index.html",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sophiekoonin/emojifier.git"
+    "url": "git+https://github.com/sophiekoonin/emojinator.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sophiekoonin/emojifier/issues"
+    "url": "https://github.com/sophiekoonin/emojinator/issues"
   },
-  "homepage": "https://github.com/sophiekoonin/emojifier#readme",
+  "homepage": "https://github.com/sophiekoonin/emojinator#readme",
   "devDependencies": {
     "postcss": "^8.1.4",
     "postcss-cli": "^8.2.0",

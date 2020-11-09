@@ -14,7 +14,14 @@ const PARROT_COLORS = [
   '#FD8E8D',
 ];
 
-function partyize(image) {
+function reset(event) {
+  event.target.reset();
+  document.getElementById('download').classList.add('hidden');
+  document.getElementById('output').src = '';
+  document.getElementById('submit').setAttribute('disabled', 1);
+}
+
+function partyize(event, image) {
   const { width, height } = getScaledImageDimensions(image.width, image.height);
   canvas.width = width;
   canvas.height = height;
@@ -59,8 +66,9 @@ function partyize(image) {
 
 function partyizerFormSubmit(event) {
   event.preventDefault();
-  partyize(img);
+  partyize(event, img);
 }
 
 document.getElementById('party-input').onchange = onImageSelect;
-document.getElementById('party-form').onsubmit = partyizerFormSubmit;
+document.getElementById('form').onsubmit = partyizerFormSubmit;
+document.getElementById('form').onreset = reset;

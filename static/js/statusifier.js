@@ -1,22 +1,31 @@
-async function statusify(image, status) {
+const Emoji = {
+  fire: '🔥',
+  done: '✅',
+};
+
+function reset(event) {
+  event.target.reset();
+  document.getElementById('download').classList.add('hidden');
+  document.getElementById('output').src = '';
+  document.getElementById('submit').setAttribute('disabled', 1);
+}
+
+async function statusify(event, image, status) {
   const { width, height } = getScaledImageDimensions(image.width, image.height);
   canvas.width = width;
   canvas.height = height;
 
+  event.target.reset();
   if (status === 'red') {
     return makeRedVersion(image);
   }
+  const emojiSize = canvas.width / 2;
 
   ctx.drawImage(image, 0, 0, width - width / 7, height - height / 7);
-  const emoji = document.getElementById(status);
-  const emojiSize = canvas.width / 2;
-  ctx.drawImage(
-    emoji,
-    width - emojiSize,
-    height - emojiSize,
-    emojiSize,
-    emojiSize
-  );
+  // The size of the emoji is set with the font
+  ctx.font = `70px serif`;
+  ctx.textBaseline = 'top';
+  ctx.fillText(Emoji[status], width - emojiSize, height - emojiSize);
 
   const output = document.getElementById('output');
   output.src = canvas.toDataURL();
@@ -67,8 +76,9 @@ async function statusify(image, status) {
 function statusFormSubmit(event) {
   event.preventDefault();
   const status = event.target[1].value;
-  statusify(img, status);
+  statusify(event, img, status);
 }
 
 document.getElementById('status-input').onchange = onImageSelect;
-document.getElementById('status-form').onsubmit = statusFormSubmit;
+document.getElementById('form').onsubmit = statusFormSubmit;
+document.getElementById('form').onreset = reset;

@@ -170,3 +170,53 @@ ul {
     }
   }
 }
+
+button {
+  font-family: 'Inter var', sans-serif;
+
+  border-radius: 6px;
+  border: 0;
+  background: var(--button-background-color);
+  color: var(--button-color);
+  padding: 6px 8px;
+  font-size: 0.9rem;
+  font-variation-settings: 'wght' 600;
+  cursor: pointer;
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: grey;
+    &:hover,
+    &:focus {
+      background: var(--button-background-color);
+    }
+  }
+
+  &.secondary {
+    border: 1px solid var(--border-color);
+    background-color: var(--link-background-color);
+    color: var(--link-body-color);
+
+    &[disabled] {
+      border: 1px solid var(--border-color);
+      background-color: var(--link-background-color);
+      cursor: not-allowed;
+      color: grey;
+    }
+
+    &:hover,
+    &:active {
+      background: var(--button-hover-color-secondary);
+    }
+  }
+
+  &:hover,
+  &:active {
+    background: var(--button-hover-color);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--aqua-84);
+  }
+}

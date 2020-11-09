@@ -1,0 +1,134 @@
+.emojinator {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .blurb {
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
+  @include content-box;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  input {
+    padding: 12px 8px;
+    background-color: var(--link-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+  }
+  &-form {
+    margin-top: 2rem;
+    @include mq($from: tablet) {
+      max-width: 50%;
+    }
+    display: inline-flex;
+    flex-direction: column;
+    * + * {
+      margin-bottom: 1rem;
+    }
+
+    #more-imgs-wrapper:not(.hidden) {
+      display: grid;
+    }
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.back-link {
+  display: block;
+  margin-top: 2rem;
+}
+
+.embiggener-output {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  img {
+    border: 1px solid var(--border-color);
+  }
+}
+
+.embiggener-example {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-row-gap: 2px;
+  grid-column-gap: 2px;
+}
+
+#selectionRectangle {
+  fill: var(--selection-rectangle-fill, rgba(0, 0, 0, 0.5));
+}
+
+.action-button {
+  @extend .secondary;
+  font-size: 0.8rem;
+  font-variation-settings: 'wght' 500;
+  padding: 0;
+
+  &:hover {
+    background: var(--link-color);
+  }
+}
+
+#add-hat {
+  margin-bottom: 1rem;
+}
+
+.canvas {
+  @include mq($from: tablet) {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-column-gap: 1.5rem;
+    justify-items: center;
+    align-items: center;
+  }
+  .controls {
+    display: grid;
+    margin: 1rem auto;
+    grid-template-columns: repeat(7, 1fr);
+    @include mq($from: tablet) {
+      margin: 0;
+      grid-template-columns: 1fr 1fr;
+    }
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
+
+    #rotate-left svg {
+      transform: scale(-1, 1);
+    }
+
+    #flip-horizontal svg {
+      transform: rotate(90deg);
+    }
+  }
+  &-actions {
+    display: flex;
+    flex-direction: column;
+    button {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .canvas-border {
+    display: flex;
+    justify-content: center;
+    @include mq($until: tablet) {
+      margin-bottom: 1rem;
+    }
+    canvas {
+      border: 1px solid var(--border-color) !important;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}

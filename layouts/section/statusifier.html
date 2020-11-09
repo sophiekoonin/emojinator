@@ -6,9 +6,7 @@
     <img src="/images/robot-fire.png" alt=""/>
     <img src="/images/robot-red.png" alt=""/>
   </div>
-  <form id="status-form" class="emojifier-form">
-    <img src="/images/fire.png" id="fire" alt=""  width="0" height="0">
-    <img src="/images/check.png" id="check" alt="" width="0" height="0">
+  <form id="form" class="emojinator-form">
     <label for="status-input">Choose an image</label>
     <input
             name="image"
@@ -25,6 +23,7 @@
       <option value="red">Red</option>
     </select>
     <button type="submit" id="submit" disabled>Submit</button>
+    <button type="reset" class="secondary">Reset</button>
   </form>
   <img id="output"/>
   <button id="download" class="hidden" type="button">Download</button>

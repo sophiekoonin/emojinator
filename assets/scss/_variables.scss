@@ -39,6 +39,8 @@
   --border-color: rgba(255, 255, 255, 0.2);
   --link-background-color: rgba(255, 255, 255, 0.05);
   --link-background-color-hover: rgba(255, 255, 255, 0.15);
+  --button-hover-color-secondary: var(--gunmetal-20);
+  --selection-rectangle-fill: rgba(140, 143, 146, 0.5);
 }
 
 :root {
@@ -56,9 +58,12 @@
   --border-color: hsla(0, 2%, 93%, 1);
   --link-background-color: hsla(0, 2%, 98%, 1);
   --link-background-color-hover: hsla(0, 2%, 95%, 1);
+  --button-background-color-secondary: var(--purple-80);
   --button-background-color: var(--pacific-blue);
   --button-hover-color: var(--pacific-blue-60);
   --button-color: white;
+  --selection-rectangle-fill: hsla(187, 100%, 40%, 0.5);
+  --button-hover-color-secondary: var(--purple-80);
 }
 
 @media (prefers-color-scheme: dark) {

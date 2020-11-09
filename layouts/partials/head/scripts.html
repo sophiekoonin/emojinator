@@ -5,24 +5,13 @@
 {{ $scripts := slice  $index  | resources.Concat "/js/bundle.js" | fingerprint }}
 <script src="/js/what-input.min.js" defer="defer"></script>
 <script src="{{ $scripts.Permalink }}" defer="defer"></script>
-<script src="{{ $gifWorker.Permalink }}" defer="defer"></script>
-<script src="{{ $gif.Permalink }}" defer="defer"></script>
+{{ if .Params.includeKonva }}
+  <script src="{{ $konva.Permalink}}"></script>
+  <script src="/js/konva-utils.js"></script>
+{{end}}
+{{ if .Params.includeGif }}
+  <script src="{{ $gifWorker.Permalink }}" defer="defer"></script>
+  <script src="{{ $gif.Permalink }}" defer="defer"></script>
+{{end}}
 <script src="/js/emojinator.js" defer="defer"></script>
-{{ if eq .Title "Statusifier"}}
-  <script src="/js/statusifier.js" defer="defer"></script>
-{{ end }}
-{{ if eq .Title "Partyizer"}}
-  <script src="/js/partyizer.js" defer="defer"></script>
-{{ end}}
-{{ if eq .Title "Rotatinator"}}
-  <script src="/js/rotatinator.js" defer="defer"></script>
-{{ end }}
-{{ if eq .Title "Yeemojinator"}}
-  <script src="/js/yeemoji.js" defer="defer"></script>
-{{ end}}
-{{ if eq .Title "Embiggener"}}
-  <script src="/js/embiggener.js" defer="defer"></script>
-{{end}}
-{{ if eq .Title "Yeemojinator"}}
-  <script src="{{ $konva.Permalink}}" defer="defer"></script>
-{{end}}
+<script src="/js/{{ lower .Title}}.js" defer="defer"></script>

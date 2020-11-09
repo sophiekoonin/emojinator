@@ -1,4 +1,4 @@
 ---
-title: "Yeemojinator"
+title: "Superimposerizer"
 includeKonva: true
 ---

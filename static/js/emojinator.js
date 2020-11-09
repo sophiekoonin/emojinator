@@ -1,5 +1,5 @@
 const MAX_GIF_SIZE = 128;
-const MAX_SIZE = 720;
+const MAX_SIZE = 480;
 const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
