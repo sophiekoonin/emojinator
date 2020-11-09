@@ -1,13 +1,13 @@
 {{ define "title" }}
-<h2 class="bold-title is-1">{{ i18n "404_title" . }}</h2>
+    <h2 class="bold-title is-1">404 page not found :(</h2>
 {{ end }}
 
 {{ define "main" }}
-<div class="markdown top-pad">
-    {{ i18n "404_description" . | markdownify }}
-</div>
+    <div class="markdown top-pad">
+        <a href="/">Go back home</a>
+    </div>
 {{ end }}
 
 {{ define "footer" }}
-{{ partial "footer/footer.html" . }}
+    {{ partial "footer/footer.html" . }}
 {{ end }}
