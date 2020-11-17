@@ -21,8 +21,6 @@ function yeeify(event, image) {
   stage.width(width + width / 2);
   stage.height(height + height / 2);
   init();
-  document.getElementById('actions').classList.remove('hidden');
-  document.getElementById('add-hat').classList.remove('hidden');
   event.target.reset();
 
   const hatImg = document.getElementById('cowboy-hat').cloneNode();
@@ -84,6 +82,9 @@ function yeeify(event, image) {
     tr.nodes(nodes);
     baseLayer.batchDraw();
   }
+
+  document.getElementById('actions').classList.remove('hidden');
+  document.getElementById('add-hat').classList.remove('hidden');
 }
 
 function yeeFormSubmit(event) {
