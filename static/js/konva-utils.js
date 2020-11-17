@@ -112,12 +112,21 @@ const fitToScreen = (callback) => {
     relativeTo: stage,
   });
   baseLayer.add(tr);
-
   const tween = new Konva.Tween({
     duration: 0.35,
     easing: Konva.Easings.EaseInOut,
     node: stage,
     onFinish: () => {
+      tr.nodes(konvaImages);
+      const { x, y } = tr.position();
+      console.log({ x, y });
+      tr.nodes().forEach((node) => {
+        node.x(node.x() - x);
+        console.log(node.x());
+        console.log(node.y());
+        node.y(node.y() - y);
+      });
+      stage.batchDraw();
       callback != null && callback();
     },
     width: layerSize.width,
@@ -125,14 +134,7 @@ const fitToScreen = (callback) => {
   });
 
   // get the x and y coords of the transform baseLayer with our images
-  const { x, y } = tr.position();
   tween.play();
-  tr.nodes(konvaImages);
-  tr.nodes().forEach((node) => {
-    node.x(node.x() - x);
-    node.y(node.y() - y);
-  });
-  stage.batchDraw();
 };
 
 function rotate(deg) {

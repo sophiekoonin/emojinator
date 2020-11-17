@@ -57,6 +57,7 @@ function yeeify(event, image) {
   });
 
   document.getElementById('download').addEventListener('click', (e) => {
+    e.preventDefault();
     fitToScreen(() => {
       tr.nodes([]);
       var dataURL = stage.toDataURL();
