@@ -19,11 +19,11 @@ async function statusify(event, image, status) {
   if (status === 'red') {
     return makeRedVersion(image);
   }
-  const emojiSize = canvas.width / 2;
+  const emojiSize = 55;
 
   ctx.drawImage(image, 0, 0, width - width / 7, height - height / 7);
   // The size of the emoji is set with the font
-  ctx.font = `70px serif`;
+  ctx.font = `55px serif`;
   ctx.textBaseline = 'top';
   ctx.fillText(Emoji[status], width - emojiSize, height - emojiSize);
 
