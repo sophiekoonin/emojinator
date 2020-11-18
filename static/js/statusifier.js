@@ -1,6 +1,6 @@
 const Emoji = {
   fire: '🔥',
-  done: '✅',
+  check: '✅',
 };
 
 function reset(event) {
