@@ -13,5 +13,7 @@
   <script src="{{ $gifWorker.Permalink }}" defer="defer"></script>
   <script src="{{ $gif.Permalink }}" defer="defer"></script>
 {{end}}
-<script src="/js/emojinator.js" defer="defer"></script>
-<script src="/js/{{ lower .Title}}.js" defer="defer"></script>
+<script src="/js/emojinator-base.js" defer="defer"></script>
+{{ if not .IsHome }}
+  <script src="/js/{{ lower .Title}}.js" defer="defer"></script>
+{{ end }}
