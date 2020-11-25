@@ -1,19 +1,28 @@
-const stage = new Konva.Stage({
-  container: 'canvas',
-});
+document.getElementById('form').onsubmit = function (event) {
+  event.preventDefault();
+  festivinate(event, img);
+};
+document.getElementById('form').onreset = reset;
+document.getElementById('festive-input').onchange = onImageSelect;
 
 let konvaImages = [];
 
 function reset(event) {
   event.target.reset();
   konvaImages = [];
-
   document.getElementById('actions').classList.add('hidden');
   document.getElementById('add-hat').classList.add('hidden');
   document.getElementById('submit').setAttribute('disabled', 1);
 }
 
-function yeeify(event, image) {
+const stage = new Konva.Stage({
+  container: 'canvas',
+  width: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
+  height: MAX_GIF_SIZE + MAX_GIF_SIZE / 2,
+});
+
+// TODO
+function festivinate(event, image) {
   const { width, height } = getScaledImageDimensions(
     image.width,
     image.height,
@@ -25,7 +34,7 @@ function yeeify(event, image) {
   init();
   event.target.reset();
 
-  const hatImg = document.getElementById('cowboy-hat').cloneNode();
+  const hatImg = document.getElementById('santa-hat').cloneNode();
   hatImg.classList.remove('visually-hidden');
   const hatHeight = (width / hatImg.width) * hatImg.height;
   hatImg.width = width;
@@ -63,7 +72,7 @@ function yeeify(event, image) {
     fitToScreen(() => {
       tr.nodes([]);
       var dataURL = stage.toDataURL();
-      downloadURI(dataURL, `yee${filename}.png`);
+      downloadURI(dataURL, `festive${filename}.png`);
     });
   });
 
@@ -89,12 +98,3 @@ function yeeify(event, image) {
   document.getElementById('actions').classList.remove('hidden');
   document.getElementById('add-hat').classList.remove('hidden');
 }
-
-function yeeFormSubmit(event) {
-  event.preventDefault();
-  yeeify(event, img);
-}
-
-document.getElementById('yee-input').onchange = onImageSelect;
-document.getElementById('form').onsubmit = yeeFormSubmit;
-document.getElementById('form').onreset = reset;

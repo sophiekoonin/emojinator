@@ -8,10 +8,12 @@ const images = {
   img2: new Image(),
 };
 
-const konvaImages = [];
+let konvaImages = [];
 
 function reset(event) {
   event.target.reset();
+  konvaImages = [];
+
   document.getElementById('more-imgs-wrapper').classList.add('hidden');
   document.getElementById('more-imgs').classList.remove('hidden');
   document.getElementById('submit').setAttribute('disabled', 1);
