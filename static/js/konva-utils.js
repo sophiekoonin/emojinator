@@ -119,11 +119,8 @@ const fitToScreen = (callback) => {
     onFinish: () => {
       tr.nodes(konvaImages);
       const { x, y } = tr.position();
-      console.log({ x, y });
       tr.nodes().forEach((node) => {
         node.x(node.x() - x);
-        console.log(node.x());
-        console.log(node.y());
         node.y(node.y() - y);
       });
       stage.batchDraw();

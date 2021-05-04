@@ -12,6 +12,7 @@ let konvaImages = [];
 
 function reset(event) {
   event.target.reset();
+  baseLayer.destroyChildren();
   konvaImages = [];
 
   document.getElementById('more-imgs-wrapper').classList.add('hidden');

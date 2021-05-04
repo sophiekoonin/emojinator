@@ -1,0 +1,29 @@
+{{ define "main" }}
+  <img src="/images/sob.png" class="visually-hidden" alt="" id="img-sob"/>
+  <img src="/images/tear.png" class="visually-hidden" alt="" id="img-tear"/>
+  <img src="/images/tear-red.png" class="visually-hidden" alt="" id="img-tear-red"/>
+  <img src="/images/robot-sobeyes.png" width="64" alt=""/>
+  <p>Starry eyed? In love? Crying tears of blood? Say it with emoji.</p>
+  <form class="emojinator-form" id="form">
+    <label for="eye-input">Choose an image</label>
+    <input
+            name="image"
+          id="eye-input"
+            type="file"
+            accept=".jpg, .jpeg, .png"></input>
+    <label for="option">Choose an option</label>
+    <select
+              id="option"
+              name="option">
+      <option value="stars">⭐️ Stars</option>
+      <option value="hearts">❤️ Heart</option>
+      <option value="fire">🔥 Fire</option>
+      <option value="sob">😭 Crying</option>
+      <option value="tear">😂 Joy tears</option>
+      <option value="tear-red">🩸 Blood tears</option>
+    </select>
+    <button type="submit" id="submit" disabled>Let's go!</button>
+    <button type="reset" class="secondary">Reset</button>
+  </form>
+  {{ partial "canvas/canvas-area.html" .}}
+{{ end }}
