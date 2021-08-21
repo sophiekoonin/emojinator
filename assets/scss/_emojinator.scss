@@ -132,3 +132,9 @@
 .hidden {
   display: none;
 }
+
+.robot-hearts {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
