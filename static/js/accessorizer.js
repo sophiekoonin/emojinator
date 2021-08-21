@@ -8,6 +8,7 @@ const TextEyes = {
   fire: '🔥',
 };
 
+const SingleAccessories = ['halo'];
 let konvaImages = [];
 
 function reset(event) {
@@ -19,7 +20,7 @@ function reset(event) {
   document.getElementById('submit').setAttribute('disabled', 1);
 }
 
-function eyeify(event, image, option) {
+function accessorize(event, image, option) {
   const { width, height } = getScaledImageDimensions(
     image.width,
     image.height,
@@ -79,13 +80,17 @@ function eyeify(event, image, option) {
       scaleX: -eye1.scaleX(),
     });
   }
-  konvaImages.push(eye1, eye2);
+  const eyeNodes = [eye1];
   baseLayer.add(eye1);
-  baseLayer.add(eye2);
-  baseLayer.draw();
+  if (!SingleAccessories.includes(option)) {
+    baseLayer.add(eye2);
+    eyeNodes.push(eye2);
+  }
 
+  konvaImages.push(...eyeNodes);
+  baseLayer.draw();
   baseLayer.add(tr);
-  tr.nodes([eye1, eye2]);
+  tr.nodes(eyeNodes);
 
   baseLayer.add(selectionRectangle);
 
@@ -94,7 +99,7 @@ function eyeify(event, image, option) {
     fitToScreen(() => {
       tr.nodes([]);
       var dataURL = stage.toDataURL();
-      downloadURI(dataURL, `${filename}-${option}eyes.png`);
+      downloadURI(dataURL, `${filename}-${option}.png`);
     });
   });
 
@@ -104,7 +109,7 @@ function eyeify(event, image, option) {
 function eyeFormSubmit(event) {
   event.preventDefault();
   const option = event.target[1].value;
-  eyeify(event, img, option);
+  accessorize(event, img, option);
 }
 
 document.getElementById('eye-input').onchange = onImageSelect;

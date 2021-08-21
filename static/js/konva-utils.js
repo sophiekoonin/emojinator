@@ -64,7 +64,7 @@ function endSelectionRectangle() {
     baseLayer.batchDraw();
   });
 
-  var shapes = stage.find('.img').toArray();
+  var shapes = stage.find('.img');
   var box = selectionRectangle.getClientRect();
   var selected = shapes.filter((shape) =>
     Konva.Util.haveIntersection(box, shape.getClientRect())

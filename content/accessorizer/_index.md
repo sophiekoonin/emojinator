@@ -1,4 +1,4 @@
 ---
-title: "Eyeifier"
+title: "Accessorizer"
 includeKonva: true
 ---
