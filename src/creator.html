@@ -11,31 +11,37 @@ title: "Creator"
     <h3>Hats</h3>
     <div class="accessory-selector-group">
       {% for hat in hats %}
-        <button class="selector-option"><img src="/images/hats/{{ hat.filename }}" alt="{{ hat.name }}" title="{{ hat.name }}" data-name="{{ hat.name }}" data-qty="{{ hat.qty }}"/></button>
+        <button type="button" class="selector-option"><img src="/images/hats/{{ hat.filename }}" alt="{{ hat.name }}" title="{{ hat.name }}" id="{{ hat.id }}" data-qty="{{ hat.qty }}"/></button>
       {% endfor %}
     </div>
     <h3>Eyes</h3>
     <div class="accessory-selector-group">
       {% for eye in eyes %}
-        <button class="selector-option"><img src="/images/eyes/{{ eye.filename }}" alt="{{ eye.name }}" title="{{ eye.name }}" data-name="{{ eye.name }}" data-qty="{{ eye.qty}}"/></button>
+        <button type="button" class="selector-option"><img src="/images/eyes/{{ eye.filename }}" alt="{{ eye.name }}" title="{{ eye.name }}" id="{{ eye.id }}" data-qty="{{ eye.qty}}"/></button>
       {% endfor %}
     </div>
     <h3>Faces</h3>
     <div class="accessory-selector-group">
       {% for face in faces %}
-        <button class="selector-option"><img src="/images/faces/{{ face.filename }}" alt="{{ face.name }}" title="{{ face.name }}" data-name="{{ face.name }}" data-qty="{{ face.qty}}"/></button>
+        <button type="button" class="selector-option"><img src="/images/faces/{{ face.filename }}" alt="{{ face.name }}" title="{{ face.name }}" id="{{ face.id }}" data-qty="{{ face.qty}}"/></button>
       {% endfor %}
     </div>
     <h3>Mouths</h3>
     <div class="accessory-selector-group">
       {% for mouth in mouths %}
-        <button class="selector-option"><img src="/images/mouths/{{ mouth.filename }}" alt="{{ mouth.name }}" title="{{ mouth.name }}" data-name="{{ mouth.name }}" data-qty="{{ mouth.qty}}"/></button>
+        <button type="button" class="selector-option"><img src="/images/mouths/{{ mouth.filename }}" alt="{{ mouth.name }}" title="{{ mouth.name }}" id="{{ mouth.id }}" data-qty="{{ mouth.qty}}"/></button>
+      {% endfor %}
+    </div>
+    <h3>Misc</h3>
+    <div class="accessory-selector-group">
+      {% for miscItem in misc %}
+        <button type="button" class="selector-option"><img src="/images/misc/{{ miscItem.filename }}" alt="{{ miscItem.name }}" title="{{ miscItem.name }}" id="{{ miscItem.id }}" data-qty="{{ miscItem.qty}}"/></button>
       {% endfor %}
     </div>
   </div>
 
-  <div class="canvas"></div>
-  <form class="uploader">
+  <div class="canvas">{% include "partials/canvas/canvas-area.html" %}</div>
+  <form id="form" class="uploader">
     <h3>Upload an image</h3>
     <label for="creator-input">Choose an image</label>
     <input

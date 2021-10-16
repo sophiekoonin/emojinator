@@ -7,8 +7,9 @@ module.exports = function minifier() {
       minify({
         noSource: true,
         ext: {
-          min: ".min.js",
+          min: ".js",
         },
+        compress: process.env.NODE_ENV === "production",
       })
     )
     .pipe(dest("./dist/scripts"))

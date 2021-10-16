@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "BASE_URL=http://localhost:8080 gulp && concurrently \"gulp watch\" \"eleventy --serve\"",
+    "start": "NODE_ENV=development BASE_URL=http://localhost:8080 gulp && concurrently \"gulp watch\" \"eleventy --serve\"",
     "build": "NODE_ENV=production gulp && NODE_ENV=production eleventy"
   },
   "repository": {

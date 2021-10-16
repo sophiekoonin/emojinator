@@ -12,8 +12,12 @@ const watcher = () => {
   watch("./src/scripts/**/*.js", { ignoreInitial: true }, minifier)
 }
 
+const tasks = [sass]
+if (process.env.NODE_ENV === "production") {
+  tasks.push(minifier)
+}
 // The default (if someone just runs `gulp`) is to run each task in parallel
-exports.default = parallel(sass, minifier)
+exports.default = parallel(tasks)
 
 // This is our watcher task that instructs gulp to watch directories and
 // act accordingly

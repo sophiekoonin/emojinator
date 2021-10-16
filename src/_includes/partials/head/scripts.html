@@ -1,14 +1,14 @@
 <script src="/scripts/what-input.min.js" defer="defer"></script>
-<script src="/scripts/main.min.js" defer="defer"></script>
-<script src="/scripts/emojinator-base.min.js?ver={{ assetHash}}" defer="defer"></script>
+<script src="/scripts/main.js" defer="defer"></script>
+<script src="/scripts/emojinator-base.js?ver={{ assetHash}}" defer="defer"></script>
 {% if includeKonva %}
   <script src="/scripts/konva.js" defer="defer"></script>
-  <script src="/scripts/konva-utils.min.js" defer="defer"></script>
+  <script src="/scripts/konva-utils.js" defer="defer"></script>
 {% endif %}
 {% if includeGif %}
   <script src="/scripts/gif.js" defer="defer"></script>
   <script src="/scripts/gif.worker.js" defer="defer"></script>
 {% endif %}
 {% if not isHome %}
-  <script src="/scripts/{{ title | slug }}.min.js?ver={{ assetHash}}" defer="defer"></script>
+  <script src="/scripts/{{ title | slug }}.js?ver={{ assetHash}}" defer="defer"></script>
 {% endif %}

@@ -2,31 +2,37 @@
   {
     "name": "glasses",
     "filename": "glasses.png",
-    "qty": 1
+    "qty": 1,
+    "id": "glasses"
   },
   {
     "name": "goggles",
     "filename": "goggles.svg",
-    "qty": 1
+    "qty": 1,
+    "id": "goggles"
   },
   {
     "name": "crying",
     "filename": "sob.png",
-    "qty": 2
+    "qty": 2,
+    "id": "sob"
   },
   {
     "name": "sunglasses",
     "filename": "sunglasses.png",
-    "qty": 1
+    "qty": 1,
+    "id": "sunglasses"
   },
   {
     "name": "tear",
     "filename": "tear.png",
-    "qty": 2
+    "qty": 2,
+    "id": "tear"
   },
   {
     "name": "red tear",
     "filename": "tear-red.png",
-    "qty": 2
+    "qty": 2,
+    "id": "tear-red"
   }
 ]
