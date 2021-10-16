@@ -18,7 +18,7 @@
   --pacific-blue-60: hsla(187, 100%, 60%, 1);
   --pacific-blue: hsla(187, 100%, 40%, 1);
   --paradise-pink: hsla(349, 78%, 72%, 1);
-  --family-monospace: 'Diary of an 8-bit Mage', monospace;
+  --family-monospace: "Diary of an 8-bit Mage", monospace;
   --heading-font-family: var(--family-monospace);
 }
 
@@ -35,19 +35,20 @@
   --link-hover-color: var(--yellow);
   --content-box-color: hsla(239, 15%, 12%, 0.95);
   --header-stars-display: inline-block;
-  --body-font-weight: 'wght' 375;
+  --body-font-weight: "wght" 375;
   --border-color: rgba(255, 255, 255, 0.2);
   --link-background-color: rgba(255, 255, 255, 0.05);
   --link-background-color-hover: rgba(255, 255, 255, 0.15);
   --button-hover-color-secondary: var(--gunmetal-20);
   --selection-rectangle-fill: rgba(140, 143, 146, 0.5);
   --banner-color: var(--purple-50);
+  --creator-background: rgb(40, 39, 53);
 }
 
 :root {
   --background-color: fixed
     linear-gradient(var(--yellow), hsla(47, 100%, 85%, 1));
-  --body-font-weight: 'wght' 400;
+  --body-font-weight: "wght" 400;
   --link-color: var(--pacific-blue);
   --body-color: var(--gunmetal-12);
   --h1-color: var(--purple-50);
@@ -66,11 +67,12 @@
   --selection-rectangle-fill: hsla(187, 100%, 40%, 0.5);
   --button-hover-color-secondary: var(--purple-80);
   --banner-color: var(--pacific-blue);
+  --creator-background: var(--link-background-color);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-mode: 'dark';
+    --color-mode: "dark";
   }
 
   :root:not([data-user-color-scheme]) {
@@ -78,7 +80,7 @@
   }
 }
 
-[data-user-color-scheme='dark'] {
+[data-user-color-scheme="dark"] {
   @include dark-colors;
 }
 

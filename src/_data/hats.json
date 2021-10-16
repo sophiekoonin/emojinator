@@ -1,0 +1,42 @@
+[
+  {
+    "name": "cowboy hat",
+    "filename": "cowboy-hat.png",
+    "qty": 1
+  },
+  {
+    "name": "crown",
+    "filename": "crown.svg",
+    "qty": 1
+  },
+  {
+    "name": "devil horns",
+    "filename": "devil-horn.png",
+    "qty": 2
+  },
+  {
+    "name": "halo",
+    "filename": "halo.png",
+    "qty": 1
+  },
+  {
+    "name": "santa hat",
+    "filename": "santahat.png",
+    "qty": 1
+  },
+  {
+    "name": "witch hat",
+    "filename": "witch.png",
+    "qty": 1
+  },
+  {
+    "name": "blue witch hat",
+    "filename": "wizard.png",
+    "qty": 1
+  },
+  {
+    "name": "wizard hat",
+    "filename": "wizard_stars.png",
+    "qty": 1
+  }
+]

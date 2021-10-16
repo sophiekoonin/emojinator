@@ -1,0 +1,32 @@
+[
+  {
+    "name": "glasses",
+    "filename": "glasses.png",
+    "qty": 1
+  },
+  {
+    "name": "goggles",
+    "filename": "goggles.svg",
+    "qty": 1
+  },
+  {
+    "name": "crying",
+    "filename": "sob.png",
+    "qty": 2
+  },
+  {
+    "name": "sunglasses",
+    "filename": "sunglasses.png",
+    "qty": 1
+  },
+  {
+    "name": "tear",
+    "filename": "tear.png",
+    "qty": 2
+  },
+  {
+    "name": "red tear",
+    "filename": "tear-red.png",
+    "qty": 2
+  }
+]

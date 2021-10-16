@@ -1,0 +1,37 @@
+[
+  {
+    "name": "white check mark",
+    "filename": "check.svg",
+    "qty": 1
+  },
+  {
+    "name": "exclamation mark",
+    "filename": "exclamation.svg",
+    "qty": 1
+  },
+  {
+    "name": "question mark",
+    "filename": "question.svg",
+    "qty": 1
+  },
+  {
+    "name": "fire",
+    "filename": "fire.png",
+    "qty": 1
+  },
+  {
+    "name": "heart",
+    "filename": "heart.png",
+    "qty": 1
+  },
+  {
+    "name": "lightning bolt",
+    "filename": "lightning.svg",
+    "qty": 1
+  },
+  {
+    "name": "warning sign",
+    "filename": "warning.svg",
+    "qty": 1
+  }
+]

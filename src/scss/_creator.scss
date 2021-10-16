@@ -1,0 +1,39 @@
+.workspace {
+  display: flex;
+  width: 100%;
+  .accessory-selector {
+    max-height: 50vh;
+    overflow-y: auto;
+    max-width: 33vw;
+    background-color: var(--creator-background);
+    display: flex;
+    flex-direction: column;
+    &-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .selector-option {
+      background: transparent;
+      &:hover {
+        background: var(--button-hover-color);
+      }
+      img {
+        max-width: 25px;
+        max-height: 25px;
+      }
+    }
+  }
+
+  .canvas {
+    flex: 1;
+  }
+  .uploader {
+    input {
+      border: 0;
+      background: transparent;
+    }
+    padding: 1rem;
+    max-width: 33%;
+    background-color: var(--creator-background);
+  }
+}
