@@ -1,12 +1,15 @@
-{{ define "main" }}
-  <p>Something a little bit on fire? Need a quick way to say something is done? Something down?
+---
+layout: 'layouts/base.html'
+---
+
+<p>Something a little bit on fire? Need a quick way to say something is done? Something down?
 <br/>Add a status to your emoji.</p>
-  <div class="robot-gallery">
+<div class="robot-gallery">
     <img src="/images/robot-done.png" alt=""/>
     <img src="/images/robot-fire.png" alt=""/>
     <img src="/images/robot-red.png" alt=""/>
-  </div>
-  <form id="form" class="emojinator-form">
+</div>
+<form id="form" class="emojinator-form">
     <label for="status-input">Choose an image</label>
     <input
             name="image"
@@ -18,14 +21,12 @@
     <select
               id="status"
               name="status">
-      <option value="fire">🔥 Fire</option>
-      <option value="check">✅ Done</option>
-      <option value="red">Red</option>
+        <option value="fire">🔥 Fire</option>
+        <option value="check">✅ Done</option>
+        <option value="red">Red</option>
     </select>
     <button type="submit" id="submit" disabled>Statusify</button>
     <button type="reset" class="secondary">Reset</button>
-  </form>
-  <img id="output"/>
-  <button id="download" class="hidden" type="button">Download</button>
-
-{{ end }}
+</form>
+<img id="output"/>
+<button id="download" class="hidden" type="button">Download</button>

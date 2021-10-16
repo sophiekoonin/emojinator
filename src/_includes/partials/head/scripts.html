@@ -1,19 +1,14 @@
-{{ $konva := resources.Get "/js/konva.js" | minify }}
-{{ $gif := resources.Get "/js/gif.js" | minify  }}
-{{ $gifWorker := resources.Get "/js/gif.worker.js" | minify  }}
-{{ $index := resources.Get "/js/index.js" | minify }}
-{{ $scripts := slice  $index  | resources.Concat "/js/bundle.js" | fingerprint }}
-<script src="/js/what-input.min.js" defer="defer"></script>
-<script src="{{ $scripts.Permalink }}" defer="defer"></script>
-{{ if .Params.includeKonva }}
-  <script src="{{ $konva.Permalink}}"></script>
-  <script src="/js/konva-utils.js"></script>
-{{end}}
-{{ if .Params.includeGif }}
-  <script src="{{ $gifWorker.Permalink }}" defer="defer"></script>
-  <script src="{{ $gif.Permalink }}" defer="defer"></script>
-{{end}}
-<script src="/js/emojinator-base.js" defer="defer"></script>
-{{ if not .IsHome }}
-  <script src="/js/{{ lower .Title}}.js" defer="defer"></script>
-{{ end }}
+<script src="/scripts/what-input.min.js" defer="defer"></script>
+<script src="/scripts/main.min.js" defer="defer"></script>
+<script src="/scripts/emojinator-base.min.js?ver={{ assetHash}}" defer="defer"></script>
+{% if includeKonva %}
+  <script src="/scripts/konva.js" defer="defer"></script>
+  <script src="/scripts/konva-utils.min.js" defer="defer"></script>
+{% endif %}
+{% if includeGif %}
+  <script src="/scripts/gif.js" defer="defer"></script>
+  <script src="/scripts/gif.worker.js" defer="defer"></script>
+{% endif %}
+{% if not isHome %}
+  <script src="/scripts/{{ title | slug }}.min.js?ver={{ assetHash}}" defer="defer"></script>
+{% endif %}

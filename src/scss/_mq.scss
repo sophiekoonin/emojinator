@@ -1,6 +1,6 @@
 @charset "UTF-8"; // Fixes an issue where Ruby locale is not set properly
+@use "sass:math";
 // See https://github.com/sass-mq/sass-mq/pull/10
-
 /// Base font size on the `<body>` element
 ///
 /// Do not override this value, or things will break
@@ -109,7 +109,7 @@ $mq-media-type: all !default;
   } @else if unit($px) == em {
     @return $px;
   }
-  @return ($px / $base-font-size) * 1em;
+  @return (math.div($px, $base-font-size)) * 1em;
 }
 
 /// Get a breakpoint's width
@@ -189,7 +189,7 @@ $mq-media-type: all !default;
 ) {
   $min-width: 0;
   $max-width: 0;
-  $media-query: '';
+  $media-query: "";
 
   // From: this breakpoint (inclusive)
   @if $from {
@@ -227,7 +227,7 @@ $mq-media-type: all !default;
         $target-width and
         ($until == false or $max-width >= $target-width) and
         $media-type !=
-        'print'
+        "print"
     ) {
       @content;
     }
@@ -236,18 +236,18 @@ $mq-media-type: all !default;
   // Responsive support is enabled, output rules inside @media queries
   @else {
     @if $min-width != 0 {
-      $media-query: '#{$media-query} and (min-width: #{$min-width})';
+      $media-query: "#{$media-query} and (min-width: #{$min-width})";
     }
     @if $max-width != 0 {
-      $media-query: '#{$media-query} and (max-width: #{$max-width})';
+      $media-query: "#{$media-query} and (max-width: #{$max-width})";
     }
     @if $and {
-      $media-query: '#{$media-query} and #{$and}';
+      $media-query: "#{$media-query} and #{$and}";
     }
 
     // Remove unnecessary media query prefix 'all and '
-    @if ($media-type == 'all' and $media-query != '') {
-      $media-type: '';
+    @if ($media-type == "all" and $media-query != "") {
+      $media-type: "";
       $media-query: str-slice(unquote($media-query), 6);
     }
 
@@ -371,7 +371,7 @@ $mq-media-type: all !default;
     @each $show-breakpoint in $show-breakpoints {
       $width: mq-get-breakpoint-width($show-breakpoint, $breakpoints);
       @include mq($show-breakpoint, $breakpoints: $breakpoints) {
-        content: '#{$show-breakpoint} ≥ #{$width} (#{mq-px2em($width)})';
+        content: "#{$show-breakpoint} ≥ #{$width} (#{mq-px2em($width)})";
       }
     }
   }

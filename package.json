@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "BASE_URL=http://localhost:8080 gulp && concurrently \"gulp watch\" \"eleventy --serve\"",
+    "build": "NODE_ENV=production gulp && NODE_ENV=production eleventy"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,9 @@
     "postcss": "^8.1.4",
     "postcss-cli": "^8.2.0",
     "sass": "1.43.2"
+  },
+  "prettier": {
+    "semi": false,
+    "tabWidth": 2
   }
 }
