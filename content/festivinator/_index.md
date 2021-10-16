@@ -1,4 +1,0 @@
----
-title: "Festivinator"
-includeKonva: true
----

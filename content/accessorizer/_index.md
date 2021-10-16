@@ -1,4 +1,0 @@
----
-title: "Accessorizer"
-includeKonva: true
----

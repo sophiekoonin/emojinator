@@ -1,6 +1,0 @@
-baseURL = "/"
-languageCode = "en-gb"
-title = "emojinator"
-
-[minify]
-  disableSVG = true

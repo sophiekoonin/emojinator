@@ -17,8 +17,15 @@
   },
   "homepage": "https://github.com/sophiekoonin/emojinator#readme",
   "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "autoprefixer": "^10.0.1",
+    "concurrently": "6.3.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "4.3.0",
+    "gulp-minify": "3.1.0",
+    "gulp-sass": "5.0.0",
     "postcss": "^8.1.4",
     "postcss-cli": "^8.2.0",
-    "autoprefixer": "^10.0.1"
+    "sass": "1.43.2"
   }
 }
