@@ -6,17 +6,21 @@ const selectionRectangle = new Konva.Rect({
 
 const baseLayer = new Konva.Layer()
 
-const tr = new Konva.Transformer({
-  rotationSnaps: [0, 90, 180, 270],
-  keepRatio: true,
-  boundBoxFunc: (oldBox, newBox) => {
-    if (newBox.width < 10 || newBox.height < 10) {
-      return oldBox
-    }
-    return newBox
-  },
-  nodes: [],
-})
+function generateTransformer() {
+  return new Konva.Transformer({
+    rotationSnaps: [0, 90, 180, 270],
+    keepRatio: true,
+    boundBoxFunc: (oldBox, newBox) => {
+      if (newBox.width < 10 || newBox.height < 10) {
+        return oldBox
+      }
+      return newBox
+    },
+    nodes: [],
+  })
+}
+
+let tr = generateTransformer()
 
 let x1, y1, x2, y2
 function drawSelectionRectangle(event) {

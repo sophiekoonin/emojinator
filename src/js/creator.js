@@ -11,8 +11,9 @@ const size = MAX_GIF_SIZE + MAX_GIF_SIZE / 2
 function clear() {
   konvaImages = []
   baseLayer.destroyChildren()
-  tr.nodes([])
-  baseLayer.draw()
+  tr = generateTransformer()
+  baseLayer.add(tr)
+  baseLayer.batchDraw()
 }
 
 function reset(event) {
@@ -54,8 +55,7 @@ function onItemClick(event) {
   })
   konvaImages.push(accessory)
   baseLayer.add(accessory)
-  const nodes = tr.nodes().concat([accessory])
-  tr.nodes(nodes)
+  tr.nodes(tr.nodes().concat([accessory]))
   baseLayer.batchDraw()
 }
 
