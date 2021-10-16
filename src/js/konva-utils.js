@@ -1,186 +1,202 @@
 const selectionRectangle = new Konva.Rect({
-  id: 'selectionRectangle',
+  id: "selectionRectangle",
   visible: false,
-  fill: 'rgba(165, 247, 239, 0.5)',
-});
+  fill: "rgba(165, 247, 239, 0.5)",
+})
 
-const baseLayer = new Konva.Layer();
+const baseLayer = new Konva.Layer()
 
 const tr = new Konva.Transformer({
   rotationSnaps: [0, 90, 180, 270],
   keepRatio: true,
   boundBoxFunc: (oldBox, newBox) => {
     if (newBox.width < 10 || newBox.height < 10) {
-      return oldBox;
+      return oldBox
     }
-    return newBox;
+    return newBox
   },
   nodes: [],
-});
+})
 
-let x1, y1, x2, y2;
+let x1, y1, x2, y2
 function drawSelectionRectangle(event) {
   // do nothing if we mousedown on eny shape
   if (event.target !== stage) {
-    return;
+    return
   }
-  x1 = stage.getPointerPosition().x;
-  y1 = stage.getPointerPosition().y;
-  x2 = stage.getPointerPosition().x;
-  y2 = stage.getPointerPosition().y;
+  x1 = stage.getPointerPosition().x
+  y1 = stage.getPointerPosition().y
+  x2 = stage.getPointerPosition().x
+  y2 = stage.getPointerPosition().y
 
-  selectionRectangle.visible(true);
-  selectionRectangle.width(0);
-  selectionRectangle.height(0);
+  selectionRectangle.visible(true)
+  selectionRectangle.width(0)
+  selectionRectangle.height(0)
 
-  baseLayer.draw();
+  baseLayer.draw()
 }
 
 function expandSelectionRectangle() {
   // no nothing if we didn't start selection
   if (selectionRectangle.visible() === false) {
-    return;
+    return
   }
-  x2 = stage.getPointerPosition().x;
-  y2 = stage.getPointerPosition().y;
+  x2 = stage.getPointerPosition().x
+  y2 = stage.getPointerPosition().y
 
   selectionRectangle.setAttrs({
     x: Math.min(x1, x2),
     y: Math.min(y1, y2),
     width: Math.abs(x2 - x1),
     height: Math.abs(y2 - y1),
-  });
-  baseLayer.batchDraw();
+  })
+  baseLayer.batchDraw()
 }
 
 function endSelectionRectangle() {
   // no nothing if we didn't start selection
   if (!selectionRectangle.visible()) {
-    return;
+    return
   }
   // update visibility in timeout, so we can check it in click event
   setTimeout(() => {
-    selectionRectangle.visible(false);
-    baseLayer.batchDraw();
-  });
+    selectionRectangle.visible(false)
+    baseLayer.batchDraw()
+  })
 
-  var shapes = stage.find('.img');
-  var box = selectionRectangle.getClientRect();
+  var shapes = stage.find(".img")
+  var box = selectionRectangle.getClientRect()
   var selected = shapes.filter((shape) =>
     Konva.Util.haveIntersection(box, shape.getClientRect())
-  );
-  tr.nodes(selected);
+  )
+  tr.nodes(selected)
 }
 
 function clearSelection(e) {
   if (selectionRectangle.visible()) {
-    return;
+    return
   }
   // if we click on empty area - remove all selections
   if (e.target === stage) {
-    tr.nodes([]);
-    baseLayer.draw();
-    return;
+    tr.nodes([])
+    baseLayer.draw()
+    return
   }
 
   // do we pressed shift or ctrl?
-  const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey;
-  const isSelected = tr.nodes().indexOf(e.target) >= 0;
+  const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey
+  const isSelected = tr.nodes().indexOf(e.target) >= 0
 
   if (!metaPressed && !isSelected) {
     // if no key pressed and the node is not selected
     // select just one
-    tr.nodes([e.target]);
+    tr.nodes([e.target])
   } else if (metaPressed && isSelected) {
     // if we pressed keys and node was selected
     // we need to remove it from selection:
-    const nodes = tr.nodes().slice(); // use slice to have new copy of array
+    const nodes = tr.nodes().slice() // use slice to have new copy of array
     // remove node from array
-    nodes.splice(nodes.indexOf(e.target), 1);
-    tr.nodes(nodes);
+    nodes.splice(nodes.indexOf(e.target), 1)
+    tr.nodes(nodes)
   } else if (metaPressed && !isSelected) {
     // add the node into selection
-    const nodes = tr.nodes().concat([e.target]);
-    tr.nodes(nodes);
+    const nodes = tr.nodes().concat([e.target])
+    tr.nodes(nodes)
   }
 }
 
 const fitToScreen = (callback) => {
-  tr.remove();
+  tr.remove()
   // get layers
   const layerSize = baseLayer.getClientRect({
     relativeTo: stage,
-  });
-  baseLayer.add(tr);
+  })
+  baseLayer.add(tr)
   const tween = new Konva.Tween({
     duration: 0.35,
     easing: Konva.Easings.EaseInOut,
     node: stage,
     onFinish: () => {
-      tr.nodes(konvaImages);
-      const { x, y } = tr.position();
+      tr.nodes(konvaImages)
+      const { x, y } = tr.position()
       tr.nodes().forEach((node) => {
-        node.x(node.x() - x);
-        node.y(node.y() - y);
-      });
-      stage.batchDraw();
-      callback != null && callback();
+        node.x(node.x() - x)
+        node.y(node.y() - y)
+      })
+      stage.batchDraw()
+      callback != null && callback()
     },
     width: layerSize.width,
     height: layerSize.height,
-  });
+  })
 
   // get the x and y coords of the transform baseLayer with our images
-  tween.play();
-};
+  tween.play()
+}
 
 function rotate(deg) {
-  tr.nodes().forEach((node) => node.rotate(deg));
-  baseLayer.batchDraw();
+  tr.nodes().forEach((node) => node.rotate(deg))
+  baseLayer.batchDraw()
 }
 
 function init() {
-  document.getElementById('info').classList.remove('hidden');
-  document.getElementById('move-up').onclick = () => {
-    tr.nodes().forEach((node) => node.moveToTop());
-    baseLayer.draw();
-  };
-  document.getElementById('move-down').onclick = () => {
-    tr.nodes().forEach((node) => node.moveToBottom());
-    baseLayer.draw();
-  };
-  document.getElementById('select-all').onclick = () => {
-    tr.nodes(konvaImages);
-    baseLayer.draw();
-  };
+  document.getElementById("move-up").onclick = () => {
+    tr.nodes().forEach((node) => node.moveToTop())
+    baseLayer.draw()
+  }
+  document.getElementById("move-down").onclick = () => {
+    tr.nodes().forEach((node) => node.moveToBottom())
+    baseLayer.draw()
+  }
+  document.getElementById("select-all").onclick = () => {
+    tr.nodes(konvaImages)
+    baseLayer.draw()
+  }
 
-  document.getElementById('rotate-left').onclick = () => {
-    rotate(-90, tr, baseLayer);
-  };
-  document.getElementById('rotate-right').onclick = () => {
-    rotate(90, tr, baseLayer);
-  };
+  document.getElementById("rotate-left").onclick = () => {
+    rotate(-90, tr, baseLayer)
+  }
+  document.getElementById("rotate-right").onclick = () => {
+    rotate(90, tr, baseLayer)
+  }
 
-  document.getElementById('flip-horizontal').onclick = () => {
-    tr.nodes().forEach((node) => node.scaleX(-node.scaleX()));
-    baseLayer.batchDraw();
-  };
-  document.getElementById('flip-vertical').onclick = () => {
-    tr.nodes().forEach((node) => node.scaleY(-node.scaleY()));
-    baseLayer.batchDraw();
-  };
+  document.getElementById("flip-horizontal").onclick = () => {
+    tr.nodes().forEach((node) => node.scaleX(-node.scaleX()))
+    baseLayer.batchDraw()
+  }
+  document.getElementById("flip-vertical").onclick = () => {
+    tr.nodes().forEach((node) => node.scaleY(-node.scaleY()))
+    baseLayer.batchDraw()
+  }
 
-  stage.on('click tap', function (e) {
-    clearSelection(e, stage, tr, baseLayer);
-  });
+  stage.on("click tap", function (e) {
+    clearSelection(e, stage, tr, baseLayer)
+  })
 
-  stage.on('mousedown touchstart', (event) => {
-    drawSelectionRectangle(event, stage, baseLayer);
-  });
-  stage.on('mousemove touchmove', () => {
-    expandSelectionRectangle(stage, baseLayer);
-  });
-  stage.on('mouseup touchend', () => {
-    endSelectionRectangle(stage, tr, baseLayer);
-  });
+  stage.on("mousedown touchstart", (event) => {
+    drawSelectionRectangle(event, stage, baseLayer)
+  })
+  stage.on("mousemove touchmove", () => {
+    expandSelectionRectangle(stage, baseLayer)
+  })
+  stage.on("mouseup touchend", () => {
+    endSelectionRectangle(stage, tr, baseLayer)
+  })
+
+  document.getElementById("download").addEventListener("click", (e) => {
+    e.preventDefault()
+    fitToScreen(() => {
+      tr.nodes([])
+      var dataURL = stage.toDataURL()
+      downloadURI(dataURL, `emojinator-${filename}.png`)
+    })
+  })
+  Array.from(document.getElementsByClassName("selector-option")).forEach(
+    (el) => (el.onclick = onItemClick)
+  )
+  stage.add(baseLayer)
+  baseLayer.add(tr)
+  baseLayer.add(selectionRectangle)
+
+  baseLayer.batchDraw()
 }

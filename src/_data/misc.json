@@ -1,19 +1,19 @@
 [
   {
     "name": "white check mark",
-    "filename": "check.svg",
+    "filename": "check.png",
     "qty": 1,
     "id": "white-check-mark"
   },
   {
     "name": "exclamation mark",
-    "filename": "exclamation.svg",
+    "filename": "exclamation.png",
     "qty": 1,
     "id": "exclamation"
   },
   {
     "name": "question mark",
-    "filename": "question.svg",
+    "filename": "question.png",
     "qty": 1,
     "id": "question"
   },
@@ -31,13 +31,13 @@
   },
   {
     "name": "lightning bolt",
-    "filename": "lightning.svg",
+    "filename": "lightning.png",
     "qty": 1,
     "id": "lightning"
   },
   {
     "name": "warning sign",
-    "filename": "warning.svg",
+    "filename": "warning.png",
     "qty": 1,
     "id": "warning"
   }

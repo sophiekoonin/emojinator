@@ -1,4 +1,4 @@
-<div class="canvas hidden" id="actions">
+<div class="canvas" id="actions">
   <div class="controls">
     <button id="move-up" class="action-button" type="button" title="Bring to front">
       <span class="visually-hidden">Bring to front</span>{% include "partials/canvas/bring-to-front.html" %}
@@ -25,7 +25,8 @@
 
   </div>
   <div id="canvas" class="canvas-border"></div>
-  <button id="download" type="button">Download</button>
 </div>
-<p id="info" class="blurb hidden">Select images by double-clicking them or click &amp; drag in the canvas.<br/>Click in blank areas of the canvas to deselect.</p>
+<p id="info" class="blurb">Upload an image to get started!<br/>Select images by double-clicking them or click &amp; drag in the canvas.<br/>Click in blank areas of the canvas to deselect.</p>
 <img id="output"/>
+<button id="download" type="button">Download</button>
+<button id="clear-canvas" class="secondary" type="button">Start again</button>
