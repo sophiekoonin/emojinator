@@ -33,6 +33,7 @@ function onItemClick(event) {
       ? event.target.lastChild.cloneNode()
       : event.target.cloneNode()
 
+  const qty = accessoryEl.getAttribute("data-qty")
   const accessoryWidth = Math.min(size / 2, accessoryEl.width)
   const accessoryHeight =
     accessoryWidth === accessoryEl.width
@@ -48,14 +49,25 @@ function onItemClick(event) {
     height: accessoryEl.height,
     x: accessoryEl.width / 2,
     y: accessoryEl.height / 2,
-    name: `accessory-${accessoryEl.id}`,
     draggable: true,
     offsetX: accessoryEl.width / 2,
     offsetY: accessoryEl.height / 2,
   })
-  konvaImages.push(accessory)
+  const accessoryNodes = [accessory]
   baseLayer.add(accessory)
-  tr.nodes(tr.nodes().concat([accessory]))
+
+  if (qty > 1) {
+    const accessory2 = accessory.clone({
+      name: `accessory-${accessoryEl.id}-${uuidv4()}`,
+      x: accessoryEl.width / 2 + 75,
+      scaleX: -accessory.scaleX(),
+    })
+    accessoryNodes.push(accessory2)
+    baseLayer.add(accessory2)
+  }
+
+  konvaImages.push(...accessoryNodes)
+  tr.nodes(tr.nodes().concat(accessoryNodes))
   baseLayer.batchDraw()
 }
 
