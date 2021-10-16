@@ -173,6 +173,12 @@ function init() {
     baseLayer.batchDraw()
   }
 
+  document.getElementById("remove-node").onclick = () => {
+    tr.nodes().forEach((node) => node.destroy())
+    tr.nodes([])
+    baseLayer.batchDraw()
+  }
+
   stage.on("click tap", function (e) {
     clearSelection(e, stage, tr, baseLayer)
   })
