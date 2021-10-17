@@ -1,7 +1,7 @@
 [
   {
     "name": "white check mark",
-    "filename": "check.png",
+    "filename": "check.svg",
     "qty": 1,
     "id": "white-check-mark"
   },
@@ -31,7 +31,7 @@
   },
   {
     "name": "lightning bolt",
-    "filename": "lightning.png",
+    "filename": "lightning.svg",
     "qty": 1,
     "id": "lightning"
   },
@@ -40,5 +40,47 @@
     "filename": "warning.png",
     "qty": 1,
     "id": "warning"
+  },
+  {
+    "name": "boom",
+    "filename": "boom.svg",
+    "qty": 1,
+    "id": "boom"
+  },
+  {
+    "name": "zzz",
+    "filename": "zzz.svg",
+    "qty": 1,
+    "id": "zzz"
+  },
+  {
+    "name": "lightbulb",
+    "filename": "bulb.svg",
+    "qty": 1,
+    "id": "bulb"
+  },
+  {
+    "name": "alert",
+    "filename": "alert.png",
+    "qty": 1,
+    "id": "alert"
+  },
+  {
+    "name": "no",
+    "filename": "no.svg",
+    "qty": 1,
+    "id": "no"
+  },
+  {
+    "name": "stress",
+    "filename": "stress.svg",
+    "qty": 1,
+    "id": "stress"
+  },
+  {
+    "name": "poop",
+    "filename": "poop.svg",
+    "qty": 1,
+    "id": "poop"
   }
 ]
