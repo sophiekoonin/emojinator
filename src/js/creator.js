@@ -67,7 +67,7 @@ function onItemClick(event) {
   }
 
   konvaImages.push(...accessoryNodes)
-  tr.nodes(tr.nodes().concat(accessoryNodes))
+  tr.nodes(accessoryNodes)
   baseLayer.batchDraw()
 }
 
