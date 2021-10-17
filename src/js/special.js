@@ -115,13 +115,6 @@ function rotateAndRenderGif(image) {
   gif.render()
 }
 
-function rotate() {
-  fitToScreen(() => {
-    tr.nodes([])
-    stage.toImage({ callback: rotateAndRenderGif })
-  })
-}
-
 /* EMBIGGENER */
 function generateOutputs() {
   const output1 = document.createElement("a")

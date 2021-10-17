@@ -132,3 +132,9 @@ function rotate(deg) {
   tr.nodes().forEach((node) => node.rotate(deg))
   baseLayer.batchDraw()
 }
+
+function destroySelectedNodes() {
+  tr.nodes().forEach((node) => node.destroy())
+  tr.nodes([])
+  baseLayer.batchDraw()
+}

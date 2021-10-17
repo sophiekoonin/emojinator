@@ -54,8 +54,15 @@ function onItemClick(event) {
       ? event.target.lastChild.cloneNode()
       : event.target.cloneNode()
 
-  const qty = accessoryEl.getAttribute("data-qty")
-  const accessoryWidth = Math.min(size / 2, accessoryEl.width)
+  const type = accessoryEl.getAttribute("data-type") || "any"
+  const qty = accessoryEl.getAttribute("data-qty") || 1
+
+  let accessoryWidth
+  if (type === "base") {
+    accessoryWidth = size * 0.9
+  } else {
+    accessoryWidth = Math.min(size / 2, accessoryEl.width)
+  }
   const accessoryHeight =
     accessoryWidth === accessoryEl.width
       ? accessoryEl.height
@@ -68,8 +75,8 @@ function onItemClick(event) {
     image: accessoryEl,
     width: accessoryEl.width,
     height: accessoryEl.height,
-    x: accessoryEl.width / 2,
-    y: accessoryEl.height / 2,
+    x: accessoryEl.width / 2 + accessoryEl.width * 0.05,
+    y: accessoryEl.height / 2 + accessoryEl.height * 0.05,
     draggable: true,
     offsetX: accessoryEl.width / 2,
     offsetY: accessoryEl.height / 2,
@@ -149,11 +156,7 @@ function init() {
     baseLayer.batchDraw()
   }
 
-  document.getElementById("remove-node").onclick = () => {
-    tr.nodes().forEach((node) => node.destroy())
-    tr.nodes([])
-    baseLayer.batchDraw()
-  }
+  document.getElementById("remove-node").onclick = destroySelectedNodes
 
   stage.on("click tap", function (e) {
     clearSelection(e, stage, tr, baseLayer)

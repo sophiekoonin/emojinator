@@ -6,12 +6,31 @@ title: "Creator"
 ---
 
 <div class="workspace">
+
   <h2 class="visually-hidden">Accessory picker</h2>
+
   <div class="accessory-selector">
+    <form id="tint-picker">
+      <fieldset class="tint-picker">
+        <legend>Skin tone</legend>
+        <label class="tint-picker-option" id="tint-label-a" for="a"><input type="radio" class="tint-picker-input" id="a" name="tint" value="a"/>
+          <span class="visually-hidden">Base</span><img src="/images/swatches/base.svg"/></label>
+        <label class="tint-picker-option" id="tint-label-b" for="b"><input type="radio" class="tint-picker-input" id="b" name="tint" value="b"/>
+          <span class="visually-hidden">Light</span><img src="/images/swatches/1f3fb.svg"/></label>
+        <label class="tint-picker-option" id="tint-label-c" for="c"><input type="radio" class="tint-picker-input" id="c" name="tint" value="c"/>
+          <span class="visually-hidden">Medium-light</span><img src="/images/swatches/1f3fc.svg"/></label>
+        <label class="tint-picker-option" id="tint-label-d" for="d"><input type="radio" class="tint-picker-input" id="d" name="tint" value="d"/>
+          <span class="visually-hidden">Medium</span><img src="/images/swatches/1f3fd.svg"/></label>
+        <label class="tint-picker-option" id="tint-label-e" for="e"><input type="radio" class="tint-picker-input" id="e" name="tint" value="e"/>
+          <span class="visually-hidden">Medium-dark</span><img src="/images/swatches/1f3fe.svg"/></label>
+        <label class="tint-picker-option" id="tint-label-f" for="f"><input type="radio" class="tint-picker-input"id="f" name="tint" value="f"/>
+          <span class="visually -hidden">Dark</span><img src="/images/swatches/1f3ff.svg"/></label>
+      </fieldset>
+    </form>
     <h3>Bases</h3>
     <div class="accessory-selector-group">
       {% for base in bases %}
-        <button type="button" class="selector-option"><img src="/images/bases/{{ base.filename }}" alt="{{ base.name }}" class="{{ "tintable" if base.tintable }}" title="{{ base.name }}" id="{{ base.id }}" data-qty="{{ base.qty }}"/></button>
+        <button type="button" class="selector-option"><img src="/images/bases/{{ base.filename }}" alt="{{ base.name }}" class="{{ "tintable" if base.tintable }}" title="{{ base.name }}" id="{{ base.id }}" data-type="base"/></button>
       {% endfor %}
     </div>
     <h3>Hats</h3>
@@ -24,12 +43,6 @@ title: "Creator"
     <div class="accessory-selector-group">
       {% for eye in eyes %}
         <button type="button" class="selector-option"><img src="/images/eyes/{{ eye.filename }}" alt="{{ eye.name }}" title="{{ eye.name }}" id="{{ eye.id }}" data-qty="{{ eye.qty}}"/></button>
-      {% endfor %}
-    </div>
-    <h3>Faces</h3>
-    <div class="accessory-selector-group">
-      {% for face in faces %}
-        <button type="button" class="selector-option"><img src="/images/faces/{{ face.filename }}" alt="{{ face.name }}" title="{{ face.name }}" id="{{ face.id }}" data-qty="{{ face.qty}}"/></button>
       {% endfor %}
     </div>
     <h3>Mouths</h3>
@@ -58,23 +71,6 @@ title: "Creator"
             accept=".jpg, .jpeg, .png"></input>
       <button type="submit" id="submit" disabled>Upload</button>
       <button type="reset" class="secondary">Reset</button>
-    </form>
-    <form id="tint-picker">
-      <fieldset class="tint-picker">
-        <legend>Choose a skin tone</legend>
-        <label class="tint-picker-option" id="tint-label-a" for="a"><input type="radio" class="tint-picker-input" id="a" name="tint" value="a"/>
-          <span class="visually-hidden">Base</span><img src="/images/swatches/base.svg"/></label>
-        <label class="tint-picker-option" id="tint-label-b" for="b"><input type="radio" class="tint-picker-input" id="b" name="tint" value="b"/>
-          <span class="visually-hidden">Light</span><img src="/images/swatches/1f3fb.svg"/></label>
-        <label class="tint-picker-option" id="tint-label-c" for="c"><input type="radio" class="tint-picker-input" id="c" name="tint" value="c"/>
-          <span class="visually-hidden">Medium-light</span><img src="/images/swatches/1f3fc.svg"/></label>
-        <label class="tint-picker-option" id="tint-label-d" for="d"><input type="radio" class="tint-picker-input" id="d" name="tint" value="d"/>
-          <span class="visually-hidden">Medium</span><img src="/images/swatches/1f3fd.svg"/></label>
-        <label class="tint-picker-option" id="tint-label-e" for="e"><input type="radio" class="tint-picker-input" id="e" name="tint" value="e"/>
-          <span class="visually-hidden">Medium-dark</span><img src="/images/swatches/1f3fe.svg"/></label>
-        <label class="tint-picker-option" id="tint-label-f" for="f"><input type="radio" class="tint-picker-input"id="f" name="tint" value="f"/>
-          <span class="visually-hidden">Dark</span><img src="/images/swatches/1f3ff.svg"/></label>
-      </fieldset>
     </form>
 
     <div class="functions">

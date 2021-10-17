@@ -10,12 +10,13 @@
 
 *:focus {
   outline: none;
-  border-bottom: 4px solid var(--link-color);
+  // border-bottom: 4px solid var(--link-color);
 }
 /* suppress focus ring on focusable things for mouse users */
-[data-whatinput='mouse'] *:focus,
-[data-whatinput='touch'] *:focus {
+[data-whatintent="mouse"] *:focus,
+[data-whatintent="touch"] *:focus {
   border-bottom: 0;
+  box-shadow: none;
   outline: none;
 }
 
@@ -27,12 +28,12 @@ svg.defs {
   display: none;
 }
 body {
-  font-family: 'Inter var', sans-serif;
+  font-family: "Inter var", sans-serif;
   font-size: 1rem;
   font-display: swap;
   margin: 0;
   min-height: 100vh;
-  background: var(--background-color);
+  // background: var(--background-color);
   color: var(--body-color);
   font-variation-settings: var(--body-font-weight);
 }
@@ -40,7 +41,7 @@ body {
 a {
   color: var(--link-color);
   text-decoration: none;
-  font-variation-settings: 'wght' 600;
+  font-variation-settings: "wght" 600;
   &:active,
   &:hover,
   &:focus {
@@ -55,7 +56,7 @@ h3,
 h4 {
   &,
   & a {
-    font-variation-settings: 'wght' 700;
+    font-variation-settings: "wght" 700;
   }
   font-family: var(--family-monospace);
   line-height: 1.2;
@@ -63,14 +64,14 @@ h4 {
 
 h1 {
   color: var(--h1-color);
-  font-size: unquote('min(max(1.5rem, 6vw), 40px)');
+  font-size: unquote("min(max(1.5rem, 6vw), 40px)");
   margin-bottom: 1rem;
 }
 
 h2 {
   margin: 0;
   font-size: 2rem;
-  font-size: unquote('min(max(1.25rem, 2.5vw), 25px)');
+  font-size: unquote("min(max(1.25rem, 2.5vw), 25px)");
 
   color: var(--h2-color);
 
@@ -83,7 +84,7 @@ h2 {
 h3 {
   color: var(--h3-color);
   font-size: 1.5rem;
-  font-size: unquote('min(max(1.1rem, 4vw), 20px)');
+  font-size: unquote("min(max(1.1rem, 4vw), 20px)");
   margin-top: 1.5rem;
 }
 
@@ -159,7 +160,7 @@ ul {
     height: 100%;
     transition: color 0.15s ease, background-color 0.15s ease;
     display: block;
-    font-variation-settings: 'wght' 450;
+    font-variation-settings: "wght" 450;
     color: var(--body-color);
     &:hover,
     &:active,
@@ -175,7 +176,7 @@ ul {
 }
 
 button {
-  font-family: 'Inter var', sans-serif;
+  font-family: "Inter var", sans-serif;
 
   border-radius: 6px;
   border: 0;
@@ -183,7 +184,7 @@ button {
   color: var(--button-color);
   padding: 6px 8px;
   font-size: 0.9rem;
-  font-variation-settings: 'wght' 600;
+  font-variation-settings: "wght" 600;
   cursor: pointer;
 
   &[disabled] {
@@ -235,7 +236,7 @@ button {
 .ribbon::after {
   position: absolute;
   z-index: -1;
-  content: '';
+  content: "";
   display: block;
   border: 5px solid #2980b9;
 }
@@ -247,7 +248,7 @@ button {
   background-color: var(--banner-color);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   color: #fff;
-  font-variation-settings: 'wght' 700;
+  font-variation-settings: "wght" 700;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
   text-align: center;

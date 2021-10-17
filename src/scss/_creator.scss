@@ -4,12 +4,13 @@
   width: 100%;
   max-height: 70vh;
   .accessory-selector {
+    background-color: var(--creator-background);
     border-radius: 10px;
     max-height: 100%;
     overflow-y: auto;
-    max-width: 33vw;
-    background-color: var(--creator-background);
+    max-width: 40vw;
     display: flex;
+    align-items: center;
     flex-direction: column;
     &-group {
       display: grid;
@@ -39,46 +40,6 @@
     border-radius: 10px;
     max-width: 33%;
     background-color: var(--creator-background);
-
-    .tint-picker {
-      margin-top: 2.5rem;
-      padding: 0;
-      border: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      legend {
-        color: var(--h3-color);
-        font-size: 1.5rem;
-        font-size: unquote("min(max(1.1rem, 4vw), 20px)");
-        margin-bottom: 1rem;
-        font-family: var(--heading-font-family);
-      }
-      input {
-        opacity: 0;
-        position: absolute;
-        cursor: pointer;
-      }
-      &-option {
-        border-radius: 50%;
-        padding: 2px 3px;
-        border: 1px solid transparent;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        cursor: pointer;
-        &:hover {
-          background-color: var(--button-background-color-secondary);
-        }
-        &.selected {
-          border: 1px solid var(--button-background-color-secondary);
-        }
-        img {
-          width: 1.5rem;
-        }
-      }
-    }
   }
 }
 
@@ -88,5 +49,47 @@
     margin: 1rem auto;
     font-size: 0.9rem;
     max-width: 75%;
+  }
+}
+
+.tint-picker {
+  margin-top: 2.5rem;
+  padding: 0;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  legend {
+    color: var(--h3-color);
+    font-size: 1.5rem;
+    font-size: unquote("min(max(1.1rem, 4vw), 20px)");
+    margin: 0 auto;
+    margin-bottom: 1rem;
+
+    font-family: var(--heading-font-family);
+  }
+  input {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+  }
+  &-option {
+    border-radius: 50%;
+    padding: 2px 3px;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--button-background-color-secondary);
+    }
+    &.selected {
+      border: 1px solid var(--button-background-color-secondary);
+    }
+    img {
+      width: 1.5rem;
+    }
   }
 }
