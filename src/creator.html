@@ -11,7 +11,7 @@ title: "Creator"
     <h3>Bases</h3>
     <div class="accessory-selector-group">
       {% for base in bases %}
-        <button type="button" class="selector-option {{ "tintable" if base.tintable }}"><img src="/images/bases/{{ base.filename }}" alt="{{ base.name }}" title="{{ base.name }}" id="{{ base.id }}" data-qty="{{ base.qty }}"/></button>
+        <button type="button" class="selector-option"><img src="/images/bases/{{ base.filename }}" alt="{{ base.name }}" class="{{ "tintable" if base.tintable }}" title="{{ base.name }}" id="{{ base.id }}" data-qty="{{ base.qty }}"/></button>
       {% endfor %}
     </div>
     <h3>Hats</h3>

@@ -40,9 +40,9 @@ const stage = new Konva.Stage({
 function showTints(selectedTint) {
   tint = selectedTint
   Array.from(document.getElementsByClassName("tintable")).forEach((el) => {
-    const filename =
-      el.src.split("-")[0] + tint === TINTS.a ? ".svg" : `-${tint}.svg`
-    el.src = filename
+    const filename = el.src.split("-")[0].replace(".svg", "")
+
+    el.src = filename + (tint === TINTS.a ? ".svg" : `-${tint}.svg`)
   })
 }
 
