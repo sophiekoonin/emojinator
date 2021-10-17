@@ -13,20 +13,9 @@ const img = new Image()
 const outputElement = document.getElementById("output")
 const canvasContainer = document.getElementById("canvas")
 
-/* GLOBALS */
+/* KONVA */
 // Array of images that we've added to the konva canvas
 let konvaImages = []
-
-// selected skin tone
-let tint = "a"
-const TINTS = Object.freeze({
-  a: "base",
-  b: "1f3fb",
-  c: "1f3fc",
-  d: "1f3fd",
-  e: "1f3fe",
-  f: "1f3ff",
-})
 
 const selectionRectangle = new Konva.Rect({
   id: "selectionRectangle",
@@ -44,3 +33,15 @@ const baseLayer = new Konva.Layer()
 let tr = generateTransformer()
 let x1, y1, x2, y2
 let filename = "image"
+
+/* GLOBALS */
+// selected skin tone
+let tint = "a"
+const TINTS = Object.freeze({
+  a: "base",
+  b: "1f3fb",
+  c: "1f3fc",
+  d: "1f3fd",
+  e: "1f3fe",
+  f: "1f3ff",
+})
