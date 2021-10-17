@@ -1,0 +1,46 @@
+/* GLOBALS AND CONSTANTS */
+
+/* CONSTANTS */
+const MAX_GIF_SIZE = 128
+const MAX_SIZE = 480
+const size = MAX_GIF_SIZE + MAX_GIF_SIZE / 2
+
+/* ELEMENTS */
+
+const canvas = document.createElement("canvas")
+const ctx = canvas.getContext("2d")
+const img = new Image()
+const outputElement = document.getElementById("output")
+const canvasContainer = document.getElementById("canvas")
+
+/* GLOBALS */
+// Array of images that we've added to the konva canvas
+let konvaImages = []
+
+// selected skin tone
+let tint = "a"
+const TINTS = Object.freeze({
+  a: "base",
+  b: "1f3fb",
+  c: "1f3fc",
+  d: "1f3fd",
+  e: "1f3fe",
+  f: "1f3ff",
+})
+
+const selectionRectangle = new Konva.Rect({
+  id: "selectionRectangle",
+  visible: false,
+  fill: "rgba(165, 247, 239, 0.5)",
+})
+
+const stage = new Konva.Stage({
+  container: "canvas",
+  width: size,
+  height: size,
+})
+
+const baseLayer = new Konva.Layer()
+let tr = generateTransformer()
+let x1, y1, x2, y2
+let filename = "image"

@@ -246,6 +246,52 @@ function embiggen(image) {
   hideElement("canvas")
 }
 
+/* RED */
+function makeRed(image) {
+  const width = stage.width()
+  const height = stage.height()
+  canvas.width = width
+  canvas.height = height
+
+  ctx.drawImage(image, 0, 0, width, height)
+
+  let imgData = ctx.getImageData(0, 0, width, height),
+    x,
+    y,
+    i,
+    grey
+
+  for (y = 0; y < height; y++) {
+    for (x = 0; x < width; x++) {
+      i = (y * width + x) * 4
+
+      grey = window.parseInt(
+        0.2125 * imgData.data[i] +
+          0.7154 * imgData.data[i + 1] +
+          0.0721 * imgData.data[i + 2],
+        10
+      )
+
+      imgData.data[i] += grey - imgData.data[i]
+      imgData.data[i + 1] += grey - imgData.data[i + 1]
+      imgData.data[i + 2] += grey - imgData.data[i + 2]
+    }
+  }
+  ctx.putImageData(imgData, 0, 0)
+  ctx.globalCompositeOperation = "source-atop"
+  ctx.fillStyle = "#cc0000"
+  ctx.globalAlpha = 0.6
+  ctx.fillRect(0, 0, width, height)
+  clearCanvas()
+  img.src = canvas.toDataURL()
+  baseLayer.add(
+    new Konva.Image({
+      image: img,
+      draggable: true,
+    })
+  )
+}
+
 /* INIT */
 function initSpecial() {
   document.getElementById("partyize-button").onclick = () =>
@@ -254,6 +300,7 @@ function initSpecial() {
     getImageAndThen(rotateAndRenderGif)
   document.getElementById("embiggen-button").onclick = () =>
     getImageAndThen(embiggen)
+  document.getElementById("red-button").onclick = () => getImageAndThen(makeRed)
 }
 
 initSpecial()

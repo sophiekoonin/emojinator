@@ -1,30 +1,3 @@
-const selectionRectangle = new Konva.Rect({
-  id: "selectionRectangle",
-  visible: false,
-  fill: "rgba(165, 247, 239, 0.5)",
-})
-
-const size = MAX_GIF_SIZE + MAX_GIF_SIZE / 2
-
-const stage = new Konva.Stage({
-  container: "canvas",
-  width: size,
-  height: size,
-})
-
-const baseLayer = new Konva.Layer()
-
-const gifCanvas = document.createElement("canvas")
-function onDrawGifFrame(ctx, frame) {
-  // update canvas size
-  gifCanvas.width = frame.width
-  gifCanvas.height = frame.height
-  // update canvas that we are using for Konva.Image
-  ctx.drawImage(frame.buffer, 0, 0)
-  // redraw the layer
-  baseLayer.draw()
-}
-
 function generateTransformer() {
   return new Konva.Transformer({
     rotationSnaps: [0, 90, 180, 270],
@@ -39,9 +12,6 @@ function generateTransformer() {
   })
 }
 
-let tr = generateTransformer()
-
-let x1, y1, x2, y2
 function drawSelectionRectangle(event) {
   // do nothing if we mousedown on eny shape
   if (event.target !== stage) {
@@ -128,7 +98,7 @@ function clearSelection(e) {
   }
 }
 
-const fitToScreen = (callback) => {
+function fitToScreen(callback) {
   tr.remove()
   // get layers
   const layerSize = baseLayer.getClientRect({

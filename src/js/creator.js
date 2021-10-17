@@ -7,17 +7,6 @@ document.getElementById("form").onsubmit = function (event) {
 document.getElementById("form").onreset = resetForm
 document.getElementById("creator-input").onchange = onImageSelect
 document.getElementById("clear-canvas").onclick = startOver
-let konvaImages = []
-
-const TINTS = Object.freeze({
-  a: "base",
-  b: "1f3fb",
-  c: "1f3fc",
-  d: "1f3fd",
-  e: "1f3fe",
-  f: "1f3ff",
-})
-let tint = "a"
 
 function clearCanvas() {
   konvaImages = []

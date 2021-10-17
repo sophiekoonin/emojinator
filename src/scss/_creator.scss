@@ -57,9 +57,7 @@
       input {
         opacity: 0;
         position: absolute;
-        &:checked + img {
-          background-color: var(--link-background-color);
-        }
+        cursor: pointer;
       }
       &-option {
         border-radius: 50%;
