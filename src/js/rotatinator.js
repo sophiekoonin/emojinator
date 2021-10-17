@@ -17,19 +17,9 @@ function rotateAndRenderGif(image) {
       "/scripts/gif.worker.js",
   })
 
-  gif.on("finished", function (blob) {
-    const imgUrl = URL.createObjectURL(blob)
-    const downloadButton = document.getElementById("download")
-    const output = document.getElementById("output")
-    output.src = imgUrl
-    output.width = width
-    document.getElementById("canvas").classList.add("hidden")
-    downloadButton.onclick = function (event) {
-      downloadURI(imgUrl, `rotating-${filename}.png`)
-    }
-    clearCanvas()
-    gif.freeWorkers.forEach((w) => w.terminate())
-  })
+  gif.on("finished", (blob) =>
+    renderAndDownloadGif(blob, `rotating-${filename ?? "emoji"}`, width)
+  )
 
   for (let i = 0; i < numSteps; i++) {
     ctx.clearRect(0, 0, width, height)
@@ -39,8 +29,8 @@ function rotateAndRenderGif(image) {
 
     ctx.drawImage(image, -width / 2, -height / 2, width, height)
     gif.addFrame(ctx, {
-      width: width,
-      height: height,
+      width,
+      height,
       delay: 0.5,
       copy: true,
     })

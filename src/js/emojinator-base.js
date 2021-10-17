@@ -70,3 +70,16 @@ function downloadURI(uri, name) {
   document.body.removeChild(link);
   delete link;
 }
+
+function renderAndDownloadGif(blob, filename, width) {
+  const imgUrl = URL.createObjectURL(blob)
+  const downloadButton = document.getElementById("download")
+  outputElement.src = imgUrl
+  outputElement.width = width
+  canvasContainer.classList.add("hidden")
+  downloadButton.onclick = function (event) {
+    downloadURI(imgUrl, `-${filename}.png`)
+  }
+  clearCanvas()
+  gif.freeWorkers.forEach((w) => w.terminate())
+}

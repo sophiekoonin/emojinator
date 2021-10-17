@@ -14,15 +14,9 @@ const PARROT_COLORS = [
   "#FD8E8D",
 ]
 
-function reset(event) {
-  event.target.reset()
-  document.getElementById("download").classList.add("hidden")
-  document.getElementById("output").src = ""
-  document.getElementById("submit").setAttribute("disabled", 1)
-}
-
-function partyize(event, image) {
-  const { width, height } = getScaledImageDimensions(image.width, image.height)
+function partyizeToGif(image) {
+  const width = stage.width()
+  const height = stage.height()
   canvas.width = width
   canvas.height = height
 
@@ -39,16 +33,9 @@ function partyize(event, image) {
       window.location.host +
       "/scripts/gif.worker.js",
   })
-  gif.on("finished", function (blob) {
-    const output = document.getElementById("output")
-    output.src = URL.createObjectURL(blob)
-    const downloadButton = document.getElementById("download")
-    downloadButton.onclick = function (event) {
-      downloadURI(output.src, `party${filename}.png`)
-    }
-    downloadButton.classList.remove("hidden")
-    gif.freeWorkers.forEach((w) => w.terminate())
-  })
+  gif.on("finished", (blob) =>
+    renderAndDownloadGif(blob, `party-${filename ?? "emoji"}`, width)
+  )
 
   for (const base of PARROT_COLORS) {
     ctx.save()
@@ -64,11 +51,11 @@ function partyize(event, image) {
   gif.render()
 }
 
-function partyizerFormSubmit(event) {
-  event.preventDefault()
-  partyize(event, img)
+function partyize() {
+  fitToScreen(() => {
+    tr.nodes([])
+    stage.toImage({ callback: partyizeToGif })
+  })
 }
 
-document.getElementById("party-input").onchange = onImageSelect
-document.getElementById("form").onsubmit = partyizerFormSubmit
-document.getElementById("form").onreset = reset
+document.getElementById("partyize-button").onclick = partyize
