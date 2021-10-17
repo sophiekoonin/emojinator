@@ -47,15 +47,35 @@ title: "Creator"
   </div>
 
   <div class="canvas-area">{% include "partials/canvas/canvas-area.html" %}</div>
-  <form id="form" class="uploader">
-    <h3>Upload an image</h3>
-    <label for="creator-input">Choose an image</label>
-    <input
+  <div class="control-panel">
+    <form id="form">
+      <h3>Upload an image</h3>
+      <label for="creator-input">Choose an image</label>
+      <input
             name="image"
             id="creator-input"
             type="file"
             accept=".jpg, .jpeg, .png"></input>
-    <button type="submit" id="submit" disabled>Upload</button>
-    <button type="reset" class="secondary">Reset</button>
-  </form>
+      <button type="submit" id="submit" disabled>Upload</button>
+      <button type="reset" class="secondary">Reset</button>
+    </form>
+    <form id="tint-picker">
+      <fieldset class="tint-picker">
+        <legend>Choose a skin tone</legend>
+        <label class="tint-picker-option" for="a"><input type="radio" id="a" name="tint" value="a"/>
+          <span class="visually-hidden">Base</span><img src="/images/swatches/base.svg"/></label>
+        <label class="tint-picker-option" for="b"><input type="radio" id="b" name="tint" value="b"/>
+          <span class="visually-hidden">Light</span><img src="/images/swatches/1f3fb.svg"/></label>
+        <label class="tint-picker-option" for="c"><input type="radio" id="c" name="tint" value="c"/>
+          <span class="visually-hidden">Medium-light</span><img src="/images/swatches/1f3fc.svg"/></label>
+        <label class="tint-picker-option" for="d"><input type="radio" id="d" name="tint" value="d"/>
+          <span class="visually-hidden">Medium</span><img src="/images/swatches/1f3fd.svg"/></label>
+        <label class="tint-picker-option" for="e"><input type="radio" id="e" name="tint" value="e"/>
+          <span class="visually-hidden">Medium-dark</span><img src="/images/swatches/1f3fe.svg"/></label>
+        <label class="tint-picker-option" for="f"><input type="radio" id="f" name="tint" value="f"/>
+          <span class="visually-hidden">Dark</span><img src="/images/swatches/1f3ff.svg"/></label>
+      </fieldset>
+
+    </form>
+  </div>
 </div>
