@@ -7,7 +7,6 @@
     text-align: center;
   }
 
-  @include content-box;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   input {
@@ -43,6 +42,7 @@
 }
 
 .embiggener-output {
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;

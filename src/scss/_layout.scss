@@ -1,14 +1,12 @@
 .full-width {
   text-align: center;
-  max-width: 900px;
+  // max-width: 900px;
   margin: 0.5rem;
   @include mq($from: tablet) {
     margin: 1rem;
   }
 
   @include mq($from: desktop) {
-    margin: 0 auto;
-    width: 80vw;
     padding: 2rem;
     padding-top: 0;
   }
@@ -50,7 +48,7 @@
     margin-bottom: 1rem;
   }
   .strong {
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     margin-bottom: 1rem;
   }
 }
