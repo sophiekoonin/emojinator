@@ -6,12 +6,6 @@
     "id": "glasses"
   },
   {
-    "name": "goggles",
-    "filename": "goggles.png",
-    "qty": 1,
-    "id": "goggles"
-  },
-  {
     "name": "crying",
     "filename": "sob.png",
     "qty": 2,
@@ -24,6 +18,24 @@
     "id": "sunglasses"
   },
   {
+    "name": "hearts",
+    "filename": "heart_red.svg",
+    "qty": 2,
+    "id": "heart-eyes"
+  },
+  {
+    "name": "stars",
+    "filename": "star.svg",
+    "qty": 2,
+    "id": "star-eyes"
+  },
+  {
+    "name": "dollar signs",
+    "filename": "dollar.svg",
+    "qty": 2,
+    "id": "dollar-eyes"
+  },
+  {
     "name": "tear",
     "filename": "tear.png",
     "qty": 2,
@@ -34,5 +46,23 @@
     "filename": "tear-red.png",
     "qty": 2,
     "id": "tear-red"
+  },
+  {
+    "name": "pleading eyes",
+    "filename": "pleading_eye.svg",
+    "qty": 2,
+    "id": "pleading-eyes"
+  },
+  {
+    "name": "disguise",
+    "filename": "disguise.svg",
+    "qty": 1,
+    "id": "disguise"
+  },
+  {
+    "name": "lab goggles",
+    "filename": "goggles.svg",
+    "qty": 1,
+    "id": "goggles"
   }
 ]

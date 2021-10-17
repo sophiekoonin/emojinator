@@ -1,11 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="72" height="72" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
-    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(2,0,0,2,0,0)">
-        <path
-            d="M32.938,15.651C32.792,15.26 32.418,15 32,15L19.925,15L26.89,1.458C27.109,1.032 26.996,0.511 26.619,0.215C26.437,0.071 26.218,0 26,0C25.767,0 25.534,0.082 25.347,0.243L18,6.588L3.347,19.243C3.031,19.516 2.917,19.957 3.063,20.348C3.209,20.739 3.582,21 4,21L16.075,21L9.11,34.542C8.891,34.968 9.004,35.489 9.381,35.785C9.563,35.929 9.782,36 10,36C10.233,36 10.466,35.918 10.653,35.757L18,29.412L32.653,16.757C32.97,16.484 33.083,16.043 32.938,15.651Z"
-            style="fill:rgb(255,172,51);fill-rule:nonzero;" />
-    </g>
+<svg width="72" height="72" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" fill-rule="evenodd"
+    clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+    <path
+        d="M65.876 31.302A2.003 2.003 0 0 0 64 30H39.85L53.78 2.916A1.998 1.998 0 0 0 53.238.43a2.001 2.001 0 0 0-2.544.056L36 13.176 6.694 38.486A1.999 1.999 0 0 0 8 42h24.15L18.22 69.084a1.998 1.998 0 0 0 .542 2.486 2.001 2.001 0 0 0 2.544-.056L36 58.824l29.306-25.31c.634-.546.86-1.428.57-2.212Z"
+        fill="#ffac33" fill-rule="nonzero" />
 </svg>

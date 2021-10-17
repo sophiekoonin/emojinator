@@ -12,9 +12,27 @@
     "id": "grimace"
   },
   {
+    "name": "sweary",
+    "filename": "sweary.svg",
+    "qty": 1,
+    "id": "sweary"
+  },
+  {
     "name": "zip",
     "filename": "zip.svg",
     "qty": 1,
     "id": "zip"
+  },
+  {
+    "name": "pumpkin 1",
+    "filename": "pumpkin_mouth.svg",
+    "qty": 1,
+    "id": "pumpkin-mouth-1"
+  },
+  {
+    "name": "pumpkin 2",
+    "filename": "pumpkin_mouth_2.svg",
+    "qty": 1,
+    "id": "pumpkin-mouth-2"
   }
 ]

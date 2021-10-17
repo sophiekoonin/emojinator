@@ -7,9 +7,15 @@
   },
   {
     "name": "crown",
-    "filename": "crown.png",
+    "filename": "crown.svg",
     "qty": 1,
     "id": "crown"
+  },
+  {
+    "name": "exploding head",
+    "filename": "head-explode.png",
+    "qty": 1,
+    "id": "head-explode"
   },
   {
     "name": "devil horns",
@@ -22,6 +28,30 @@
     "filename": "halo.png",
     "qty": 1,
     "id": "halo"
+  },
+  {
+    "name": "mortar board",
+    "filename": "mortar-board.svg",
+    "qty": 1,
+    "id": "mortar-board"
+  },
+  {
+    "name": "secret agent",
+    "filename": "agent.svg",
+    "qty": 1,
+    "id": "agent"
+  },
+  {
+    "name": "secret agent hat",
+    "filename": "detective.svg",
+    "qty": 1,
+    "id": "agent-hat"
+  },
+  {
+    "name": "magician",
+    "filename": "magician_hat.svg",
+    "qty": 1,
+    "id": "magician"
   },
   {
     "name": "santa hat",

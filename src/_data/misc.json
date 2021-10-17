@@ -6,6 +6,12 @@
     "id": "white-check-mark"
   },
   {
+    "name": "no",
+    "filename": "no.svg",
+    "qty": 1,
+    "id": "no"
+  },
+  {
     "name": "exclamation mark",
     "filename": "exclamation.png",
     "qty": 1,
@@ -24,10 +30,28 @@
     "id": "fire"
   },
   {
-    "name": "heart",
-    "filename": "heart.png",
+    "name": "star",
+    "filename": "star.svg",
+    "qty": 1,
+    "id": "star"
+  },
+  {
+    "name": "red heart",
+    "filename": "heart_red.png",
     "qty": 1,
     "id": "red-heart"
+  },
+  {
+    "name": "black heart",
+    "filename": "heart_black.png",
+    "qty": 1,
+    "id": "black-heart"
+  },
+  {
+    "name": "sparkles",
+    "filename": "sparkles.svg",
+    "qty": 1,
+    "id": "sparkles"
   },
   {
     "name": "lightning bolt",
@@ -60,16 +84,16 @@
     "id": "bulb"
   },
   {
-    "name": "alert",
-    "filename": "alert.png",
+    "name": "football",
+    "filename": "football.svg",
     "qty": 1,
-    "id": "alert"
+    "id": "football"
   },
   {
-    "name": "no",
-    "filename": "no.svg",
+    "name": "alert",
+    "filename": "alert.svg",
     "qty": 1,
-    "id": "no"
+    "id": "alert"
   },
   {
     "name": "stress",
@@ -82,5 +106,83 @@
     "filename": "poop.svg",
     "qty": 1,
     "id": "poop"
+  },
+  {
+    "name": "medal",
+    "filename": "medal.svg",
+    "qty": 1,
+    "id": "medal"
+  },
+  {
+    "name": "first place",
+    "filename": "first-place.svg",
+    "qty": 1,
+    "id": "first-place"
+  },
+  {
+    "name": "second place",
+    "filename": "second-place.svg",
+    "qty": 1,
+    "id": "second-place"
+  },
+  {
+    "name": "third place",
+    "filename": "third-place.svg",
+    "qty": 1,
+    "id": "third-place"
+  },
+  {
+    "name": "trophy",
+    "filename": "trophy.svg",
+    "qty": 1,
+    "id": "trophy"
+  },
+  {
+    "name": "pride flag",
+    "filename": "pride_flag.svg",
+    "qty": 1,
+    "id": "pride-flag"
+  },
+  {
+    "name": "trans pride flag",
+    "filename": "trans_flag.svg",
+    "qty": 1,
+    "id": "trans-flag"
+  },
+  {
+    "name": "jolly roger flag",
+    "filename": "jolly_roger.svg",
+    "qty": 1,
+    "id": "jolly-roger"
+  },
+  {
+    "name": "rainbow",
+    "filename": "rainbow.svg",
+    "qty": 1,
+    "id": "rainbow"
+  },
+  {
+    "name": "musical notes",
+    "filename": "musical_notes_1.svg",
+    "qty": 1,
+    "id": "musical-notes-1"
+  },
+  {
+    "name": "musical notes",
+    "filename": "musical_notes_2.svg",
+    "qty": 1,
+    "id": "musical-notes-2"
+  },
+  {
+    "name": "xmas tree",
+    "filename": "xmas_tree.svg",
+    "qty": 1,
+    "id": "xmas-tree"
+  },
+  {
+    "name": "pumpkin",
+    "filename": "pumpkin.svg",
+    "qty": 1,
+    "id": "pumpkin"
   }
 ]
