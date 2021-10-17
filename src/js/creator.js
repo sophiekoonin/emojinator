@@ -8,6 +8,16 @@ document.getElementById("clear-canvas").onclick = clear
 let konvaImages = []
 const size = MAX_GIF_SIZE + MAX_GIF_SIZE / 2
 
+const TINTS = Object.freeze({
+  a: "base",
+  b: "1f3fb",
+  c: "1f3fc",
+  d: "1f3fd",
+  e: "1f3fe",
+  f: "1f3ff",
+})
+let tint = TINTS.a
+
 function clear() {
   konvaImages = []
   baseLayer.destroyChildren()
@@ -26,6 +36,15 @@ const stage = new Konva.Stage({
   width: size,
   height: size,
 })
+
+function showTints(selectedTint) {
+  tint = selectedTint
+  Array.from(document.getElementsByClassName("tintable")).forEach((el) => {
+    const filename =
+      el.src.split("-")[0] + tint === TINTS.a ? ".svg" : `-${tint}.svg`
+    el.src = filename
+  })
+}
 
 function onItemClick(event) {
   const accessoryEl =
@@ -97,4 +116,5 @@ function onUploadImage(event, image) {
   baseLayer.draw()
 }
 
+showTints(TINTS.a)
 init()

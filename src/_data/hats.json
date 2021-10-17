@@ -1,7 +1,7 @@
 [
   {
     "name": "cowboy hat",
-    "filename": "cowboy-hat.png",
+    "filename": "cowboy_hat.png",
     "qty": 1,
     "id": "yee"
   },
@@ -13,13 +13,13 @@
   },
   {
     "name": "exploding head",
-    "filename": "head-explode.png",
+    "filename": "head_explode.svg",
     "qty": 1,
     "id": "head-explode"
   },
   {
     "name": "devil horns",
-    "filename": "devil-horn.png",
+    "filename": "devil_horn.png",
     "qty": 2,
     "id": "horns"
   },
@@ -31,7 +31,7 @@
   },
   {
     "name": "mortar board",
-    "filename": "mortar-board.svg",
+    "filename": "mortar_board.svg",
     "qty": 1,
     "id": "mortar-board"
   },

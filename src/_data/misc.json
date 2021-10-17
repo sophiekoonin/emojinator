@@ -37,13 +37,13 @@
   },
   {
     "name": "red heart",
-    "filename": "heart_red.png",
+    "filename": "heart_red.svg",
     "qty": 1,
     "id": "red-heart"
   },
   {
     "name": "black heart",
-    "filename": "heart_black.png",
+    "filename": "heart_black.svg",
     "qty": 1,
     "id": "black-heart"
   },
@@ -115,19 +115,19 @@
   },
   {
     "name": "first place",
-    "filename": "first-place.svg",
+    "filename": "first_place.svg",
     "qty": 1,
     "id": "first-place"
   },
   {
     "name": "second place",
-    "filename": "second-place.svg",
+    "filename": "second_place.svg",
     "qty": 1,
     "id": "second-place"
   },
   {
     "name": "third place",
-    "filename": "third-place.svg",
+    "filename": "third_place.svg",
     "qty": 1,
     "id": "third-place"
   },

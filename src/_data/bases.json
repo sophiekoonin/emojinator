@@ -1,0 +1,58 @@
+[
+  {
+    "name": "round",
+    "filename": "round.svg",
+    "qty": 1,
+    "tintable": true,
+    "id": "round"
+  },
+  {
+    "name": "imp",
+    "filename": "imp.svg",
+    "qty": 1,
+    "tintable": false,
+    "id": "imp"
+  },
+  {
+    "name": "pumpkin",
+    "filename": "pumpkin.svg",
+    "qty": 1,
+    "tintable": false,
+    "id": "pumpkin-base"
+  },
+  {
+    "name": "earth, australasia",
+    "filename": "earth_australasia.svg",
+    "qty": 1,
+    "tintable": false,
+    "id": "earth-australasia"
+  },
+  {
+    "name": "earth, americas",
+    "filename": "earth_americas.svg",
+    "qty": 1,
+    "tintable": false,
+    "id": "earth-americas"
+  },
+  {
+    "name": "earth, europe and africa",
+    "filename": "earth_europe_africa.svg",
+    "qty": 1,
+    "tintable": false,
+    "id": "earth-europe-africa"
+  },
+  {
+    "name": "dark moon",
+    "filename": "moon_dark.svg",
+    "qty": 1,
+    "tintable": false,
+    "id": "moon-dark"
+  },
+  {
+    "name": "light moon",
+    "filename": "moon_light.svg",
+    "qty": 1,
+    "tintable": false,
+    "id": "moon-light"
+  }
+]
