@@ -31,8 +31,10 @@ function startOver() {
   clearCanvas()
   outputElement.src = ""
   outputElement.width = null
-  outputElement.classList.add("hidden")
-  canvasContainer.classList.remove("hidden")
+  showElement("canvas")
+  hideElement("output")
+  document.getElementById("embiggener-output").innerHTML = ""
+  hideElement("embiggener-output")
 }
 
 function resetForm(event) {

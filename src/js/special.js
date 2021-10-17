@@ -136,7 +136,7 @@ function generateOutputs() {
   const output4 = document.createElement("a")
   output4.id = "link4"
   output4.innerHTML = '<img id="output4" alt="download bottom right"/>'
-  const output = document.getElementById("output-embiggener")
+  const output = document.getElementById("embiggener-output")
   output.appendChild(output1)
   output.appendChild(output2)
   output.appendChild(output3)
@@ -240,9 +240,9 @@ function embiggen(image) {
   link4.download = `${filename}-bottomright.png`
   document.getElementById("download").setAttribute("disabled", true)
   document.getElementById(
-    "output-embiggener"
+    "embiggener-output"
   ).style = `max-width: ${image.width}px;`
-  showElement("output-embiggener")
+  showElement("embiggener-output")
   hideElement("canvas")
 }
 
