@@ -11,7 +11,8 @@ const toBase64 = (file) =>
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 const img = new Image();
-
+const outputElement = document.getElementById('output')
+const canvasContainer = document.getElementById('canvas')
 let filename = '';
 
 function scaleDimensions(longerSide, shorterSide, maxSize) {

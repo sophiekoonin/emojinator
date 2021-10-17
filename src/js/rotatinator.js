@@ -27,7 +27,7 @@ function rotateAndRenderGif(image) {
     downloadButton.onclick = function (event) {
       downloadURI(imgUrl, `rotating-${filename}.png`)
     }
-    clear()
+    clearCanvas()
     gif.freeWorkers.forEach((w) => w.terminate())
   })
 

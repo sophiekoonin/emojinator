@@ -4,9 +4,9 @@ document.getElementById("form").onsubmit = function (event) {
 
   onUploadImage(img)
 }
-document.getElementById("form").onreset = reset
+document.getElementById("form").onreset = resetForm
 document.getElementById("creator-input").onchange = onImageSelect
-document.getElementById("clear-canvas").onclick = clear
+document.getElementById("clear-canvas").onclick = startOver
 let konvaImages = []
 
 const TINTS = Object.freeze({
@@ -19,7 +19,7 @@ const TINTS = Object.freeze({
 })
 let tint = "a"
 
-function clear() {
+function clearCanvas() {
   konvaImages = []
   baseLayer.destroyChildren()
   tr = generateTransformer()
@@ -27,7 +27,15 @@ function clear() {
   baseLayer.batchDraw()
 }
 
-function reset(event) {
+function startOver() {
+  clearCanvas()
+  outputElement.src = ""
+  outputElement.width = null
+  outputElement.classList.add("hidden")
+  canvasContainer.classList.remove("hidden")
+}
+
+function resetForm(event) {
   event.target.reset()
   document.getElementById("submit").setAttribute("disabled", 1)
 }
