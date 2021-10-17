@@ -20,9 +20,7 @@ function scaleDimensions(longerSide, shorterSide, maxSize) {
   return [longScaled, shortScaled];
 }
 
-function getScaledImageDimensions(width, height, maxSize = MAX_GIF_SIZE) {
-  if (width === 0 || height === 0)
-    throw new Error('Width or height cannot be zero!');
+function getScaledImageDimensions(width = MAX_GIF_SIZE, height = MAX_GIF_SIZE, maxSize = MAX_GIF_SIZE) {
   const imageAspectRatio = width / height;
   // width < height
   if (imageAspectRatio < 1) {

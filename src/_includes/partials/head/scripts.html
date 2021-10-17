@@ -2,14 +2,10 @@
 <script src="https://unpkg.com/what-input@5/dist/what-input.js" defer="defer"></script>
 <script src="/scripts/main.js" defer="defer"></script>
 <script src="/scripts/emojinator-base.js?ver={{ assetHash}}" defer="defer"></script>
-{% if includeKonva %}
-  <script src="https://unpkg.com/konva@8/konva.js" defer="defer"></script>
-  <script src="/scripts/konva-utils.js" defer="defer"></script>
-{% endif %}
-{% if includeGif %}
-  <script src="/scripts/gif.js" defer="defer"></script>
-  <script src="/scripts/gif.worker.js" defer="defer"></script>
-{% endif %}
-{% if not isHome %}
-  <script src="/scripts/{{ title | slug }}.js?ver={{ assetHash}}" defer="defer"></script>
-{% endif %}
+<script src="https://unpkg.com/konva@8/konva.js" defer="defer"></script>
+<script src="/scripts/konva-utils.js" defer="defer"></script>
+<script src="/scripts/gif.js" defer="defer"></script>
+<script src="/scripts/gifler.min.js" defer="defer"></script>
+<script src="/scripts/gif.worker.js" defer="defer"></script>
+<script src="/scripts/rotatinator.js?ver={{ assetHash}}" defer="defer"></script>
+<script src="/scripts/creator.js?ver={{ assetHash}}" defer="defer"></script>

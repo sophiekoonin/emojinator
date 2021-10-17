@@ -1,12 +1,13 @@
 document.getElementById("form").onsubmit = function (event) {
   event.preventDefault()
-  onUploadImage(event, img)
+  event.target.reset()
+
+  onUploadImage(img)
 }
 document.getElementById("form").onreset = reset
 document.getElementById("creator-input").onchange = onImageSelect
 document.getElementById("clear-canvas").onclick = clear
 let konvaImages = []
-const size = MAX_GIF_SIZE + MAX_GIF_SIZE / 2
 
 const TINTS = Object.freeze({
   a: "base",
@@ -30,12 +31,6 @@ function reset(event) {
   event.target.reset()
   document.getElementById("submit").setAttribute("disabled", 1)
 }
-
-const stage = new Konva.Stage({
-  container: "canvas",
-  width: size,
-  height: size,
-})
 
 function selectTint(selectedTint) {
   const prevTint = tint
@@ -98,14 +93,12 @@ function onItemClick(event) {
   baseLayer.batchDraw()
 }
 
-function onUploadImage(event, image) {
+function onUploadImage(image) {
   const { width, height } = getScaledImageDimensions(
     image.width,
     image.height,
     MAX_GIF_SIZE
   )
-
-  event.target.reset()
 
   const img = new Konva.Image({
     width,
@@ -194,10 +187,17 @@ function init() {
     (el) => (el.onclick = onItemClick)
   )
   stage.add(baseLayer)
+
   baseLayer.add(tr)
   baseLayer.add(selectionRectangle)
 
   baseLayer.batchDraw()
+
+  const debug = new URL(window.location.href).searchParams.get("debug")
+  if (debug === "true") {
+    img.src = "/images/debug.png"
+    onUploadImage(img)
+  }
 }
 
 selectTint("a")

@@ -119,7 +119,11 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+#output {
+  margin: 0 auto;
 }
 
 .robot-hearts {
