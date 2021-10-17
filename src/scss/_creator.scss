@@ -1,8 +1,11 @@
 .workspace {
+  text-align: center;
   display: flex;
   width: 100%;
+  max-height: 70vh;
   .accessory-selector {
-    max-height: 60vh;
+    border-radius: 10px;
+    max-height: 100%;
     overflow-y: auto;
     max-width: 33vw;
     background-color: var(--creator-background);
@@ -10,7 +13,7 @@
     flex-direction: column;
     &-group {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
     .selector-option {
       background: transparent;
@@ -33,17 +36,22 @@
       background: transparent;
     }
     padding: 1rem;
+    border-radius: 10px;
     max-width: 33%;
     background-color: var(--creator-background);
 
     .tint-picker {
+      margin-top: 2.5rem;
+      padding: 0;
       border: 0;
       display: flex;
+      align-items: center;
+      justify-content: center;
       legend {
         color: var(--h3-color);
         font-size: 1.5rem;
         font-size: unquote("min(max(1.1rem, 4vw), 20px)");
-        margin-top: 1.5rem;
+        margin-bottom: 1rem;
         font-family: var(--heading-font-family);
       }
       input {
@@ -56,6 +64,7 @@
       &-option {
         border-radius: 50%;
         padding: 2px 3px;
+        border: 1px solid transparent;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -64,7 +73,7 @@
         &:hover {
           background-color: var(--button-background-color-secondary);
         }
-        .selected {
+        &.selected {
           border: 1px solid var(--button-background-color-secondary);
         }
         img {
@@ -72,5 +81,14 @@
         }
       }
     }
+  }
+}
+
+.meta {
+  text-align: center;
+  .blurb {
+    margin: 1rem auto;
+    font-size: 0.9rem;
+    max-width: 75%;
   }
 }

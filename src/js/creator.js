@@ -16,7 +16,7 @@ const TINTS = Object.freeze({
   e: "1f3fe",
   f: "1f3ff",
 })
-let tint = TINTS.a
+let tint = "a"
 
 function clear() {
   konvaImages = []
@@ -37,12 +37,20 @@ const stage = new Konva.Stage({
   height: size,
 })
 
-function showTints(selectedTint) {
+function selectTint(selectedTint) {
+  const prevTint = tint
+  document.getElementById(`tint-label-${prevTint}`).classList.remove("selected")
+
   tint = selectedTint
+  document
+    .getElementById(`tint-label-${selectedTint}`)
+    .classList.add("selected")
+
   Array.from(document.getElementsByClassName("tintable")).forEach((el) => {
     const filename = el.src.split("-")[0].replace(".svg", "")
 
-    el.src = filename + (tint === TINTS.a ? ".svg" : `-${tint}.svg`)
+    el.src =
+      filename + (TINTS[tint] === TINTS.a ? ".svg" : `-${TINTS[tint]}.svg`)
   })
 }
 
@@ -116,5 +124,81 @@ function onUploadImage(event, image) {
   baseLayer.draw()
 }
 
-showTints(TINTS.a)
+function init() {
+  document.getElementById("move-up").onclick = () => {
+    tr.nodes().forEach((node) => node.moveToTop())
+    baseLayer.draw()
+  }
+  document.getElementById("move-down").onclick = () => {
+    tr.nodes().forEach((node) => node.moveToBottom())
+    baseLayer.draw()
+  }
+  document.getElementById("select-all").onclick = () => {
+    tr.nodes(konvaImages)
+    baseLayer.draw()
+  }
+
+  document.getElementById("rotate-left").onclick = () => {
+    rotate(-90, tr, baseLayer)
+  }
+  document.getElementById("rotate-right").onclick = () => {
+    rotate(90, tr, baseLayer)
+  }
+
+  document.getElementById("flip-horizontal").onclick = () => {
+    tr.nodes().forEach((node) => node.scaleX(-node.scaleX()))
+    baseLayer.batchDraw()
+  }
+  document.getElementById("flip-vertical").onclick = () => {
+    tr.nodes().forEach((node) => node.scaleY(-node.scaleY()))
+    baseLayer.batchDraw()
+  }
+
+  document.getElementById("remove-node").onclick = () => {
+    tr.nodes().forEach((node) => node.destroy())
+    tr.nodes([])
+    baseLayer.batchDraw()
+  }
+
+  stage.on("click tap", function (e) {
+    clearSelection(e, stage, tr, baseLayer)
+  })
+
+  stage.on("mousedown touchstart", (event) => {
+    drawSelectionRectangle(event, stage, baseLayer)
+  })
+  stage.on("mousemove touchmove", () => {
+    expandSelectionRectangle(stage, baseLayer)
+  })
+  stage.on("mouseup touchend", () => {
+    endSelectionRectangle(stage, tr, baseLayer)
+  })
+
+  document.getElementById("download").addEventListener("click", (e) => {
+    e.preventDefault()
+    fitToScreen(() => {
+      tr.nodes([])
+      var dataURL = stage.toDataURL()
+      downloadURI(dataURL, `emojinator-${filename}.png`)
+    })
+  })
+
+  Array.from(document.getElementsByClassName("tint-picker-input")).forEach(
+    (el) =>
+      (el.onchange = (el) => {
+        selectTint(el.target.value)
+      })
+  )
+
+  Array.from(document.getElementsByClassName("selector-option")).forEach(
+    (el) => (el.onclick = onItemClick)
+  )
+  stage.add(baseLayer)
+  baseLayer.add(tr)
+  baseLayer.add(selectionRectangle)
+
+  baseLayer.batchDraw()
+}
+
+selectTint("a")
 init()
