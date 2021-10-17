@@ -89,6 +89,7 @@ function onItemClick(event) {
 
   konvaImages.push(...accessoryNodes)
   tr.nodes(accessoryNodes)
+  tr.zIndex(konvaImages.length)
   baseLayer.batchDraw()
 }
 
@@ -102,7 +103,7 @@ function onUploadImage(image) {
   const img = new Konva.Image({
     width,
     height,
-    image,
+    image: image.cloneNode(),
     x: width / 4 + width / 2,
     y: height / 4 + height / 2,
     draggable: true,
@@ -112,7 +113,9 @@ function onUploadImage(image) {
 
   konvaImages.push(img)
   baseLayer.add(img)
-  tr.nodes(tr.nodes().concat([img]))
+  tr.nodes([img])
+  tr.zIndex(konvaImages.length)
+
   baseLayer.draw()
 }
 

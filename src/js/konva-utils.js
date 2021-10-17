@@ -1,5 +1,5 @@
 function generateTransformer() {
-  return new Konva.Transformer({
+  const tr = new Konva.Transformer({
     rotationSnaps: [0, 90, 180, 270],
     keepRatio: true,
     boundBoxFunc: (oldBox, newBox) => {
@@ -10,10 +10,11 @@ function generateTransformer() {
     },
     nodes: [],
   })
+  return tr
 }
 
 function drawSelectionRectangle(event) {
-  // do nothing if we mousedown on eny shape
+  // do nothing if we mousedown on any shape
   if (event.target !== stage) {
     return
   }
@@ -30,7 +31,7 @@ function drawSelectionRectangle(event) {
 }
 
 function expandSelectionRectangle() {
-  // no nothing if we didn't start selection
+  // do nothing if we didn't start selection
   if (selectionRectangle.visible() === false) {
     return
   }
@@ -76,7 +77,7 @@ function clearSelection(e) {
     return
   }
 
-  // do we pressed shift or ctrl?
+  // shift or ctrl?
   const metaPressed = e.evt.shiftKey || e.evt.ctrlKey || e.evt.metaKey
   const isSelected = tr.nodes().indexOf(e.target) >= 0
 
