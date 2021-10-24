@@ -7,7 +7,10 @@
     text-align: center;
   }
 
-  padding: 1.5rem;
+  @include mq($from: desktop) {
+    padding: 1.5rem;
+  }
+  position: relative;
   margin-bottom: 1.5rem;
   input {
     padding: 12px 8px;
@@ -46,14 +49,6 @@
   }
 }
 
-.embiggener-example {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-row-gap: 2px;
-  grid-column-gap: 2px;
-}
-
 #selectionRectangle {
   fill: var(--selection-rectangle-fill, rgba(0, 0, 0, 0.5));
 }
@@ -69,7 +64,14 @@
   }
 }
 
-.canvas {
+.canvas-area {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 1;
+  @include mq($from: tablet) {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+  }
+
   @include mq($from: tablet) {
     display: flex;
     flex-direction: column;
@@ -128,10 +130,4 @@
 
 #output {
   margin: 0 auto;
-}
-
-.robot-hearts {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
 }

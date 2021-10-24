@@ -1,9 +1,21 @@
 .workspace {
   text-align: center;
-  display: flex;
-  width: 85%;
+  display: grid;
   margin: 0 auto;
-  max-height: 70vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50vh 50vh 75vh;
+  max-width: 100%;
+  @include mq($from: tablet) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 40vh 75vh;
+    row-gap: 1rem;
+  }
+  @include mq($from: desktop) {
+    width: 85%;
+    max-height: 70vh;
+    grid-template-columns: 0.3fr 1fr 0.3fr;
+    grid-template-rows: 1fr;
+  }
 
   .konvajs-content {
     background-color: var(--creator-background);
@@ -11,7 +23,16 @@
   }
 
   .accessory-container {
-    width: 25vw;
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 1;
+    @include mq($from: desktop) {
+      grid-column: 3 / span 1;
+      grid-row: 1 / span 1;
+    }
+    @include mq($from: tablet) {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+    }
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -31,9 +52,12 @@
     width: 100%;
     &-group {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
       row-gap: 4px;
       column-gap: 4px;
+      grid-template-columns: repeat(4, 1fr);
+      @include mq($from: tablet, $until: desktop) {
+        grid-template-columns: repeat(6, 1fr);
+      }
     }
     .selector-option {
       align-self: center;
@@ -64,7 +88,12 @@
           padding-left: 0.25rem;
           padding-right: 0.25rem;
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
+          row-gap: 4px;
+          column-gap: 4px;
+          grid-template-columns: repeat(4, 1fr);
+          @include mq($from: tablet, $until: desktop) {
+            grid-template-columns: repeat(6, 1fr);
+          }
         }
         legend {
           color: var(--h3-color);
@@ -107,6 +136,12 @@
     flex: 1;
   }
   .control-panel {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    @include mq($from: desktop) {
+      grid-column: 1 / span 1;
+      grid-row: 1 / span 1;
+    }
     input {
       border: 0;
       background: transparent;
@@ -117,7 +152,6 @@
     font-size: 1rem;
     padding: 1rem 0;
     border-radius: 10px;
-    max-width: 33%;
     background-color: var(--creator-background);
     .accordion-content {
       padding-left: 1rem;
@@ -141,6 +175,12 @@
   }
 }
 
+.special-functions {
+  list-style-type: none;
+  li {
+    margin-bottom: 0.5rem;
+  }
+}
 .accordion {
   &-trigger {
     background-color: var(--accordion-heading-closed);

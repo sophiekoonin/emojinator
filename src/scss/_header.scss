@@ -4,14 +4,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 10vh;
 
-  height: 18vh;
   @include mq($from: desktop) {
-    height: 30vh;
+    height: 18vh;
   }
+
   .header-text {
     color: var(--header-color);
-    font-family: 'Diary of an 8-bit mage', monospace;
+    font-family: "Diary of an 8-bit mage", monospace;
     font-display: swap;
     text-align: center;
     text-transform: lowercase;
@@ -23,6 +24,7 @@
       font-size: 5rem;
     }
     margin: 0;
+    margin-top: 2rem;
   }
 
   .darkmode-toggle {
@@ -33,15 +35,15 @@
     &:focus-within {
       .toggle-slider {
         box-shadow: 0 0 2px 4px var(--pacific-blue);
-        [data-whatinput='mouse'] &,
-        [data-whatinput='touch'] & {
+        [data-whatinput="mouse"] &,
+        [data-whatinput="touch"] & {
           box-shadow: none;
         }
       }
       input:checked + .toggle-slider {
         box-shadow: 0 0 2px 4px var(--gunmetal-85);
-        [data-whatinput='mouse'] &,
-        [data-whatinput='touch'] & {
+        [data-whatinput="mouse"] &,
+        [data-whatinput="touch"] & {
           box-shadow: none;
         }
       }
@@ -69,7 +71,7 @@
       border: 2px solid var(--aqua-84);
       background-color: var(--sky-blue);
       &:after {
-        content: '';
+        content: "";
         display: inline-block;
         width: 1.2rem;
         height: 1.2rem;

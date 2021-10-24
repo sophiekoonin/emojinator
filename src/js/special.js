@@ -67,6 +67,8 @@ function partyizeToGif(image) {
 }
 
 function getImageAndThen(callback) {
+  if (konvaImages.length === 0) return
+
   fitToScreen(() => {
     tr.nodes([])
     stage.toImage({ callback })
