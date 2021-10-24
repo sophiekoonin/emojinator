@@ -33,6 +33,7 @@
     "name": "dollar signs",
     "filename": "dollars.svg",
     "qty": 2,
+    "noflip": true,
     "id": "dollar-eyes"
   },
   {

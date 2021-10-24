@@ -1,18 +1,8 @@
 <header class="header">
     <!-- Title -->
-    {% if isHome %}
-        <h1 class="header-text">
-            <a href="{{ global.baseUrl }}" data-text="localghost">
+    <h1 class="header-text">
             emojinator
-        </a>
         </h1>
-    {% else %}
-        <span class="header-text">
-            <a href="{{ global.baseUrl }}" data-text="localghost">
-            emojinator
-        </a>
-        </span>
-    {% endif %}
 
     <label for="toggle-checkbox" title="Toggle dark mode" class="darkmode-toggle">
         <span class="visually-hidden">Toggle dark mode</span>

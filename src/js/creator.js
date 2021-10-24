@@ -66,7 +66,7 @@ function onItemClick(event) {
 
   let accessoryWidth
   if (type === "base") {
-    accessoryWidth = SIZE * 0.9
+    accessoryWidth = SIZE * 0.75
   } else {
     accessoryWidth = Math.min(SIZE / 2, accessoryEl.width)
   }
@@ -81,8 +81,8 @@ function onItemClick(event) {
     image: accessoryEl,
     width: accessoryEl.width,
     height: accessoryEl.height,
-    x: accessoryEl.width / 2 + accessoryEl.width * 0.05,
-    y: accessoryEl.height / 2 + accessoryEl.height * 0.05,
+    x: SIZE / 2,
+    y: SIZE / 2,
     draggable: true,
     offsetX: accessoryEl.width / 2,
     offsetY: accessoryEl.height / 2,
@@ -91,10 +91,13 @@ function onItemClick(event) {
   baseLayer.add(accessory)
 
   if (qty > 1) {
+    const noflip = accessoryEl.getAttribute("data-noflip") || "false"
+    accessory.x(accessoryEl.width / 2 + accessoryEl.width * 0.05)
+    accessory.y(accessoryEl.height / 2 + accessoryEl.height * 0.05)
     const accessory2 = accessory.clone({
       name: `accessory-${accessoryEl.id}-${uuidv4()}`,
       x: accessoryEl.width / 2 + 75,
-      scaleX: -accessory.scaleX(),
+      scaleX: noflip !== "false" ? accessory.scaleX() : -accessory.scaleX(),
     })
     accessoryNodes.push(accessory2)
     baseLayer.add(accessory2)

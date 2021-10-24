@@ -34,7 +34,7 @@
     right: 1rem;
     &:focus-within {
       .toggle-slider {
-        box-shadow: 0 0 2px 4px var(--pacific-blue);
+        box-shadow: 0 0 2px 6px hsla(190, 80%, 50%, 1);
         [data-whatinput="mouse"] &,
         [data-whatinput="touch"] & {
           box-shadow: none;
@@ -68,7 +68,7 @@
       position: relative;
       border-radius: 25px;
       height: 1.6rem;
-      border: 2px solid var(--aqua-84);
+      border: 2px solid hsla(190, 80%, 60%, 1);
       background-color: var(--sky-blue);
       &:after {
         content: "";

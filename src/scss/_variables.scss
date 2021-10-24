@@ -1,18 +1,14 @@
 :root {
-  --aqua-84: hsla(164, 97%, 84%, 1);
   --magenta-90: hsla(303, 88%, 90%, 1);
   --magenta-60: hsla(303, 88%, 60%, 1);
   --lime-70: hsla(125, 88%, 70%, 1);
   --purple-80: hsla(251, 78%, 80%, 1);
   --purple-68: hsla(251, 78%, 68%, 1);
   --purple-50: hsla(251, 54%, 50%, 1);
-  --sky-blue: hsla(190, 80%, 70%, 1);
+  --sky-blue: hsl(190, 80%, 88%);
   --gunmetal-85: hsla(212, 14%, 85%, 1);
-  --lilac-67: hsla(233, 78%, 67%, 1);
   --gunmetal-20: rgb(140, 143, 146);
   --gunmetal-12: hsla(212, 14%, 12%, 1);
-  --yellow: hsla(47, 100%, 60%, 1);
-  --pacific-blue-60: hsla(187, 100%, 60%, 1);
   --pacific-blue: hsla(187, 100%, 40%, 1);
   --family-monospace: "Diary of an 8-bit Mage", monospace;
   --heading-font-family: var(--family-monospace);
@@ -20,50 +16,42 @@
 
 @mixin dark-colors {
   --background-color: fixed
-    linear-gradient(hsla(239, 50%, 20%, 1), var(--purple-50) 80%);
-  --link-color: var(--aqua-84);
+    linear-gradient(hsla(239, 50%, 20%, 1), hsla(251, 54%, 50%, 1) 80%);
   --body-color: white;
-  --header-color: var(--magenta-90);
-  --h1-color: var(--sky-blue);
-  --h2-color: var(--magenta-60);
-  --h3-color: var(--lime-70);
-  --h4-color: var(--magenta-90);
-  --link-hover-color: var(--yellow);
+  --header-color: #5cf0cb;
   --body-font-weight: "wght" 375;
-  --border-color: #5e6069;
-  --link-background-color: #3b3c49;
-  --link-background-color-hover: #52545f;
-  --button-hover-color-secondary: var(--gunmetal-20);
-  --selection-rectangle-fill: rgba(140, 143, 146, 0.5);
-  --banner-color: var(--purple-50);
-  --creator-background: rgb(40, 39, 53);
-  --accordion-heading: var(--link-background-color);
-  --accordion-heading-closed: var(--link-background-color-hover);
+  --selection-rectangle-fill: var(--secondary);
+  --heading: #fffffe;
+  --body: #fffffe;
+  --primary-background: #242629;
+  --secondary-background: #16161a;
+  --primary: #7f5af0;
+  --primary-hover: #6b3fee;
+  --secondary: hsl(240, 8.3%, 20.4%);
+  --secondary-hover: hsl(240, 8.3%, 11.4%);
+  --border-color: hsl(240, 8.3%, 30.4%);
+  --tertiary: #5cf0cb;
+  --link-hover: #affee9;
+  --disabled-button-color: lightgrey;
 }
 
 :root {
   --background-color: fixed
-    linear-gradient(var(--yellow), hsla(47, 100%, 85%, 1));
+    linear-gradient(hsla(190, 80%, 70%, 1), hsla(190, 80%, 90%, 1));
   --body-font-weight: "wght" 400;
-  --link-color: var(--pacific-blue);
-  --body-color: var(--gunmetal-12);
-  --h1-color: var(--purple-50);
-  --h2-color: var(--purple-68);
-  --h3-color: var(--lilac-67);
-  --h4-color: var(--purple-68);
-  --link-hover-color: var(--purple-68);
-  --border-color: hsla(0, 2%, 93%, 1);
-  --link-background-color: hsla(0, 2%, 98%, 1);
-  --link-background-color-hover: hsla(0, 2%, 95%, 1);
-  --button-background-color: var(--pacific-blue);
-  --button-hover-color: var(--pacific-blue-60);
-  --button-color: white;
-  --selection-rectangle-fill: hsla(187, 100%, 40%, 0.5);
-  --button-hover-color-secondary: var(--accordion-heading);
-  --banner-color: var(--pacific-blue);
-  --creator-background: var(--link-background-color);
-  --accordion-heading: hsl(0, 2%, 94%);
-  --accordion-heading-closed: hsla(0, 2%, 90%, 1);
+  --header-color: #8a75f0;
+  --heading: #00214d;
+  --body: #1b2d45;
+  --primary-background: #f2f4f6;
+  --secondary-background: #fffffe;
+  --primary: #00ebc7;
+  --primary-hover: #00b89d;
+  --secondary: #fffffe;
+  --secondary-hover: #dee3e8;
+  --border-color: #cad2da;
+  --tertiary: #8a75f0;
+  --link-hover: #00b89d;
+  --disabled-button-color: hsl(240, 8.3%, 50.4%);
 }
 
 @media (prefers-color-scheme: dark) {

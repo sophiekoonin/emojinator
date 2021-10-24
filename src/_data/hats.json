@@ -6,6 +6,18 @@
     "id": "yee"
   },
   {
+    "name": "cowboy hat 2",
+    "filename": "cowboy_hat_2.png",
+    "qty": 1,
+    "id": "yee2"
+  },
+  {
+    "name": "cowboy hat 3",
+    "filename": "cowboy_hat_3.png",
+    "qty": 1,
+    "id": "yee3"
+  },
+  {
     "name": "crown",
     "filename": "crown.svg",
     "qty": 1,

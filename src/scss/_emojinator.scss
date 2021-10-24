@@ -12,27 +12,6 @@
   }
   position: relative;
   margin-bottom: 1.5rem;
-  input {
-    padding: 12px 8px;
-    background-color: var(--link-background-color);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-  }
-  &-form {
-    margin-top: 2rem;
-    @include mq($from: tablet) {
-      max-width: 50%;
-    }
-    display: inline-flex;
-    flex-direction: column;
-    * + * {
-      margin-bottom: 1rem;
-    }
-
-    #more-imgs-wrapper:not(.hidden) {
-      display: grid;
-    }
-  }
 
   label {
     margin-bottom: 0.5rem;
@@ -60,11 +39,13 @@
   padding: 0;
 
   &:hover {
-    background: var(--link-color);
+    background: var(--primary);
   }
 }
 
 .canvas-area {
+  background-color: var(--primary-background);
+  border-radius: 10px;
   grid-row: 2 / span 1;
   grid-column: 1 / span 1;
   @include mq($from: tablet) {
@@ -93,6 +74,9 @@
       }
     }
 
+    &-wrapper {
+      height: 100%;
+    }
     #rotate-right svg {
       transform: scale(-1, 1);
     }
