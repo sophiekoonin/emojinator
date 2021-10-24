@@ -2,8 +2,7 @@
 
 /* CONSTANTS */
 const MAX_GIF_SIZE = 128
-const MAX_SIZE = 480
-const size = MAX_GIF_SIZE + MAX_GIF_SIZE / 2
+const SIZE = MAX_GIF_SIZE + MAX_GIF_SIZE / 2
 
 /* ELEMENTS */
 
@@ -25,8 +24,8 @@ const selectionRectangle = new Konva.Rect({
 
 const stage = new Konva.Stage({
   container: "canvas",
-  width: size,
-  height: size,
+  width: SIZE,
+  height: SIZE,
 })
 
 const baseLayer = new Konva.Layer()

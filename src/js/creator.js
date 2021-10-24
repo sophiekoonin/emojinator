@@ -11,11 +11,11 @@ document.getElementById("clear-canvas").onclick = startOver
 function clearCanvas() {
   konvaImages = []
   baseLayer.destroyChildren()
-  canvas.width = MAX_GIF_SIZE
-  canvas.height = MAX_GIF_SIZE
+  stage.width(SIZE)
+  stage.height(SIZE)
   tr = generateTransformer()
   baseLayer.add(tr)
-  baseLayer.batchDraw()
+  stage.batchDraw()
 }
 
 function startOver() {
@@ -58,7 +58,7 @@ function selectSkintone(selectedSkintone) {
 function onItemClick(event) {
   const accessoryEl =
     event.target.nodeName === "BUTTON"
-      ? event.target.lastChild.cloneNode()
+      ? event.target.firstElementChild.cloneNode()
       : event.target.cloneNode()
 
   const type = accessoryEl.getAttribute("data-type") || "any"
@@ -66,9 +66,9 @@ function onItemClick(event) {
 
   let accessoryWidth
   if (type === "base") {
-    accessoryWidth = size * 0.9
+    accessoryWidth = SIZE * 0.9
   } else {
-    accessoryWidth = Math.min(size / 2, accessoryEl.width)
+    accessoryWidth = Math.min(SIZE / 2, accessoryEl.width)
   }
   const accessoryHeight =
     accessoryWidth === accessoryEl.width
@@ -77,7 +77,6 @@ function onItemClick(event) {
 
   accessoryEl.width = accessoryWidth
   accessoryEl.height = accessoryHeight
-
   const accessory = new Konva.Image({
     image: accessoryEl,
     width: accessoryEl.width,
