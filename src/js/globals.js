@@ -36,8 +36,8 @@ let filename = "image"
 
 /* GLOBALS */
 // selected skin tone
-let tint = "a"
-const TINTS = Object.freeze({
+let skintone = "a"
+const SKINTONES = Object.freeze({
   a: "base",
   b: "1f3fb",
   c: "1f3fc",

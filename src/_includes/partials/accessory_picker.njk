@@ -1,0 +1,83 @@
+<div class="accessory-container">
+  <h2>Faces & accessories</h2>
+  <div class="accessory-selector">
+    <div class="skintone-picker accordion is-open" id="skintone-picker">
+      <h3 class="visually-hidden">Choose a skin tone</h3>
+      <fieldset>
+        <legend>
+          <button type="button" class="accordion-trigger is-open" data-contentid="skintone-options">Skin tone</button>
+        </legend>
+        <div class="accordion-content is-open skintone-picker-content" id="skintone-options" aria-expanded="true">
+          <label class="skintone-picker-option" id="skintone-label-a" for="a"><input type="radio" class="skintone-picker-input" id="a" name="skintone" value="a"/>
+            <span class="visually-hidden">Base</span><img src="/images/swatches/base.svg"/></label>
+          <label class="skintone-picker-option" id="skintone-label-b" for="b"><input type="radio" class="skintone-picker-input" id="b" name="skintone" value="b"/>
+            <span class="visually-hidden">Light</span><img src="/images/swatches/1f3fb.svg"/></label>
+          <label class="skintone-picker-option" id="skintone-label-c" for="c"><input type="radio" class="skintone-picker-input" id="c" name="skintone" value="c"/>
+            <span class="visually-hidden">Medium-light</span><img src="/images/swatches/1f3fc.svg"/></label>
+          <label class="skintone-picker-option" id="skintone-label-d" for="d"><input type="radio" class="skintone-picker-input" id="d" name="skintone" value="d"/>
+            <span class="visually-hidden">Medium</span><img src="/images/swatches/1f3fd.svg"/></label>
+          <label class="skintone-picker-option" id="skintone-label-e" for="e"><input type="radio" class="skintone-picker-input" id="e" name="skintone" value="e"/>
+            <span class="visually-hidden">Medium-dark</span><img src="/images/swatches/1f3fe.svg"/></label>
+          <label class="skintone-picker-option" id="skintone-label-f" for="f"><input type="radio" class="skintone-picker-input"id="f" name="skintone" value="f"/>
+            <span class="visually-hidden">Dark</span><img src="/images/swatches/1f3ff.svg"/></label>
+        </div>
+      </fieldset>
+    </div>
+    <div class="accordion">
+      <h3>
+        <button type="button" class="accordion-trigger is-open" data-contentid="bases-options">Bases</button>
+      </h3>
+      <div class="accordion-content is-open accessory-selector-group" id="bases-options" aria-expanded="true">
+        {% for base in bases %}
+          <button type="button" class="selector-option"><img src="/images/bases/{{ base.filename }}" alt="" class="{{ "tintable" if base.tintable }}" title="{{ base.name }}" id="{{ base.id }}" data-type="base"/>
+            <span class="visually-hidden">{{ base.name }}</span></button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="accordion">
+      <h3>
+        <button type="button" class="accordion-trigger is-open" data-contentid="hats-options">Hats</button>
+      </h3>
+      <div class="accordion-content is-open accessory-selector-group" id="hats-options" aria-expanded="true">
+        {% for hat in hats %}
+          <button type="button" class="selector-option"><img src="/images/hats/{{ hat.filename }}" alt="" title="{{ hat.name }}" id="{{ hat.id }}" data-qty="{{ hat.qty }}"/>
+            <span class="visually-hidden">{{ hat.name }}</span></button>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="accordion">
+      <h3>
+        <button type="button" class="accordion-trigger is-open" data-contentid="eyes-options">Eyes</button>
+      </h3>
+      <div class="accordion-content is-open accessory-selector-group" id="eyes-options" aria-expanded="true">
+        {% for eye in eyes %}
+          <button type="button" class="selector-option"><img src="/images/eyes/{{ eye.filename }}" alt="" title="{{ eye.name }}" id="{{ eye.id }}" data-qty="{{ eye.qty }}"/>
+            <span class="visually-hidden">{{ eye.name }}</span></button>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="accordion">
+      <h3>
+        <button type="button" class="accordion-trigger is-open" data-contentid="mouths-options">Mouths</button>
+      </h3>
+      <div class="accordion-content is-open accessory-selector-group" id="mouths-options" aria-expanded="true">
+        {% for mouth in mouths %}
+          <button type="button" class="selector-option"><img src="/images/mouths/{{ mouth.filename }}" alt="" id="{{ mouth.id }}" data-qty="{{ mouth.qty}}"/>
+            <span class="visually-hidden">{{ mouth.name }}</span></button>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="accordion">
+      <h3>
+        <button type="button" class="accordion-trigger is-open" data-contentid="misc-options">Misc</button>
+      </h3>
+      <div class="accordion-content is-open accessory-selector-group" id="misc-options" aria-expanded="true">
+        {% for miscItem in misc %}
+          <button type="button" class="selector-option"><img src="/images/misc/{{ miscItem.filename }}" alt="" title="{{ miscItem.name }}" id="{{ miscItem.id }}" data-qty="{{ miscItem.qty}}"/>
+            <span class="visually-hidden">{{ miscItem.name }}</span></button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

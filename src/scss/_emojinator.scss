@@ -74,10 +74,6 @@
   }
 }
 
-#add-hat {
-  margin-bottom: 1rem;
-}
-
 .canvas {
   @include mq($from: tablet) {
     display: flex;
@@ -86,7 +82,7 @@
   .controls {
     display: grid;
     margin: 1rem auto;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 2px;
     grid-row-gap: 2px;
 

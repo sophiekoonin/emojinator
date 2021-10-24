@@ -1,5 +1,5 @@
 /* UTILS */
-function renderAndDownloadGif(blob, filename, width) {
+function renderAndDownloadGif(blob, filename, width, gif) {
   const imgUrl = URL.createObjectURL(blob)
   const downloadButton = document.getElementById("download")
   outputElement.src = imgUrl
@@ -49,7 +49,7 @@ function partyizeToGif(image) {
       "/scripts/gif.worker.js",
   })
   gif.on("finished", (blob) =>
-    renderAndDownloadGif(blob, `party-${filename ?? "emoji"}`, width)
+    renderAndDownloadGif(blob, `party-${filename ?? "emoji"}`, width, gif)
   )
 
   for (const base of PARROT_COLORS) {
@@ -94,7 +94,7 @@ function rotateAndRenderGif(image) {
   })
 
   gif.on("finished", (blob) =>
-    renderAndDownloadGif(blob, `rotating-${filename ?? "emoji"}`, width)
+    renderAndDownloadGif(blob, `rotating-${filename ?? "emoji"}`, width, gif)
   )
 
   for (let i = 0; i < numSteps; i++) {

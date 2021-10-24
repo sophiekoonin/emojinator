@@ -33,7 +33,7 @@ body {
   font-display: swap;
   margin: 0;
   min-height: 100vh;
-  // background: var(--background-color);
+  background: var(--background-color);
   color: var(--body-color);
   font-variation-settings: var(--body-font-weight);
 }
@@ -111,16 +111,6 @@ ul {
       height: 20px;
       width: 20px;
     }
-  }
-}
-
-@mixin content-box {
-  background: var(--content-box-color);
-
-  padding: 2rem 1rem 2.5rem 1rem;
-  @include mq($from: tablet) {
-    padding: 2.5rem 2rem 3rem 2rem;
-    box-shadow: 10px 10px 0 3px rgba(0, 0, 0, 0.2);
   }
 }
 

@@ -11,6 +11,8 @@ document.getElementById("clear-canvas").onclick = startOver
 function clearCanvas() {
   konvaImages = []
   baseLayer.destroyChildren()
+  canvas.width = MAX_GIF_SIZE
+  canvas.height = MAX_GIF_SIZE
   tr = generateTransformer()
   baseLayer.add(tr)
   baseLayer.batchDraw()
@@ -31,20 +33,25 @@ function resetForm(event) {
   document.getElementById("submit").setAttribute("disabled", 1)
 }
 
-function selectTint(selectedTint) {
-  const prevTint = tint
-  document.getElementById(`tint-label-${prevTint}`).classList.remove("selected")
-
-  tint = selectedTint
+function selectSkintone(selectedSkintone) {
+  const prevSkintone = skintone
   document
-    .getElementById(`tint-label-${selectedTint}`)
+    .getElementById(`skintone-label-${prevSkintone}`)
+    .classList.remove("selected")
+
+  skintone = selectedSkintone
+  document
+    .getElementById(`skintone-label-${selectedSkintone}`)
     .classList.add("selected")
 
   Array.from(document.getElementsByClassName("tintable")).forEach((el) => {
     const filename = el.src.split("-")[0].replace(".svg", "")
 
     el.src =
-      filename + (TINTS[tint] === TINTS.a ? ".svg" : `-${TINTS[tint]}.svg`)
+      filename +
+      (SKINTONES[skintone] === SKINTONES.a
+        ? ".svg"
+        : `-${SKINTONES[skintone]}.svg`)
   })
 }
 
@@ -181,10 +188,10 @@ function init() {
     })
   })
 
-  Array.from(document.getElementsByClassName("tint-picker-input")).forEach(
+  Array.from(document.getElementsByClassName("skintone-picker-input")).forEach(
     (el) =>
       (el.onchange = (el) => {
-        selectTint(el.target.value)
+        selectSkintone(el.target.value)
       })
   )
 
@@ -205,5 +212,5 @@ function init() {
   }
 }
 
-selectTint("a")
+selectSkintone("a")
 init()
