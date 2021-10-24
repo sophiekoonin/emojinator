@@ -159,8 +159,14 @@
       font-size: 14px;
       float: right;
     }
+    &:hover {
+      background-color: var(--accordion-heading);
+    }
     &.is-open {
       background-color: var(--accordion-heading);
+      &:hover {
+        background-color: var(--accordion-heading-closed);
+      }
       &:after {
         content: "\1F53C";
       }
@@ -178,5 +184,13 @@
   }
   h3 {
     margin: 0;
+  }
+}
+
+.credits {
+  margin: 0;
+  list-style: none;
+  li {
+    margin-bottom: 0.5rem;
   }
 }

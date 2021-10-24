@@ -36,11 +36,6 @@
   }
 }
 
-.back-link {
-  display: block;
-  margin-top: 2rem;
-}
-
 .embiggener-output {
   margin: 0 auto;
   display: grid;
@@ -85,11 +80,24 @@
     grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 2px;
     grid-row-gap: 2px;
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
 
-    #rotate-left svg {
+    #rotate-right svg {
       transform: scale(-1, 1);
     }
 
+    #align-center svg {
+      transform: rotate(-90deg);
+    }
     #flip-horizontal svg {
       transform: rotate(90deg);
     }

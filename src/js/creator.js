@@ -159,7 +159,16 @@ function init() {
   }
   document.getElementById("flip-vertical").onclick = () => {
     tr.nodes().forEach((node) => node.scaleY(-node.scaleY()))
-    baseLayer.batchDraw()
+  }
+
+  document.getElementById("align-middle").onclick = () => {
+    tr.nodes().forEach((node) => node.y(stage.height() / 2))
+  }
+
+  document.getElementById("align-center").onclick = () => {
+    tr.nodes().forEach((node) => {
+      node.x(stage.width() / 2)
+    })
   }
 
   document.getElementById("remove-node").onclick = destroySelectedNodes
