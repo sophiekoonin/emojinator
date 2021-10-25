@@ -8,6 +8,8 @@ document.getElementById("form").onreset = resetForm
 document.getElementById("creator-input").onchange = onImageSelect
 document.getElementById("clear-canvas").onclick = startOver
 
+let debugEl
+
 function clearCanvas() {
   konvaImages = []
   baseLayer.destroyChildren()
@@ -56,11 +58,13 @@ function selectSkintone(selectedSkintone) {
 }
 
 function onItemClick(event) {
+  debugger
   const accessoryEl =
     event.target.nodeName === "BUTTON"
       ? event.target.firstElementChild.cloneNode()
       : event.target.cloneNode()
 
+  const tagName = accessoryEl.tagName
   const type = accessoryEl.getAttribute("data-type") || "any"
   const qty = accessoryEl.getAttribute("data-qty") || 1
 
@@ -77,16 +81,23 @@ function onItemClick(event) {
 
   accessoryEl.width = accessoryWidth
   accessoryEl.height = accessoryHeight
-  const accessory = new Konva.Image({
-    image: accessoryEl,
-    width: accessoryEl.width,
-    height: accessoryEl.height,
-    x: SIZE / 2,
-    y: SIZE / 2,
-    draggable: true,
-    offsetX: accessoryEl.width / 2,
-    offsetY: accessoryEl.height / 2,
-  })
+
+  let accessory
+  if (tagName === "svg") {
+    debugEl = accessoryEl
+    debugger
+  } else {
+    accessory = new Konva.Image({
+      image: accessoryEl,
+      width: accessoryEl.width,
+      height: accessoryEl.height,
+      x: SIZE / 2,
+      y: SIZE / 2,
+      draggable: true,
+      offsetX: accessoryEl.width / 2,
+      offsetY: accessoryEl.height / 2,
+    })
+  }
   const accessoryNodes = [accessory]
   baseLayer.add(accessory)
 

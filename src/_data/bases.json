@@ -4,55 +4,71 @@
     "filename": "round.svg",
     "qty": 1,
     "tintable": true,
-    "id": "round"
+    "id": "round",
+    "type": "img"
+  },
+  {
+    "name": "face",
+    "filename": "face.html",
+    "qty": 1,
+    "tintable": false,
+    "id": "face",
+    "type": "html"
   },
   {
     "name": "imp",
     "filename": "imp.svg",
     "qty": 1,
     "tintable": false,
-    "id": "imp"
+    "id": "imp",
+    "type": "img"
   },
   {
     "name": "pumpkin",
     "filename": "pumpkin.svg",
     "qty": 1,
     "tintable": false,
-    "id": "pumpkin-base"
+    "id": "pumpkin-base",
+    "type": "img"
   },
   {
     "name": "earth, australasia",
     "filename": "earth_australasia.svg",
     "qty": 1,
     "tintable": false,
-    "id": "earth-australasia"
+    "id": "earth-australasia",
+    "type": "img"
   },
   {
     "name": "earth, americas",
     "filename": "earth_americas.svg",
     "qty": 1,
     "tintable": false,
-    "id": "earth-americas"
+    "id": "earth-americas",
+    "type": "img"
   },
   {
     "name": "earth, europe and africa",
     "filename": "earth_europe_africa.svg",
     "qty": 1,
     "tintable": false,
-    "id": "earth-europe-africa"
+    "id": "earth-europe-africa",
+    "type": "img"
   },
   {
     "name": "dark moon",
     "filename": "moon_dark.svg",
     "qty": 1,
     "tintable": false,
-    "id": "moon-dark"
+    "id": "moon-dark",
+    "type": "img"
   },
   {
     "name": "light moon",
     "filename": "moon_light.svg",
     "qty": 1,
     "tintable": false,
-    "id": "moon-light"
+    "id": "moon-light",
+    "type": "img"
   }
 ]

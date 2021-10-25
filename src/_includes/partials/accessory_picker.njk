@@ -18,7 +18,7 @@
             <span class="visually-hidden">Medium</span><img src="/images/swatches/1f3fd.svg"/></label>
           <label class="skintone-picker-option" id="skintone-label-e" for="e"><input type="radio" class="skintone-picker-input" id="e" name="skintone" value="e"/>
             <span class="visually-hidden">Medium-dark</span><img src="/images/swatches/1f3fe.svg"/></label>
-          <label class="skintone-picker-option" id="skintone-label-f" for="f"><input type="radio" class="skintone-picker-input"id="f" name="skintone" value="f"/>
+          <label class="skintone-picker-option" id="skintone-label-f" for="f"><input type="radio" class="skintone-picker-input" id="f" name="skintone" value="f"/>
             <span class="visually-hidden">Dark</span><img src="/images/swatches/1f3ff.svg"/></label>
         </div>
       </fieldset>
@@ -29,12 +29,17 @@
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="bases-options" aria-expanded="true">
         {% for base in bases %}
-          <button type="button" class="selector-option"><img src="/images/bases/{{ base.filename }}" alt="" class="{{ "tintable" if base.tintable }}" title="{{ base.name }}" id="{{ base.id }}" data-type="base"/>
-            <span class="visually-hidden">{{ base.name }}</span></button>
+          <button type="button" class="selector-option">
+            {% if base.type === "html" %}
+              {% include "partials/accessories/bases/" + base.filename %}
+            {% else %}
+              <img src="/images/bases/{{ base.filename }}" alt="" class="{{ "tintable" if base.tintable }}" title="{{ base.name }}" id="{{ base.id }}" data-type="base"/>
+            {% endif %}
+            <span class="visually-hidden">{{ base.name }}</span>
+          </button>
         {% endfor %}
       </div>
     </div>
-
     <div class="accordion">
       <h3>
         <button type="button" class="accordion-trigger is-open" data-contentid="hats-options">Hats</button>
@@ -42,7 +47,8 @@
       <div class="accordion-content is-open accessory-selector-group" id="hats-options" aria-expanded="true">
         {% for hat in hats %}
           <button type="button" class="selector-option"><img src="/images/hats/{{ hat.filename }}" alt="" title="{{ hat.name }}" id="{{ hat.id }}" data-qty="{{ hat.qty }}"/>
-            <span class="visually-hidden">{{ hat.name }}</span></button>
+            <span class="visually-hidden">{{ hat.name }}</span>
+          </button>
         {% endfor %}
       </div>
     </div>
@@ -52,8 +58,9 @@
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="eyes-options" aria-expanded="true">
         {% for eye in eyes %}
-          <button type="button" class="selector-option"><img src="/images/eyes/{{ eye.filename }}" alt="" title="{{ eye.name }}" id="{{ eye.id }}" data-qty="{{ eye.qty }}" data-noflip="{{ "true" if eye.noflip else "false"}}"/>
-            <span class="visually-hidden">{{ eye.name }}</span></button>
+          <button type="button" class="selector-option"><img src="/images/eyes/{{ eye.filename }}" alt="" title="{{ eye.name }}" id="{{ eye.id }}" data-qty="{{ eye.qty }}" data-noflip="{{ "true" if eye.noflip else "false" }}"/>
+            <span class="visually-hidden">{{ eye.name }}</span>
+          </button>
         {% endfor %}
       </div>
     </div>
@@ -63,8 +70,9 @@
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="mouths-options" aria-expanded="true">
         {% for mouth in mouths %}
-          <button type="button" class="selector-option"><img src="/images/mouths/{{ mouth.filename }}" alt="" id="{{ mouth.id }}" data-qty="{{ mouth.qty}}"/>
-            <span class="visually-hidden">{{ mouth.name }}</span></button>
+          <button type="button" class="selector-option"><img src="/images/mouths/{{ mouth.filename }}" alt="" id="{{ mouth.id }}" data-qty="{{ mouth.qty }}"/>
+            <span class="visually-hidden">{{ mouth.name }}</span>
+          </button>
         {% endfor %}
       </div>
     </div>
@@ -74,8 +82,9 @@
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="misc-options" aria-expanded="true">
         {% for miscItem in misc %}
-          <button type="button" class="selector-option"><img src="/images/misc/{{ miscItem.filename }}" alt="" title="{{ miscItem.name }}" id="{{ miscItem.id }}" data-qty="{{ miscItem.qty}}"/>
-            <span class="visually-hidden">{{ miscItem.name }}</span></button>
+          <button type="button" class="selector-option"><img src="/images/misc/{{ miscItem.filename }}" alt="" title="{{ miscItem.name }}" id="{{ miscItem.id }}" data-qty="{{ miscItem.qty }}"/>
+            <span class="visually-hidden">{{ miscItem.name }}</span>
+          </button>
         {% endfor %}
       </div>
     </div>
