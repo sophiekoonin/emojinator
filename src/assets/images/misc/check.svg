@@ -1,8 +1,1 @@
-<svg width="72" height="72" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" fill-rule="evenodd"
-    clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
-    <path d="M72 64a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8h56a8 8 0 0 1 8 8v56Z" fill="#77b255"
-        fill-rule="nonzero" />
-    <path
-        d="M58.56 12.724a5.003 5.003 0 0 0-6.916 1.472L29.872 47.754l-10.058-9.3a5 5 0 1 0-6.788 7.342l14.418 13.332c.96.89 2.18 1.33 3.392 1.33a4.986 4.986 0 0 0 4.198-2.278c.664-1.012 25-38.54 25-38.54a5.001 5.001 0 0 0-1.474-6.916Z"
-        fill="#fff" fill-rule="nonzero" />
-</svg>
+<svg width="72" height="72" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="M72 64a8 8 0 01-8 8H8a8 8 0 01-8-8V8a8 8 0 018-8h56a8 8 0 018 8v56z" fill="#77b255" fill-rule="nonzero"/><path d="M58.56 12.724a5.003 5.003 0 00-6.916 1.472L29.872 47.754l-10.058-9.3a5 5 0 10-6.788 7.342l14.418 13.332c.96.89 2.18 1.33 3.392 1.33a4.986 4.986 0 004.198-2.278c.664-1.012 25-38.54 25-38.54a5.001 5.001 0 00-1.474-6.916z" fill="#fff" fill-rule="nonzero"/></svg>
