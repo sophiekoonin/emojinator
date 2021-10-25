@@ -1,1 +1,7 @@
-<svg viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><path d="M22.984 5.324A6.734 6.734 0 119.815 8.145a6.734 6.734 0 0113.17-2.821z" fill="#f4f7f9" fill-rule="nonzero"/><circle cx="22.306" cy="9.291" r="2.037" fill="#292f33" transform="translate(-6.3 -3.688)"/><path d="M7.788 10.594a3.938 3.938 0 11-7.7 1.65 3.938 3.938 0 017.7-1.65z" fill="#f4f7f9" fill-rule="nonzero"/><circle cx="10.238" cy="15.857" r="1.942" fill="#292f33" transform="rotate(-12.095 -10.32 43.74)"/></svg>
+<svg viewBox="0 0 24 16" width="72" height="48" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+  clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+  <path d="M22.984 5.324A6.734 6.734 0 119.815 8.145a6.734 6.734 0 0113.17-2.821z" fill="#f4f7f9" fill-rule="nonzero" />
+  <circle cx="22.306" cy="9.291" r="2.037" fill="#292f33" transform="translate(-6.3 -3.688)" />
+  <path d="M7.788 10.594a3.938 3.938 0 11-7.7 1.65 3.938 3.938 0 017.7-1.65z" fill="#f4f7f9" fill-rule="nonzero" />
+  <circle cx="10.238" cy="15.857" r="1.942" fill="#292f33" transform="rotate(-12.095 -10.32 43.74)" />
+</svg>

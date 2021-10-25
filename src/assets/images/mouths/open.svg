@@ -1,1 +1,4 @@
-<svg viewBox="0 0 9 10" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"><ellipse cx="18" cy="28.638" rx="4.332" ry="4.95" fill="#2d2d2d" transform="translate(-13.668 -23.688)"/></svg>
+<svg width="90" height="100" viewBox="0 0 9 10" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+  clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+  <ellipse cx="18" cy="28.638" rx="4.332" ry="4.95" fill="#2d2d2d" transform="translate(-13.668 -23.688)" />
+</svg>
