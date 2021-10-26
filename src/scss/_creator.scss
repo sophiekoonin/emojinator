@@ -70,6 +70,7 @@
       @extend .accessory-grid;
     }
     .selector-option {
+      padding: 0;
       align-self: center;
       justify-self: center;
       background: transparent;
@@ -85,6 +86,11 @@
       img {
         max-width: 36px;
         max-height: 36px;
+      }
+      svg {
+        border-radius: 50%;
+        max-height: 100%;
+        max-width: 100%;
       }
     }
 

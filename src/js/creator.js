@@ -58,11 +58,11 @@ function selectSkintone(selectedSkintone) {
 }
 
 function onItemClick(event) {
-  debugger
+  console.log(event.target)
   const accessoryEl =
     event.target.nodeName === "BUTTON"
-      ? event.target.firstElementChild.cloneNode()
-      : event.target.cloneNode()
+      ? event.target.firstElementChild.cloneNode(true)
+      : event.target.cloneNode(true)
 
   const tagName = accessoryEl.tagName
   const type = accessoryEl.getAttribute("data-type") || "any"
@@ -82,21 +82,37 @@ function onItemClick(event) {
   accessoryEl.width = accessoryWidth
   accessoryEl.height = accessoryHeight
 
+  const accessoryProps = {
+    x: SIZE / 2,
+    y: SIZE / 2,
+    draggable: true,
+    offsetX: SIZE / 2,
+    offsetY: SIZE / 2,
+  }
   let accessory
-  if (tagName === "svg") {
-    debugEl = accessoryEl
-    debugger
+  if (tagName === "svg" || tagName === "path") {
+    const path = tagName === "svg" ? accessoryEl.firstElementChild : accessoryEl
+
+    accessory = new Konva.Path(
+      Object.assign(
+        {
+          data: path.getAttribute("d"),
+          fill: path.getAttribute("fill"),
+        },
+        accessoryProps
+      )
+    )
   } else {
-    accessory = new Konva.Image({
-      image: accessoryEl,
-      width: accessoryEl.width,
-      height: accessoryEl.height,
-      x: SIZE / 2,
-      y: SIZE / 2,
-      draggable: true,
-      offsetX: accessoryEl.width / 2,
-      offsetY: accessoryEl.height / 2,
-    })
+    accessory = new Konva.Image(
+      Object.assign(
+        {
+          image: accessoryEl,
+          width: accessoryEl.width,
+          height: accessoryEl.height,
+        },
+        accessoryProps
+      )
+    )
   }
   const accessoryNodes = [accessory]
   baseLayer.add(accessory)
