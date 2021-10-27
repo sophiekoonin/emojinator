@@ -82,38 +82,59 @@ function onItemClick(event) {
   accessoryEl.width = accessoryWidth
   accessoryEl.height = accessoryHeight
 
-  const accessoryProps = {
-    x: SIZE / 2,
-    y: SIZE / 2,
-    draggable: true,
-    offsetX: SIZE / 2,
-    offsetY: SIZE / 2,
-  }
   let accessory
-  if (tagName === "svg" || tagName === "path") {
-    const path = tagName === "svg" ? accessoryEl.firstElementChild : accessoryEl
-
-    accessory = new Konva.Path(
-      Object.assign(
-        {
-          data: path.getAttribute("d"),
-          fill: path.getAttribute("fill"),
+  const shape = tagName === "svg" ? accessoryEl.firstElementChild : accessoryEl
+  switch (shape.tagName) {
+    case "path":
+      accessory = new Konva.Path({
+        id: "debug-path",
+        data: shape.getAttribute("d"),
+        fill: shape.getAttribute("fill"),
+        scale: {
+          x: 5,
+          y: 5,
         },
-        accessoryProps
-      )
-    )
-  } else {
-    accessory = new Konva.Image(
-      Object.assign(
-        {
-          image: accessoryEl,
-          width: accessoryEl.width,
-          height: accessoryEl.height,
-        },
-        accessoryProps
-      )
-    )
+        draggable: true,
+        // x: 0,
+        // y: 0,
+      })
+      const { width, height, x, y } = accessory.getClientRect()
+      accessory.offsetX(width / 2)
+      accessory.offsetY(height / 2)
+      accessory.x(x)
+      accessory.y(y)
+      break
+    case "circle":
+      accessory = new Konva.Circle({
+        radius: SIZE / 4,
+        x: 0,
+        y: 0,
+        offsetX: SIZE / 2,
+        offsetY: SIZE / 2,
+        fill: shape.getAttribute("fill"),
+        draggable: true,
+      })
+      break
+    default:
+      accessory = new Konva.Image({
+        image: accessoryEl,
+        width: accessoryEl.width,
+        height: accessoryEl.height,
+        x: SIZE / 2,
+        y: SIZE / 2,
+        offsetX: SIZE / 2,
+        offsetY: SIZE / 2,
+      })
+      break
   }
+  accessory.on("dragmove", () =>
+    console.log({
+      baseX: accessory.x(),
+      baseY: accessory.y(),
+      ...accessory.getClientRect(),
+    })
+  )
+
   const accessoryNodes = [accessory]
   baseLayer.add(accessory)
 
@@ -238,8 +259,8 @@ function init() {
   )
   stage.add(baseLayer)
 
-  baseLayer.add(tr)
-  baseLayer.add(selectionRectangle)
+  // baseLayer.add(tr)
+  // baseLayer.add(selectionRectangle)
 
   baseLayer.batchDraw()
 

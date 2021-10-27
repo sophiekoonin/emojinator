@@ -1,11 +1,11 @@
 [
   {
     "name": "round",
-    "filename": "round.svg",
+    "filename": "round.html",
     "qty": 1,
-    "tintable": true,
+    "tintable": false,
     "id": "round",
-    "type": "img"
+    "type": "html"
   },
   {
     "name": "face",
