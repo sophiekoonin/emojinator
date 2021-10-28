@@ -2,12 +2,12 @@
 
 /* CONSTANTS */
 const MAX_GIF_SIZE = 128
-const SIZE = MAX_GIF_SIZE + MAX_GIF_SIZE / 2
+const SIZE = 200
 
 /* ELEMENTS */
 
-const canvas = document.createElement("canvas")
-const ctx = canvas.getContext("2d")
+const gifCanvas = document.createElement("canvas")
+const ctx = gifCanvas.getContext("2d")
 const img = new Image()
 const outputElement = document.getElementById("output")
 const canvasContainer = document.getElementById("canvas")
@@ -16,25 +16,27 @@ const canvasContainer = document.getElementById("canvas")
 // Array of images that we've added to the konva canvas
 let konvaImages = []
 
-const selectionRectangle = new Konva.Rect({
-  id: "selectionRectangle",
-  visible: false,
-  fill: "rgba(165, 247, 239, 0.5)",
-})
+// const selectionRectangle = new Konva.Rect({
+//   id: "selectionRectangle",
+//   visible: false,
+//   fill: "rgba(165, 247, 239, 0.5)",
+// })
 
-const stage = new Konva.Stage({
-  container: "canvas",
-  width: SIZE,
-  height: SIZE,
-})
+// const stage = new Konva.Stage({
+//   container: "canvas",
+//   width: SIZE,
+//   height: SIZE,
+// })
 
-const baseLayer = new Konva.Layer()
-let tr = generateTransformer()
-let x1, y1, x2, y2
-let filename = "image"
+// const baseLayer = new Konva.Layer()
+// let tr = generateTransformer()
+// let x1, y1, x2, y2
+// let filename = "image"
 
+const canvas = new fabric.Canvas("c")
 /* GLOBALS */
 // selected skin tone
+
 let skintone = "a"
 const SKINTONES = Object.freeze({
   a: "base",

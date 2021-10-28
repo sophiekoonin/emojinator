@@ -115,3 +115,16 @@
 #output {
   margin: 0 auto;
 }
+
+// #canvas {
+//   display: grid;
+//   width: 200px;
+//   height: 200px;
+//   grid-template-columns: repeat(10, 1fr);
+//   grid-template-rows: repeat(10, 1fr);
+//   .konvajs-content {
+//     grid-row: 1 / span 10;
+//     grid-column: 1 / span 10;
+//     margin: 0 !important;
+//   }
+// }

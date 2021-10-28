@@ -25,11 +25,11 @@
   },
   {
     "name": "pumpkin",
-    "filename": "pumpkin.svg",
+    "filename": "pumpkin.html",
     "qty": 1,
     "tintable": false,
     "id": "pumpkin-base",
-    "type": "img"
+    "type": "html"
   },
   {
     "name": "earth, australasia",
