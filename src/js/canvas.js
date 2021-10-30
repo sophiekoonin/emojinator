@@ -56,11 +56,39 @@ function updateColourSelections() {
   Object.keys(selectedColours).forEach((c) => {
     if (selectedColours[c] != null) {
       document.getElementById(`${c}-color`).value = selectedColours[c]
-      document.getElementById(`${c}-color`).removeAttribute("disabled")
+      showElement(`${c}-color-label`)
     } else {
-      document.getElementById(`${c}-color`).addAttribute("disabled")
+      hideElement(`${c}-color-label`)
     }
   })
+}
+
+function changeSelectedSkintone(e) {
+  skintone = e.target.value
+  canvas.getActiveObjects().forEach((obj) => {
+    if (typeof obj.size !== "undefined") {
+      // this is a group, so iterate
+      obj.forEachObject((o) => {
+        if (o.isSkin) {
+          o.set({ fill: SKINTONES[value][o.colorType] })
+        }
+      })
+    } else {
+      if (obj.isSkin) {
+        obj.set({ fill: SKINTONES[value][o.colorType] })
+      }
+    }
+  })
+  canvas.renderAll()
+  Array.from(document.querySelectorAll('svg *[data-isskin="true"]')).forEach(
+    (el) => {
+      const colorType = el.getAttribute("data-colortype")
+      if (colorType != null) {
+        el.setAttribute("fill", SKINTONES[skintone][colorType])
+        debugger
+      }
+    }
+  )
 }
 
 function changeSelectedItemColour(e) {
@@ -79,8 +107,8 @@ function changeSelectedItemColour(e) {
         }
       })
     } else {
-      if (obj.cbjlorType === changedColourType) {
-        obj.fill = value
+      if (obj.colorType === changedColourType) {
+        obj.set({ fill: value })
       }
     }
   })
@@ -111,7 +139,6 @@ function onItemClick(event) {
   const type = itemEl.getAttribute("data-type") || "any"
   const qty = itemEl.getAttribute("data-qty") || 1
   const canChangeColor = itemEl.getAttribute("data-colorable") || "false"
-  const isHuman = itemEl.getAttribute("data-ishuman") || "false"
 
   // Reset selected colours
   Object.keys(selectedColours).forEach((c) => (selectedColours[c] = null))
@@ -142,7 +169,6 @@ function onItemClick(event) {
     case "svg":
       fabric.loadSVGFromString(itemEl.outerHTML, (objects, options) => {
         objects.forEach((obj) => {
-          obj.set({ isHuman: isHuman === "true" })
           if (obj.colorType) {
             selectedColours[obj.colorType] = obj.fill
           }
@@ -262,6 +288,12 @@ function initToolbar() {
 }
 initToolbar()
 
-document.querySelector('input[type="color"]').oninput = changeSelectedItemColour
-document.querySelector('input[type="color"]').onchange =
-  changeSelectedItemColour
+Array.from(document.getElementsByClassName("colour-picker-input")).forEach(
+  (el) => (el.oninput = changeSelectedItemColour)
+)
+Array.from(document.getElementsByClassName("colour-picker-input")).forEach(
+  (el) => (el.onchange = changeSelectedItemColour)
+)
+Array.from(document.getElementsByClassName("skintone-picker-input")).forEach(
+  (el) => (el.onchange = changeSelectedSkintone)
+)

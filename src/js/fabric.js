@@ -4370,6 +4370,7 @@ fabric.warn = console.warn
       "vector-effect": "strokeUniform",
       "image-rendering": "imageSmoothing",
       "data-colortype": "colorType",
+      "data-isskin": "isSkin",
     },
     colorAttributes = {
       stroke: "strokeOpacity",
@@ -15944,9 +15945,8 @@ fabric.util.object.extend(
        */
       absolutePositioned: false,
 
-      isHuman: false,
       colorType: null,
-
+      isSkin: false,
       /**
        * Constructor
        * @param {Object} [options] Options object
