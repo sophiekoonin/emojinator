@@ -3,7 +3,7 @@
 /* CONSTANTS */
 const MAX_GIF_SIZE = 128
 const SIZE = 200
-
+let filename = "image"
 /* ELEMENTS FOR GIF OUTPUT */
 const gifCanvas = document.createElement("canvas")
 const ctx = gifCanvas.getContext("2d")
@@ -130,7 +130,6 @@ function onItemClick(event) {
       ? event.target.firstElementChild
       : event.path
           .find((el) => {
-            console.log(el)
             return ["img", "svg"].includes(el.tagName.toLowerCase())
           })
           .cloneNode(true)
@@ -192,11 +191,10 @@ function onItemClick(event) {
         top: SIZE / 2,
         originY: "center",
         originX: "center",
-        active: true,
       })
       objectInstance.scale(scaleFactor)
-      selectObjects([objectInstance])
       canvas.add(objectInstance).renderAll()
+      selectObjects([objectInstance])
       break
   }
 
@@ -227,8 +225,17 @@ function onUploadImage(image) {
     image.height,
     MAX_GIF_SIZE
   )
+  const imgEl = new fabric.Image(image, {
+    centeredRotation: true,
+    centeredScaling: true,
+    left: SIZE / 2,
+    top: SIZE / 2,
+    originY: "center",
+    originX: "center",
+  }).scaleToWidth(width)
 
-  // do stuff with image
+  canvas.add(imgEl).renderAll()
+  selectObjects([imgEl])
 }
 
 function forEachActiveObject(callback) {
@@ -249,10 +256,10 @@ function selectObjects(objs) {
 /* TOOLBAR BUTTONS */
 function initToolbar() {
   document.getElementById("move-up").onclick = () => {
-    forEachActiveObject(canvas.bringForward)
+    forEachActiveObject((obj) => canvas.bringForward(obj))
   }
   document.getElementById("move-down").onclick = () => {
-    forEachActiveObject(canvas.sendBackwards)
+    forEachActiveObject((obj) => canvas.sendBackwards(obj))
   }
   document.getElementById("select-all").onclick = () => {
     selectObjects(canvas.getObjects())
@@ -288,6 +295,10 @@ function initToolbar() {
 }
 initToolbar()
 
+Array.from(document.getElementsByClassName("selector-option")).forEach(
+  (el) => (el.onclick = onItemClick)
+)
+
 Array.from(document.getElementsByClassName("colour-picker-input")).forEach(
   (el) => (el.oninput = changeSelectedItemColour)
 )
@@ -297,3 +308,50 @@ Array.from(document.getElementsByClassName("colour-picker-input")).forEach(
 Array.from(document.getElementsByClassName("skintone-picker-input")).forEach(
   (el) => (el.onchange = changeSelectedSkintone)
 )
+
+document.getElementById("download").onclick = (e) => {
+  e.preventDefault()
+  canvas.discardActiveObject()
+  const group = new fabric.Group()
+  const canvasObjects = canvas.getObjects()
+  canvasObjects.forEach((obj) => {
+    obj.clone((c) => {
+      console.log(c)
+      group.addWithUpdate(c)
+      // thx i hate it
+      // clone is async, but only takes an individual callback
+      if (group.size() === canvasObjects.length) {
+        group.set({ top: 0, left: 0 })
+        canvas.clear().renderAll()
+        canvas.setHeight(group.height)
+        canvas.setWidth(group.width)
+        canvas.add(group).renderAll()
+        var dataURL = canvas.toDataURL()
+        downloadURI(dataURL, ` emojinator-${filename}.png`)
+      }
+    })
+  })
+}
+
+function clearCanvas() {
+  canvas.clear().renderAll()
+  canvas.setHeight(SIZE)
+  canvas.setWidth(SIZE)
+}
+
+function startOver() {
+  clearCanvas()
+  outputElement.src = ""
+  outputElement.width = null
+  showElement("c")
+  hideElement("output")
+  document.getElementById("embiggener-output").innerHTML = ""
+  hideElement("embiggener-output")
+}
+
+function resetForm(event) {
+  event.target.reset()
+}
+
+document.getElementById("form").onreset = resetForm
+document.getElementById("clear-canvas").onclick = startOver
