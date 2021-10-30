@@ -52,19 +52,22 @@ function onItemClick(event) {
 
   const scaleFactor = targetItemWidth / itemWidth
 
+  let objectInstance
+
   switch (itemEl.tagName) {
     case "svg":
       fabric.loadSVGFromString(itemEl.outerHTML, (objects, options) => {
         const obj = fabric.util
           .groupSVGElements(objects, options)
           .scaleToWidth(targetItemWidth)
+        objectInstance = obj
         canvas.add(obj).centerObject(obj).renderAll()
         selectObjects([obj])
       })
       break
     default:
       // Render as image
-      const imgInstance = new fabric.Image(itemEl, {
+      objectInstance = new fabric.Image(itemEl, {
         centeredRotation: true,
         centeredScaling: true,
         left: SIZE / 2,
@@ -73,23 +76,30 @@ function onItemClick(event) {
         originX: "center",
         active: true,
       })
-      imgInstance.scale(scaleFactor)
-      selectObjects([imgInstance])
-      canvas.add(imgInstance).renderAll()
+      objectInstance.scale(scaleFactor)
+      selectObjects([objectInstance])
+      canvas.add(objectInstance).renderAll()
       break
   }
 
-  // if (qty > 1) {
-  //   const noflip = accessoryEl.getAttribute("data-noflip") || "false"
-  //   accessory.x(accessoryEl.width / 2 + accessoryEl.width * 0.05)
-  //   accessory.y(accessoryEl.height / 2 + accessoryEl.height * 0.05)
-  //   const accessory2 = accessory.clone({
-  //     name: `accessory-${accessoryEl.id}-${uuidv4()}`,
-  //     x: accessoryEl.width / 2 + 75,
-  //     scaleX: noflip !== "false" ? accessory.scaleX() : -accessory.scaleX(),
-  //   })
-  //   accessoryNodes.push(accessory2)
-  // }
+  if (qty > 1) {
+    canvas.discardActiveObject()
+    const noflip = itemEl.getAttribute("data-noflip") || "false"
+    objectInstance
+      .scaleToWidth(50)
+      .set({ left: itemWidth / 2 + itemWidth * 0.05, top: SIZE / 2 })
+    // accessory.top(itemEl.height / 2 + itemEl.height * 0.05)
+    const item2 = objectInstance.clone((obj) => {
+      obj.set({
+        active: true,
+        left: itemWidth / 2 + 75,
+        top: SIZE / 2,
+        flipX: noflip !== "true",
+      })
+      canvas.add(obj).renderAll()
+      selectObjects([objectInstance, obj])
+    })
+  }
 }
 
 /* Uploading an image */
@@ -155,7 +165,8 @@ function initToolbar() {
 
   document.getElementById("remove-node").onclick = () => {
     forEachActiveObject((obj) => canvas.remove(obj))
-    selectObjects([])
+    canvas.discardActiveObject()
+    canvas.renderAll()
   }
 }
 initToolbar()

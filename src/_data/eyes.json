@@ -12,6 +12,13 @@
     "id": "sob"
   },
   {
+    "name": "happy",
+    "filename": "happy.html",
+    "qty": 2,
+    "id": "happy-eyes",
+    "type": "html"
+  },
+  {
     "name": "sunglasses",
     "filename": "sunglasses.png",
     "qty": 1,
@@ -19,8 +26,9 @@
   },
   {
     "name": "hearts",
-    "filename": "heart_red.svg",
+    "filename": "heart.html",
     "qty": 2,
+    "type": "html",
     "id": "heart-eyes"
   },
   {
@@ -41,12 +49,6 @@
     "filename": "tear.png",
     "qty": 2,
     "id": "tear"
-  },
-  {
-    "name": "red tear",
-    "filename": "tear-red.png",
-    "qty": 2,
-    "id": "tear-red"
   },
   {
     "name": "pleading eyes",
