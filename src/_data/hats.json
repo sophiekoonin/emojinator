@@ -3,90 +3,93 @@
     "name": "cowboy hat",
     "filename": "cowboy_hat.png",
     "qty": 1,
+    "type": "img",
     "id": "yee"
   },
   {
     "name": "cowboy hat 2",
     "filename": "cowboy_hat_2.png",
     "qty": 1,
+    "type": "img",
     "id": "yee2"
   },
   {
     "name": "cowboy hat 3",
     "filename": "cowboy_hat_3.png",
     "qty": 1,
+    "type": "img",
     "id": "yee3"
   },
   {
     "name": "crown",
-    "filename": "crown.svg",
-    "qty": 1,
+    "filename": "crown.html",
     "id": "crown"
   },
   {
     "name": "exploding head",
-    "filename": "head_explode.svg",
-    "qty": 1,
+    "filename": "head_explode.html",
     "id": "head-explode"
   },
   {
     "name": "devil horns",
     "filename": "devil_horn.png",
+    "id": "horns",
     "qty": 2,
-    "id": "horns"
+    "type": "img"
   },
   {
     "name": "halo",
     "filename": "halo.png",
+    "type": "img",
     "qty": 1,
     "id": "halo"
   },
   {
     "name": "mortar board",
-    "filename": "mortar_board.svg",
-    "qty": 1,
+    "filename": "mortar_board.html",
     "id": "mortar-board"
   },
   {
     "name": "secret agent",
-    "filename": "agent.svg",
-    "qty": 1,
+    "filename": "agent.html",
     "id": "agent"
   },
   {
     "name": "secret agent hat",
-    "filename": "detective.svg",
-    "qty": 1,
+    "filename": "detective.html",
     "id": "agent-hat"
   },
   {
     "name": "magician",
-    "filename": "magician_hat.svg",
-    "qty": 1,
+    "filename": "magician_hat.html",
     "id": "magician"
   },
   {
     "name": "santa hat",
     "filename": "santahat.png",
     "qty": 1,
+    "type": "img",
     "id": "santa"
   },
   {
     "name": "witch hat",
     "filename": "witch.png",
+    "id": "witch",
     "qty": 1,
-    "id": "witch"
+    "type": "img"
   },
   {
     "name": "blue witch hat",
     "filename": "wizard.png",
     "qty": 1,
+    "type": "img",
     "id": "witch-blue"
   },
   {
     "name": "wizard hat",
     "filename": "wizard_stars.png",
     "qty": 1,
+    "type": "img",
     "id": "wizard"
   }
 ]

@@ -2,45 +2,58 @@
   {
     "name": "glasses",
     "filename": "glasses.png",
-    "qty": 1,
-    "id": "glasses"
+    "id": "glasses",
+    "type": "img"
   },
   {
     "name": "crying",
     "filename": "sob.png",
     "qty": 2,
-    "id": "sob"
+    "id": "sob",
+    "type": "img"
   },
   {
     "name": "happy",
     "filename": "happy.html",
-    "qty": 2,
-    "id": "happy-eyes",
-    "type": "html"
+    "id": "happy-eyes"
+  },
+  {
+    "name": "angry",
+    "filename": "angry.html",
+    "id": "angry-eyes"
+  },
+  {
+    "name": "eyebrows",
+    "filename": "eyebrows.html",
+    "id": "eyebrows"
   },
   {
     "name": "sunglasses",
     "filename": "sunglasses.png",
     "qty": 1,
-    "id": "sunglasses"
+    "id": "sunglasses",
+    "type": "img"
   },
   {
     "name": "hearts",
     "filename": "heart.html",
-    "qty": 2,
     "type": "html",
     "id": "heart-eyes"
   },
   {
     "name": "stars",
-    "filename": "star.svg",
-    "qty": 2,
+    "filename": "star.html",
     "id": "star-eyes"
   },
   {
     "name": "dollar signs",
-    "filename": "dollars.svg",
-    "qty": 2,
+    "filename": "dollars.html",
+    "id": "dollar-eyes"
+  },
+  {
+    "name": "dollar signs",
+    "filename": "dollars.html",
+    "qty": 1,
     "noflip": true,
     "id": "dollar-eyes"
   },
@@ -48,24 +61,22 @@
     "name": "tear",
     "filename": "tear.png",
     "qty": 2,
-    "id": "tear"
+    "id": "tear",
+    "type": "img"
   },
   {
     "name": "pleading eyes",
-    "filename": "pleading_eye.svg",
-    "qty": 2,
+    "filename": "pleading_eye.html",
     "id": "pleading-eyes"
   },
   {
     "name": "disguise",
-    "filename": "disguise.svg",
-    "qty": 1,
+    "filename": "disguise.html",
     "id": "disguise"
   },
   {
     "name": "lab goggles",
-    "filename": "goggles.svg",
-    "qty": 1,
+    "filename": "goggles.html",
     "id": "goggles"
   }
 ]

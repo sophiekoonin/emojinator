@@ -30,10 +30,10 @@
       <div class="accordion-content is-open accessory-selector-group" id="bases-options" aria-expanded="true">
         {% for base in bases %}
           <button type="button" class="selector-option">
-            {% if base.type === "html" %}
-              {% include "partials/accessories/bases/" + base.filename %}
+            {% if base.type === "img" %}
+              <img src="/images/bases/{{ base.filename }}" alt="" title="{{ base.name }}" id="{{ base.id }}" data-type="base"/>
             {% else %}
-              <img src="/images/bases/{{ base.filename }}" alt="" class="{{ "tintable" if base.tintable }}" title="{{ base.name }}" id="{{ base.id }}" data-type="base"/>
+              {% include "partials/accessories/bases/" + base.filename %}
             {% endif %}
             <span class="visually-hidden">{{ base.name }}</span>
           </button>
@@ -46,7 +46,12 @@
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="hats-options" aria-expanded="true">
         {% for hat in hats %}
-          <button type="button" class="selector-option"><img src="/images/hats/{{ hat.filename }}" alt="" title="{{ hat.name }}" id="{{ hat.id }}" data-qty="{{ hat.qty }}"/>
+          <button type="button" class="selector-option">
+            {% if hat.type === "img" %}
+              <img src="/images/hats/{{ hat.filename }}" alt="" title="{{ hat.name }}" id="{{ hat.id }}" data-qty="{{ hat.qty }}"/>
+            {% else %}
+              {% include "partials/accessories/hats/" + hat.filename %}
+            {% endif %}
             <span class="visually-hidden">{{ hat.name }}</span>
           </button>
         {% endfor %}
@@ -59,10 +64,10 @@
       <div class="accordion-content is-open accessory-selector-group" id="eyes-options" aria-expanded="true">
         {% for eye in eyes %}
           <button type="button" class="selector-option">
-            {% if eye.type === "html" %}
-              {% include "partials/accessories/eyes/" + eye.filename %}
-            {% else %}
+            {% if eye.type === "img" %}
               <img src="/images/eyes/{{ eye.filename }}" alt="" title="{{ eye.name }}" id="{{ eye.id }}" data-qty="{{ eye.qty }}" data-noflip="{{ "true" if eye.noflip else "false" }}"/>
+            {% else %}
+              {% include "partials/accessories/eyes/" + eye.filename %}
             {% endif %}
             <span class="visually-hidden">{{ eye.name }}</span>
           </button>
@@ -75,7 +80,8 @@
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="mouths-options" aria-expanded="true">
         {% for mouth in mouths %}
-          <button type="button" class="selector-option"><img src="/images/mouths/{{ mouth.filename }}" alt="" id="{{ mouth.id }}" data-qty="{{ mouth.qty }}"/>
+          <button type="button" class="selector-option">
+            {% include "partials/accessories/mouths/" + mouth.filename %}
             <span class="visually-hidden">{{ mouth.name }}</span>
           </button>
         {% endfor %}
@@ -87,7 +93,12 @@
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="misc-options" aria-expanded="true">
         {% for miscItem in misc %}
-          <button type="button" class="selector-option"><img src="/images/misc/{{ miscItem.filename }}" alt="" title="{{ miscItem.name }}" id="{{ miscItem.id }}" data-qty="{{ miscItem.qty }}"/>
+          <button type="button" class="selector-option">
+            {% if miscItem.type === "img" %}
+              <img src="/images/misc/{{ miscItem.filename }}" alt="" title="{{ miscItem.name }}" id="{{ miscItem.id }}" data-qty="{{ miscItem.qty }}"/>
+            {% else %}
+              {% include "partials/accessories/misc/" + miscItem.filename %}
+            {% endif %}
             <span class="visually-hidden">{{ miscItem.name }}</span>
           </button>
         {% endfor %}

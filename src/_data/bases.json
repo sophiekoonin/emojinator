@@ -2,73 +2,71 @@
   {
     "name": "round",
     "filename": "round.html",
-    "qty": 1,
-    "tintable": false,
-    "id": "round",
-    "type": "html"
+    "id": "round"
   },
   {
     "name": "face",
     "filename": "face.html",
-    "qty": 1,
-    "tintable": false,
-    "id": "face",
-    "type": "html"
+    "id": "face"
+  },
+  {
+    "name": "person wearing hijab",
+    "filename": "hijab.html",
+    "id": "hijab"
   },
   {
     "name": "imp",
-    "filename": "imp.svg",
-    "qty": 1,
-    "tintable": false,
-    "id": "imp",
-    "type": "img"
+    "filename": "imp.html",
+    "id": "imp"
+  },
+  {
+    "name": "earth, australasia",
+    "filename": "earth_australasia.html",
+    "id": "earth-australasia"
+  },
+  {
+    "name": "earth, americas",
+    "filename": "earth_americas.html",
+    "id": "earth-americas"
+  },
+  {
+    "name": "earth, europe and africa",
+    "filename": "earth_europe_africa.html",
+    "id": "earth-europe-africa"
+  },
+  {
+    "name": "dark moon",
+    "filename": "moon_dark.html",
+    "id": "moon-dark"
+  },
+  {
+    "name": "light moon",
+    "filename": "moon_light.html",
+    "id": "moon-light"
   },
   {
     "name": "pumpkin",
     "filename": "pumpkin.html",
-    "qty": 1,
-    "tintable": false,
-    "id": "pumpkin-base",
-    "type": "html"
+    "id": "pumpkin-base"
   },
   {
-    "name": "earth, australasia",
-    "filename": "earth_australasia.svg",
-    "qty": 1,
-    "tintable": false,
-    "id": "earth-australasia",
-    "type": "img"
+    "name": "ghost",
+    "filename": "ghost.html",
+    "id": "ghost"
   },
   {
-    "name": "earth, americas",
-    "filename": "earth_americas.svg",
-    "qty": 1,
-    "tintable": false,
-    "id": "earth-americas",
-    "type": "img"
+    "name": "egg",
+    "filename": "egg.html",
+    "id": "egg"
   },
   {
-    "name": "earth, europe and africa",
-    "filename": "earth_europe_africa.svg",
-    "qty": 1,
-    "tintable": false,
-    "id": "earth-europe-africa",
-    "type": "img"
+    "name": "onion",
+    "filename": "onion.html",
+    "id": "onion"
   },
   {
-    "name": "dark moon",
-    "filename": "moon_dark.svg",
-    "qty": 1,
-    "tintable": false,
-    "id": "moon-dark",
-    "type": "img"
-  },
-  {
-    "name": "light moon",
-    "filename": "moon_light.svg",
-    "qty": 1,
-    "tintable": false,
-    "id": "moon-light",
-    "type": "img"
+    "name": "taco",
+    "filename": "taco.html",
+    "id": "taco"
   }
 ]

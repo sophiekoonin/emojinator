@@ -1,38 +1,32 @@
 [
   {
     "name": "tongue sticking out",
-    "filename": "tongue.svg",
-    "qty": 1,
+    "filename": "tongue.html",
     "id": "tongue"
   },
   {
     "name": "grimace",
-    "filename": "grimace.svg",
-    "qty": 1,
+    "filename": "grimace.html",
     "id": "grimace"
   },
   {
     "name": "sweary",
-    "filename": "sweary.svg",
-    "qty": 1,
+    "filename": "sweary.html",
     "id": "sweary"
   },
   {
     "name": "zip",
-    "filename": "zip.svg",
-    "qty": 1,
+    "filename": "zip.html",
     "id": "zip"
   },
   {
     "name": "pumpkin 1",
-    "filename": "pumpkin_mouth.svg",
-    "qty": 1,
+    "filename": "pumpkin_mouth.html",
     "id": "pumpkin-mouth-1"
   },
   {
     "name": "pumpkin 2",
-    "filename": "pumpkin_mouth_2.svg",
-    "qty": 1,
+    "filename": "pumpkin_mouth_2.html",
     "id": "pumpkin-mouth-2"
   }
 ]

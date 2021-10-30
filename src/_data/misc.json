@@ -1,188 +1,159 @@
 [
   {
     "name": "white check mark",
-    "filename": "check.svg",
-    "qty": 1,
+    "filename": "check.html",
     "id": "white-check-mark"
   },
   {
     "name": "no",
-    "filename": "no.svg",
-    "qty": 1,
+    "filename": "no.html",
     "id": "no"
   },
   {
     "name": "exclamation mark",
-    "filename": "exclamation.png",
-    "qty": 1,
+    "filename": "exclamation.html",
     "id": "exclamation"
   },
   {
     "name": "question mark",
-    "filename": "question.png",
-    "qty": 1,
+    "filename": "question.html",
     "id": "question"
   },
   {
     "name": "fire",
     "filename": "fire.png",
     "qty": 1,
+    "type": "img",
     "id": "fire"
   },
   {
     "name": "star",
-    "filename": "star.svg",
-    "qty": 1,
+    "filename": "star.html",
     "id": "star"
   },
   {
     "name": "red heart",
-    "filename": "heart_red.svg",
-    "qty": 1,
+    "filename": "heart_red.html",
     "id": "red-heart"
   },
   {
     "name": "black heart",
-    "filename": "heart_black.svg",
-    "qty": 1,
+    "filename": "heart_black.html",
     "id": "black-heart"
   },
   {
     "name": "sparkles",
-    "filename": "sparkles.svg",
-    "qty": 1,
+    "filename": "sparkles.html",
     "id": "sparkles"
   },
   {
     "name": "lightning bolt",
-    "filename": "lightning.svg",
-    "qty": 1,
+    "filename": "lightning.html",
     "id": "lightning"
   },
   {
     "name": "warning sign",
-    "filename": "warning.png",
-    "qty": 1,
+    "filename": "warning.html",
     "id": "warning"
   },
   {
     "name": "boom",
-    "filename": "boom.svg",
-    "qty": 1,
+    "filename": "boom.html",
     "id": "boom"
   },
   {
     "name": "zzz",
-    "filename": "zzz.svg",
-    "qty": 1,
+    "filename": "zzz.html",
     "id": "zzz"
   },
   {
     "name": "lightbulb",
-    "filename": "bulb.svg",
-    "qty": 1,
+    "filename": "bulb.html",
     "id": "bulb"
   },
   {
     "name": "football",
-    "filename": "football.svg",
-    "qty": 1,
+    "filename": "football.html",
     "id": "football"
   },
   {
     "name": "alert",
-    "filename": "alert.svg",
-    "qty": 1,
+    "filename": "alert.html",
     "id": "alert"
   },
   {
     "name": "stress",
-    "filename": "stress.svg",
-    "qty": 1,
+    "filename": "stress.html",
     "id": "stress"
   },
   {
     "name": "poop",
-    "filename": "poop.svg",
-    "qty": 1,
+    "filename": "poop.html",
     "id": "poop"
   },
   {
     "name": "medal",
-    "filename": "medal.svg",
-    "qty": 1,
+    "filename": "medal.html",
     "id": "medal"
   },
   {
     "name": "first place",
-    "filename": "first_place.svg",
-    "qty": 1,
+    "filename": "first_place.html",
     "id": "first-place"
   },
   {
     "name": "second place",
-    "filename": "second_place.svg",
-    "qty": 1,
+    "filename": "second_place.html",
     "id": "second-place"
   },
   {
     "name": "third place",
-    "filename": "third_place.svg",
-    "qty": 1,
+    "filename": "third_place.html",
     "id": "third-place"
   },
   {
     "name": "trophy",
-    "filename": "trophy.svg",
-    "qty": 1,
+    "filename": "trophy.html",
     "id": "trophy"
   },
   {
     "name": "pride flag",
-    "filename": "pride_flag.svg",
-    "qty": 1,
+    "filename": "pride_flag.html",
     "id": "pride-flag"
   },
   {
     "name": "trans pride flag",
-    "filename": "trans_flag.svg",
-    "qty": 1,
+    "filename": "trans_flag.html",
     "id": "trans-flag"
   },
   {
     "name": "jolly roger flag",
-    "filename": "jolly_roger.svg",
-    "qty": 1,
+    "filename": "jolly_roger.html",
     "id": "jolly-roger"
   },
   {
     "name": "rainbow",
-    "filename": "rainbow.svg",
-    "qty": 1,
+    "filename": "rainbow.html",
     "id": "rainbow"
   },
   {
     "name": "musical notes",
-    "filename": "musical_notes_1.svg",
-    "qty": 1,
+    "filename": "musical_notes_1.html",
     "id": "musical-notes-1"
   },
   {
     "name": "musical notes",
-    "filename": "musical_notes_2.svg",
-    "qty": 1,
+    "filename": "musical_notes_2.html",
     "id": "musical-notes-2"
   },
   {
     "name": "xmas tree",
-    "filename": "xmas_tree.svg",
-    "qty": 1,
+    "filename": "xmas_tree.html",
     "id": "xmas-tree"
   },
   {
     "name": "pumpkin",
-    "filename": "pumpkin.svg",
-    "qty": 1,
+    "filename": "pumpkin.html",
     "id": "pumpkin"
   }
 ]
