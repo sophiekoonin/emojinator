@@ -3,70 +3,94 @@
     <h3 id="accordion-instructions">
       <button type="button" class="accordion-trigger" data-contentid="instructions-content">Instructions</button>
     </h3>
-    <div class="accordion-content instructions" aria-labelledby="accordion-instructions" aria-expanded="false" id="instructions-content">
+    <div
+      class="accordion-content instructions"
+      aria-labelledby="accordion-instructions"
+      aria-expanded="false"
+      id="instructions-content">
       <p>Upload as many images as you want using the form below, or create your own from scratch.</p>
       <p>
-You can use any PNG or JPG image from your hard drive.
-    </p>
+        You can use any PNG or JPG image from your hard drive.
+      </p>
       <h4>Transparent images work best</h4>
-      <p>Run your images through <a href="https://remove.bg" rel="noopener noreferrer" target="blank">remove.bg</a> first.
-  <h4>Looking for an emoji to start with?</h4>
-        <p>Search <a href="https://emojipedia.org" target="blank" rel="noopener noreferrer">Emojipedia</a> and scroll down to the examples for images to save.
+      <p>Run your images through
+        <a href="https://remove.bg" rel="noopener noreferrer" target="blank">remove.bg</a>
+        first.
+        <h4>Looking for an emoji to start with?</h4>
+      </p>
+      <p>Search
+        <a href="https://emojipedia.org" target="blank" rel="noopener noreferrer">Emojipedia</a>
+        and scroll down to the examples for images to save.
         <h4>Using the creator</h4>
-          <p>Choose bases and accessories from the picker on the left.</p>
-          <p>Select images by double-clicking them or click &amp; drag in the canvas. Rotate/flip using the controls.</p>
-          <p>Click in blank areas of the canvas to deselect.</p>
-          <p>Click "start again" to completely clear the canvas.</p>
-        </div>
-      </div>
-      <form class="upload-form accordion" id="form">
-        <h3 id="accordion-heading-upload">
-          <button type="button" class="accordion-trigger is-open" data-contentid="upload-form">Upload images</button>
-        </h3>
-        <div class="upload-form-content accordion-content is-open" id="upload-form" aria-expanded="true" aria-labelledby="accordion-heading-upload">
-          <label for="creator-input">Choose an image</label>
-          <input
-            name="image"
-            id="creator-input"
-            type="file"
-            accept=".jpg, .jpeg, .png"></input>
-          <span>
-            <button type="submit" id="submit" disabled>Upload</button>
-            <button type="reset" class="secondary">Reset</button>
-          </span>
-
-        </div>
-      </form>
-
-      <div class="accordion functions">
-        <h3 id="accordion-heading-special">
-          <button type="button" class="accordion-trigger is-open" data-contentid="special-functions">Special effects</button>
-        </h3>
-        <ul class="special-functions accordion-content is-open" id="special-functions" aria-labelledby="accordion-heading-special" aria-expanded="true">
-          <li>
-            <button id="partyize-button" class="special-effect">Partyize 🎉 <span class="description">Make it flash party colours!</span>
-            </button>
-          </li>
-          <li>
-            <button id="embiggen-button" class="special-effect">Embiggen 🔠 <span class="description">4 small emoji = 1 giant emoji.</span></button>
-          </li>
-          <li>
-            <button id="rotatinate-button" class="special-effect">Rotatinate 🔄<span class="description">Make it spin!</span></button>
-          </li>
-          <li>
-            <button class="special-effect" id="red-button">Make red ❌<span class="description">Something gone down?</span></button>
-          </li>
-        </ul>
-      </div>
-      <div class="accordion functions">
-        <h3 id="accordion-heading-credits">
-          <button type="button" class="accordion-trigger" data-contentid="accordion-credits">Credits</button>
-        </h3>
-        <ul class="credits accordion-content" id="accordion-credits" aria-labelledby="accordion-heading-credits" aria-expanded="false">
-          <li>Canvas icons: <a href="https://thenounproject.com/grega.cresnar/collection/line-design-64px/" target="_blank" rel="noopener noreferrer">Gregor Cresnar via Noun Project</a>
-          </li>
-          <li>Emoji: mostly  <a href="https://github.com/twitter/twemoji" target="_blank" rel="noopener noreferrer">Twemoji</a>, some hand-drawn</li>
-
-        </ul>
-      </div>
+      </p>
+      <p>Choose bases and accessories from the picker on the left.</p>
+      <p>Select images by double-clicking them or click &amp; drag in the canvas. Rotate/flip using the controls.</p>
+      <p>Click in blank areas of the canvas to deselect.</p>
+      <p>Click "start again" to completely clear the canvas.</p>
     </div>
+  </div>
+  <form class="upload-form accordion" id="form">
+    <h3 id="accordion-heading-upload">
+      <button type="button" class="accordion-trigger is-open" data-contentid="upload-form">Upload images</button>
+    </h3>
+    <div
+      class="upload-form-content accordion-content is-open"
+      id="upload-form"
+      aria-expanded="true"
+      aria-labelledby="accordion-heading-upload">
+      <label for="creator-input">Choose an image</label>
+      <input name="image" id="creator-input" type="file" accept=".jpg, .jpeg, .png"></input>
+    <span>
+      <button type="submit" id="submit">Upload</button>
+      <button type="reset" class="secondary">Reset</button>
+    </span>
+  </div>
+</form>
+<div class="accordion functions">
+  <h3 id="accordion-heading-special">
+    <button type="button" class="accordion-trigger is-open" data-contentid="special-functions">Special effects</button>
+  </h3>
+  <ul
+    class="special-functions accordion-content is-open"
+    id="special-functions"
+    aria-labelledby="accordion-heading-special"
+    aria-expanded="true">
+    <li>
+      <button id="partyize-button" class="special-effect">Partyize 🎉
+        <span class="description">Make it flash party colours!</span>
+      </button>
+    </li>
+    <li>
+      <button id="embiggen-button" class="special-effect">Embiggen 🔠
+        <span class="description">4 small emoji = 1 giant emoji.</span>
+      </button>
+    </li>
+    <li>
+      <button id="rotatinate-button" class="special-effect">Rotatinate 🔄<span class="description">Make it spin!</span>
+      </button>
+    </li>
+    <li>
+      <button class="special-effect" id="red-button">Make red ❌<span class="description">Something gone down?</span>
+      </button>
+    </li>
+  </ul>
+</div>
+<div class="accordion functions">
+  <h3 id="accordion-heading-credits">
+    <button type="button" class="accordion-trigger" data-contentid="accordion-credits">Credits</button>
+  </h3>
+  <ul
+    class="credits accordion-content"
+    id="accordion-credits"
+    aria-labelledby="accordion-heading-credits"
+    aria-expanded="false">
+    <li>Canvas icons:
+      <a
+        href="https://thenounproject.com/grega.cresnar/collection/line-design-64px/"
+        target="_blank"
+        rel="noopener noreferrer">Gregor Cresnar via Noun Project</a>
+    </li>
+    <li>Emoji: mostly
+      <a href="https://github.com/twitter/twemoji" target="_blank" rel="noopener noreferrer">Twemoji</a>, some hand-drawn</li>
+  </ul>
+</div></div>

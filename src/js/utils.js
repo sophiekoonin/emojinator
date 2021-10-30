@@ -44,13 +44,7 @@ function getScaledImageDimensions(width = MAX_GIF_SIZE, height = MAX_GIF_SIZE, m
 }
 
 async function onImageSelect(event) {
-  const image = event.target.files[0]
-  filename = event.target.files[0].name.split('.')[0]
-  const src = await toBase64(image)
-  img.src = src
-  img.onload = () => {
-    document.getElementById('submit').removeAttribute('disabled')
-  }
+
 }
 
 function downloadURI(uri, name) {

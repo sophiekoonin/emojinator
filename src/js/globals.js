@@ -1,17 +1,3 @@
-/* GLOBALS AND CONSTANTS */
-
-/* CONSTANTS */
-const MAX_GIF_SIZE = 128
-const SIZE = 200
-
-/* ELEMENTS */
-
-const gifCanvas = document.createElement("canvas")
-const ctx = gifCanvas.getContext("2d")
-const img = new Image()
-const outputElement = document.getElementById("output")
-const canvasContainer = document.getElementById("canvas")
-
 /* KONVA */
 // Array of images that we've added to the konva canvas
 let konvaImages = []
@@ -33,7 +19,6 @@ let konvaImages = []
 // let x1, y1, x2, y2
 // let filename = "image"
 
-const canvas = new fabric.Canvas("c")
 /* GLOBALS */
 // selected skin tone
 
