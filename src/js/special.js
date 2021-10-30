@@ -4,7 +4,7 @@ function renderAndDownloadGif(blob, filename, width, gif) {
   const downloadButton = document.getElementById("download")
   outputElement.src = imgUrl
   outputElement.width = width
-  canvasContainer.classList.add("hidden")
+  hideElement("canvas-container")
   downloadButton.onclick = function (event) {
     downloadURI(imgUrl, `-${filename}.png`)
   }
@@ -30,11 +30,8 @@ const PARROT_COLORS = [
 ]
 
 function partyizeToGif(image) {
-  const width = stage.width()
-  const height = stage.height()
-  canvas.width = width
-  canvas.height = height
-
+  const width = image.width
+  const height = image.height
   var gif = new GIF({
     workers: 2,
     repeat: 0,
@@ -67,19 +64,24 @@ function partyizeToGif(image) {
 }
 
 function getImageAndThen(callback) {
-  if (konvaImages.length === 0) return
+  if (canvas.getObjects().length === 0) return
 
-  fitToScreen(() => {
-    tr.nodes([])
-    stage.toImage({ callback })
+  scaleCanvas(() => {
+    const img = new Image()
+    img.onload = function () {
+      callback(img)
+    }
+    img.src = canvas.toDataURL()
+    img.width = canvas.width
+    img.height = canvas.height
   })
 }
 
 /* ROTATINATOR */
 function rotateAndRenderGif(image) {
   const numSteps = 30
-  const width = stage.width()
-  const height = stage.height()
+  const width = image.width
+  const height = image.height
   const rotationInDegrees = 360 / numSteps
   var gif = new GIF({
     workers: 2,
@@ -143,8 +145,8 @@ function embiggen(image) {
     return
   }
   generateOutputs()
-  const width = stage.width()
-  const height = stage.height()
+  const width = image.width
+  const height = image.height
   const segmentWidth = width / 2
   const segmentHeight = height / 2
   canvas.width = segmentWidth
@@ -238,53 +240,30 @@ function embiggen(image) {
     "embiggener-output"
   ).style = `max-width: ${image.width}px;`
   showElement("embiggener-output")
-  hideElement("canvas")
+  hideElement("canvas-container")
 }
 
 /* RED */
 function makeRed(image) {
-  const width = stage.width()
-  const height = stage.height()
-  canvas.width = width
-  canvas.height = height
-
-  ctx.drawImage(image, 0, 0, width, height)
-
-  let imgData = ctx.getImageData(0, 0, width, height),
-    x,
-    y,
-    i,
-    grey
-
-  for (y = 0; y < height; y++) {
-    for (x = 0; x < width; x++) {
-      i = (y * width + x) * 4
-
-      grey = window.parseInt(
-        0.2125 * imgData.data[i] +
-          0.7154 * imgData.data[i + 1] +
-          0.0721 * imgData.data[i + 2],
-        10
-      )
-
-      imgData.data[i] += grey - imgData.data[i]
-      imgData.data[i + 1] += grey - imgData.data[i + 1]
-      imgData.data[i + 2] += grey - imgData.data[i + 2]
-    }
-  }
-  ctx.putImageData(imgData, 0, 0)
-  ctx.globalCompositeOperation = "source-atop"
-  ctx.fillStyle = "#cc0000"
-  ctx.globalAlpha = 0.6
-  ctx.fillRect(0, 0, width, height)
+  canvas.width = image.width
+  canvas.height = image.height
   clearCanvas()
-  img.src = canvas.toDataURL()
-  baseLayer.add(
-    new Konva.Image({
-      image: img,
-      draggable: true,
-    })
-  )
+  const filterImg = new fabric.Image(image, {
+    centeredRotation: true,
+    centeredScaling: true,
+    left: SIZE / 2,
+    top: SIZE / 2,
+    originY: "center",
+    originX: "center",
+  })
+  canvas.add(filterImg).renderAll()
+  const filter = new fabric.Image.filters.BlendColor({
+    color: "#cc0000",
+    mode: "overlay",
+  })
+  filterImg.filters = [filter]
+  filterImg.applyFilters()
+  canvas.renderAll()
 }
 
 /* INIT */

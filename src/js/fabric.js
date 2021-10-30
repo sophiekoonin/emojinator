@@ -3382,6 +3382,8 @@ fabric.CommonMethods = {
     for (var prop in attributes) {
       if (prop === "class") {
         el.className = attributes[prop]
+      } else if (prop === "id") {
+        el.id = attributes[prop]
       } else if (prop === "for") {
         el.htmlFor = attributes[prop]
       } else {
@@ -13202,6 +13204,7 @@ fabric.PatternBrush = fabric.util.createClass(
       _initWrapperElement: function () {
         this.wrapperEl = fabric.util.wrapElement(this.lowerCanvasEl, "div", {
           class: this.containerClass,
+          id: "canvas-container",
         })
         fabric.util.setStyle(this.wrapperEl, {
           width: this.width + "px",

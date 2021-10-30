@@ -8,7 +8,7 @@ let filename = "image"
 const gifCanvas = document.createElement("canvas")
 const ctx = gifCanvas.getContext("2d")
 const outputElement = document.getElementById("output")
-const canvasContainer = document.getElementById("canvas")
+const canvasContainer = document.getElementById("c")
 
 /* COLOUR VARS */
 let skintone = "a"
@@ -309,8 +309,7 @@ Array.from(document.getElementsByClassName("skintone-picker-input")).forEach(
   (el) => (el.onchange = changeSelectedSkintone)
 )
 
-document.getElementById("download").onclick = (e) => {
-  e.preventDefault()
+function scaleCanvas(callback) {
   canvas.discardActiveObject()
   const group = new fabric.Group()
   const canvasObjects = canvas.getObjects()
@@ -326,10 +325,16 @@ document.getElementById("download").onclick = (e) => {
         canvas.setHeight(group.height)
         canvas.setWidth(group.width)
         canvas.add(group).renderAll()
-        var dataURL = canvas.toDataURL()
-        downloadURI(dataURL, ` emojinator-${filename}.png`)
+        callback()
       }
     })
+  })
+}
+
+document.getElementById("download").onclick = (e) => {
+  scaleCanvas(() => {
+    var dataURL = canvas.toDataURL()
+    downloadURI(dataURL, ` emojinator-${filename}.png`)
   })
 }
 
@@ -343,7 +348,7 @@ function startOver() {
   clearCanvas()
   outputElement.src = ""
   outputElement.width = null
-  showElement("c")
+  showElement("canvas-container")
   hideElement("output")
   document.getElementById("embiggener-output").innerHTML = ""
   hideElement("embiggener-output")
