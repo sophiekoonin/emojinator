@@ -1,23 +1,23 @@
 [
   {
     "name": "white check mark",
-    "filename": "check.html",
-    "id": "white-check-mark"
+    "filename": "check.html"
   },
   {
     "name": "no",
-    "filename": "no.html",
-    "id": "no"
+    "filename": "no.html"
+  },
+  {
+    "name": "no entry",
+    "filename": "no_entry.html"
   },
   {
     "name": "exclamation mark",
-    "filename": "exclamation.html",
-    "id": "exclamation"
+    "filename": "exclamation.html"
   },
   {
     "name": "question mark",
-    "filename": "question.html",
-    "id": "question"
+    "filename": "question.html"
   },
   {
     "name": "fire",
@@ -28,132 +28,130 @@
   },
   {
     "name": "star",
-    "filename": "star.html",
-    "id": "star"
+    "filename": "star.html"
   },
   {
-    "name": "red heart",
-    "filename": "heart_red.html",
-    "id": "red-heart"
-  },
-  {
-    "name": "black heart",
-    "filename": "heart_black.html",
-    "id": "black-heart"
+    "name": "heart",
+    "filename": "heart_red.html"
   },
   {
     "name": "sparkles",
-    "filename": "sparkles.html",
-    "id": "sparkles"
+    "filename": "sparkles.html"
   },
   {
     "name": "lightning bolt",
-    "filename": "lightning.html",
-    "id": "lightning"
+    "filename": "lightning.html"
   },
   {
     "name": "warning sign",
-    "filename": "warning.html",
-    "id": "warning"
+    "filename": "warning.html"
   },
   {
     "name": "boom",
-    "filename": "boom.html",
-    "id": "boom"
+    "filename": "boom.html"
+  },
+  {
+    "name": "thought bubble",
+    "filename": "thought_bubble.html"
+  },
+  {
+    "name": "speech bubble",
+    "filename": "speech_bubble.html"
+  },
+  {
+    "name": "exclamation bubble",
+    "filename": "exclamation_bubble.html"
   },
   {
     "name": "zzz",
-    "filename": "zzz.html",
-    "id": "zzz"
+    "filename": "zzz.html"
+  },
+  {
+    "name": "dizzy",
+    "filename": "dizzy.html"
   },
   {
     "name": "lightbulb",
-    "filename": "bulb.html",
-    "id": "bulb"
+    "filename": "bulb.html"
   },
   {
     "name": "football",
-    "filename": "football.html",
-    "id": "football"
+    "filename": "football.html"
   },
   {
     "name": "alert",
-    "filename": "alert.html",
-    "id": "alert"
+    "filename": "alert.html"
   },
   {
     "name": "stress",
-    "filename": "stress.html",
-    "id": "stress"
+    "filename": "stress.html"
   },
   {
     "name": "poop",
-    "filename": "poop.html",
-    "id": "poop"
+    "filename": "poop.html"
+  },
+  {
+    "name": "gavel",
+    "filename": "gavel.html"
   },
   {
     "name": "medal",
-    "filename": "medal.html",
-    "id": "medal"
+    "filename": "medal.html"
   },
   {
     "name": "first place",
-    "filename": "first_place.html",
-    "id": "first-place"
+    "filename": "first_place.html"
   },
   {
     "name": "second place",
-    "filename": "second_place.html",
-    "id": "second-place"
+    "filename": "second_place.html"
   },
   {
     "name": "third place",
-    "filename": "third_place.html",
-    "id": "third-place"
+    "filename": "third_place.html"
   },
   {
     "name": "trophy",
-    "filename": "trophy.html",
-    "id": "trophy"
+    "filename": "trophy.html"
+  },
+  {
+    "name": "loot",
+    "filename": "loot.html"
+  },
+  {
+    "name": "money with wings",
+    "filename": "money_with_wings.html"
   },
   {
     "name": "pride flag",
-    "filename": "pride_flag.html",
-    "id": "pride-flag"
+    "filename": "pride_flag.html"
   },
   {
     "name": "trans pride flag",
-    "filename": "trans_flag.html",
-    "id": "trans-flag"
+    "filename": "trans_flag.html"
   },
   {
     "name": "jolly roger flag",
-    "filename": "jolly_roger.html",
-    "id": "jolly-roger"
+    "filename": "jolly_roger.html"
   },
   {
     "name": "rainbow",
-    "filename": "rainbow.html",
-    "id": "rainbow"
+    "filename": "rainbow.html"
   },
   {
-    "name": "musical notes",
-    "filename": "musical_notes_1.html",
-    "id": "musical-notes-1"
+    "name": "musical notes - three quavers",
+    "filename": "musical_notes_1.html"
   },
   {
-    "name": "musical notes",
-    "filename": "musical_notes_2.html",
-    "id": "musical-notes-2"
+    "name": "musical notes - two quavers",
+    "filename": "musical_notes_2.html"
   },
   {
     "name": "xmas tree",
-    "filename": "xmas_tree.html",
-    "id": "xmas-tree"
+    "filename": "xmas_tree.html"
   },
   {
     "name": "pumpkin",
-    "filename": "pumpkin.html",
-    "id": "pumpkin"
+    "filename": "pumpkin.html"
   }
 ]
