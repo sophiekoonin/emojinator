@@ -95,49 +95,63 @@
       }
     }
 
-    .skintone-picker {
-      width: 100%;
-      fieldset {
-        padding: 0;
-        margin: 0;
-        border: 0;
-        .skintone-picker-content {
+    .colour-picker {
+      .colour-picker-content {
+        .color-picker-list {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 0 auto;
+          width: 80%;
+          input {
+            margin-right: 1rem;
+          }
+
+          .colour-description {
+            font-size: 0.9rem;
+          }
+        }
+
+        .skintone-picker {
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          border: 0;
           @extend .accessory-grid;
           padding-left: 0.25rem;
           padding-right: 0.25rem;
           column-gap: 4px;
-        }
-        legend {
-          color: var(--heading-color);
-          font-size: 1.5rem;
-          font-size: unquote("min(max(1.1rem, 4vw), 20px)");
-          margin: 0;
-          padding: 0;
-          width: 100%;
-        }
-        input {
-          opacity: 0;
-          position: absolute;
-          cursor: pointer;
-        }
-        .skintone-picker-option {
-          border-radius: 50%;
-          position: relative;
-          padding: 6px;
-          border: 1px solid transparent;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto;
-          cursor: pointer;
-          &:hover {
-            background-color: var(--primary);
+
+          legend {
+            padding: 0.5rem 0;
+            font-variation-settings: "wght" 600;
           }
-          &.selected {
-            background-color: var(--tertiary);
-          }
-          img {
-            width: 2rem;
+
+          .skintone-picker-option {
+            border-radius: 50%;
+            position: relative;
+            padding: 6px;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            cursor: pointer;
+            &:hover {
+              background-color: var(--primary);
+            }
+            &.selected {
+              background-color: var(--tertiary);
+            }
+            img {
+              width: 2rem;
+            }
+
+            input {
+              opacity: 0;
+              position: absolute;
+              cursor: pointer;
+            }
           }
         }
       }

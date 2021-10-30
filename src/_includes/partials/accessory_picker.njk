@@ -1,13 +1,21 @@
 <div class="accessory-container">
   <h2 class="visually-hidden">Faces & accessories</h2>
   <div class="accessory-selector">
-    <div class="skintone-picker accordion is-open" id="skintone-picker">
-      <h3 class="visually-hidden">Choose a skin tone</h3>
-      <fieldset>
-        <legend>
-          <button type="button" class="accordion-trigger is-open" data-contentid="skintone-options">Skin tone</button>
-        </legend>
-        <div class="accordion-content is-open skintone-picker-content" id="skintone-options" aria-expanded="true">
+    <form class="colour-picker accordion is-open" id="colour-picker">
+      <h3>
+        <button type="button" class="accordion-trigger is-open" data-contentid="colour-options">Colours & skin tones</button>
+      </h3>
+      <div class="accordion-content is-open colour-picker-content" id="colour-options" aria-expanded="true">
+        <span class="visually-hidden">Colours will be updated automatically as you select them.</span>
+        <div class="color-picker-list">
+          <label for="primary-color"><input type="color" id="primary-color"/> Primary colour
+          </label>
+          <span class="colour-description">(For human emoji this will be the main skin colour)</span>
+          <label for="secondary-color"><input type="color" id="secondary-color"/> Secondary colour</label>
+          <label for="tertiary-color"><input type="color" id="tertiary-color"/> Tertiary colour</label>
+        </div>
+        <fieldset class="skintone-picker">
+          <legend>Default skintone</legend>
           <label class="skintone-picker-option" id="skintone-label-a" for="a"><input type="radio" class="skintone-picker-input" id="a" name="skintone" value="a"/>
             <span class="visually-hidden">Base</span><img src="/images/swatches/base.svg"/></label>
           <label class="skintone-picker-option" id="skintone-label-b" for="b"><input type="radio" class="skintone-picker-input" id="b" name="skintone" value="b"/>
@@ -20,9 +28,9 @@
             <span class="visually-hidden">Medium-dark</span><img src="/images/swatches/1f3fe.svg"/></label>
           <label class="skintone-picker-option" id="skintone-label-f" for="f"><input type="radio" class="skintone-picker-input" id="f" name="skintone" value="f"/>
             <span class="visually-hidden">Dark</span><img src="/images/swatches/1f3ff.svg"/></label>
-        </div>
-      </fieldset>
-    </div>
+        </fieldset>
+      </div>
+    </form>
     <div class="accordion">
       <h3>
         <button type="button" class="accordion-trigger is-open" data-contentid="bases-options">Bases</button>
