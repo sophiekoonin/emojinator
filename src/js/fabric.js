@@ -5,7 +5,7 @@ var fabric = fabric || { version: "4.6.0" }
 if (typeof exports !== "undefined") {
   exports.fabric = fabric
 } else if (typeof define === "function" && define.amd) {
-/* _AMD_START_ */
+  /* _AMD_START_ */
   define([], function () {
     return fabric
   })
@@ -86,6 +86,7 @@ fabric.SHARED_ATTRIBUTES = [
   "vector-effect",
   "instantiated_by_use",
   "clip-path",
+  "data-colortype",
 ]
 /* _FROM_SVG_END_ */
 
@@ -631,7 +632,6 @@ fabric.CommonMethods = {
     return this[property]
   },
 }
-
 ;(function (global) {
   var sqrt = Math.sqrt,
     atan2 = Math.atan2,
@@ -1774,7 +1774,6 @@ fabric.CommonMethods = {
     },
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function () {
   var _join = Array.prototype.join,
     commandLengths = {
@@ -2809,7 +2808,6 @@ fabric.CommonMethods = {
   fabric.util.getBoundsOfArc = getBoundsOfArc
   fabric.util.drawArc = drawArc
 })()
-
 ;(function () {
   var slice = Array.prototype.slice
 
@@ -2904,7 +2902,6 @@ fabric.CommonMethods = {
     max: max,
   }
 })()
-
 ;(function () {
   /**
    * Copies all enumerable properties of one js object to another
@@ -2975,7 +2972,6 @@ fabric.CommonMethods = {
   }
   fabric.util.object.extend(fabric.util, fabric.Observable)
 })()
-
 ;(function () {
   /**
    * Camelizes a string
@@ -3089,7 +3085,6 @@ fabric.CommonMethods = {
     graphemeSplit: graphemeSplit,
   }
 })()
-
 ;(function () {
   var slice = Array.prototype.slice,
     emptyFunction = function () {},
@@ -3206,7 +3201,6 @@ fabric.CommonMethods = {
 
   fabric.util.createClass = createClass
 })()
-
 ;(function () {
   // since ie11 can use addEventListener but they do not support options, i need to check
   var couldUseAttachEvent = !!fabric.document.createElement("div").attachEvent,
@@ -3267,7 +3261,6 @@ fabric.CommonMethods = {
     return touchEvents.indexOf(event.type) > -1 || event.pointerType === "touch"
   }
 })()
-
 ;(function () {
   /**
    * Cross-browser wrapper for setting element's style
@@ -3337,7 +3330,6 @@ fabric.CommonMethods = {
 
   fabric.util.setStyle = setStyle
 })()
-
 ;(function () {
   var _slice = Array.prototype.slice
 
@@ -3643,7 +3635,6 @@ fabric.CommonMethods = {
   fabric.util.getNodeCanvas = getNodeCanvas
   fabric.util.cleanUpJsdomNode = cleanUpJsdomNode
 })()
-
 ;(function () {
   function addParamToUrl(url, param) {
     return url + (/\?/.test(url) ? "&" : "?") + param
@@ -3709,7 +3700,6 @@ fabric.log = console.log
  * @param {*} [values] Values to log as a warning
  */
 fabric.warn = console.warn
-
 ;(function () {
   function noop() {
     return false
@@ -3751,7 +3741,6 @@ fabric.warn = console.warn
         byValue = options.byValue || endValue - startValue
 
       options.onStart && options.onStart()
-
       ;(function tick(ticktime) {
         // TODO: move abort call after calculation
         // and pass (current,valuePerc, timePerc) as arguments
@@ -3816,7 +3805,6 @@ fabric.warn = console.warn
   fabric.util.requestAnimFrame = requestAnimFrame
   fabric.util.cancelAnimFrame = cancelAnimFrame
 })()
-
 ;(function () {
   // Calculate an in-between color. Returns a "rgba()" string.
   // Credit: Edwin Martin <edwin@bitstorm.org>
@@ -3897,7 +3885,6 @@ fabric.warn = console.warn
 
   fabric.util.animateColor = animateColor
 })()
-
 ;(function () {
   function normalize(a, c, p, s) {
     if (a < Math.abs(c)) {
@@ -4308,7 +4295,6 @@ fabric.warn = console.warn
     easeInOutBounce: easeInOutBounce,
   }
 })()
-
 ;(function (global) {
   "use strict"
 
@@ -4383,6 +4369,7 @@ fabric.warn = console.warn
       "clip-rule": "clipRule",
       "vector-effect": "strokeUniform",
       "image-rendering": "imageSmoothing",
+      "data-colortype": "colorType",
     },
     colorAttributes = {
       stroke: "strokeOpacity",
@@ -5618,7 +5605,6 @@ fabric.ElementsParser = function (
   this.regexUrl = /^url\(['"]?#([^'"]+)['"]?\)/g
   this.doc = doc
 }
-
 ;(function (proto) {
   proto.parse = function () {
     this.instances = new Array(this.elements.length)
@@ -5778,7 +5764,6 @@ fabric.ElementsParser = function (
     }
   }
 })(fabric.ElementsParser.prototype)
-
 ;(function (global) {
   "use strict"
 
@@ -6116,7 +6101,6 @@ fabric.ElementsParser = function (
     },
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -6289,7 +6273,6 @@ fabric.ElementsParser = function (
     return result
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -6966,7 +6949,6 @@ fabric.ElementsParser = function (
     return oColor
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -7795,7 +7777,6 @@ fabric.ElementsParser = function (
   controls.getLocalPoint = getLocalPoint
   fabric.controlsUtils = controls
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -7904,7 +7885,6 @@ fabric.ElementsParser = function (
   controls.renderCircleControl = renderCircleControl
   controls.renderSquareControl = renderSquareControl
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -8275,7 +8255,6 @@ fabric.ElementsParser = function (
     },
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function () {
   /* _FROM_SVG_START_ */
   function getColorStop(el, multiplier) {
@@ -8821,7 +8800,6 @@ fabric.ElementsParser = function (
     })
   }
 })()
-
 ;(function () {
   "use strict"
 
@@ -9030,7 +9008,6 @@ fabric.ElementsParser = function (
     }
   )
 })()
-
 ;(function (global) {
   "use strict"
 
@@ -9271,7 +9248,6 @@ fabric.ElementsParser = function (
   fabric.Shadow.reOffsetsAndBlur =
     /(?:\s|^)(-?\d+(?:\.\d*)?(?:px)?(?:\s?|$))?(-?\d+(?:\.\d*)?(?:px)?(?:\s?|$))?(\d+(?:\.\d*)?(?:px)?)?(?:\s?|$)(?:$|\s)/
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function () {
   "use strict"
 
@@ -11438,7 +11414,6 @@ fabric.BaseBrush = fabric.util.createClass(
     },
   }
 )
-
 ;(function () {
   /**
    * PencilBrush class
@@ -12195,7 +12170,6 @@ fabric.PatternBrush = fabric.util.createClass(
     },
   }
 )
-
 ;(function () {
   var getPointer = fabric.util.getPointer,
     degreesToRadians = fabric.util.degreesToRadians,
@@ -13616,7 +13590,6 @@ fabric.PatternBrush = fabric.util.createClass(
     }
   }
 })()
-
 ;(function () {
   var addListener = fabric.util.addListener,
     removeListener = fabric.util.removeListener,
@@ -14739,7 +14712,6 @@ fabric.PatternBrush = fabric.util.createClass(
     }
   )
 })()
-
 ;(function () {
   var min = Math.min,
     max = Math.max
@@ -14939,7 +14911,6 @@ fabric.PatternBrush = fabric.util.createClass(
     }
   )
 })()
-
 ;(function () {
   fabric.util.object.extend(
     fabric.StaticCanvas.prototype,
@@ -15329,7 +15300,6 @@ fabric.util.object.extend(
     },
   }
 )
-
 ;(function (global) {
   "use strict"
 
@@ -15973,6 +15943,9 @@ fabric.util.object.extend(
        * @default false
        */
       absolutePositioned: false,
+
+      isHuman: false,
+      colorType: null,
 
       /**
        * Constructor
@@ -17445,7 +17418,6 @@ fabric.util.object.extend(
    */
   fabric.Object.__uid = 0
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function () {
   var degreesToRadians = fabric.util.degreesToRadians,
     originXOffset = {
@@ -17735,7 +17707,6 @@ fabric.util.object.extend(
     }
   )
 })()
-
 ;(function () {
   function arrayFromCoords(coords) {
     return [
@@ -18929,7 +18900,6 @@ fabric.util.object.extend(
   )
 })()
 /* _TO_SVG_END_ */
-
 ;(function () {
   var extend = fabric.util.object.extend,
     originalSet = "stateProperties"
@@ -19043,7 +19013,6 @@ fabric.util.object.extend(
     }
   )
 })()
-
 ;(function () {
   var degreesToRadians = fabric.util.degreesToRadians
 
@@ -19649,7 +19618,6 @@ fabric.util.object.extend(
     },
   }
 )
-
 ;(function (global) {
   "use strict"
 
@@ -19993,7 +19961,6 @@ fabric.util.object.extend(
     }
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -20218,7 +20185,6 @@ fabric.util.object.extend(
     fabric.Object._fromObject("Circle", object, callback)
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -20308,7 +20274,6 @@ fabric.util.object.extend(
     return fabric.Object._fromObject("Triangle", object, callback)
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -20495,7 +20460,6 @@ fabric.util.object.extend(
     fabric.Object._fromObject("Ellipse", object, callback)
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -20718,7 +20682,6 @@ fabric.util.object.extend(
     return fabric.Object._fromObject("Rect", object, callback)
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -20975,7 +20938,6 @@ fabric.util.object.extend(
     return fabric.Object._fromObject("Polyline", object, callback, "points")
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -21048,7 +21010,6 @@ fabric.util.object.extend(
     fabric.Object._fromObject("Polygon", object, callback, "points")
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -21457,7 +21418,6 @@ fabric.util.object.extend(
   }
   /* _FROM_SVG_END_ */
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -22071,7 +22031,6 @@ fabric.util.object.extend(
     })
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -22228,7 +22187,6 @@ fabric.util.object.extend(
     })
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -23221,7 +23179,6 @@ fabric.util.object.extend(
     },
   }
 )
-
 ;(function () {
   "use strict"
 
@@ -24124,7 +24081,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   callback && callback(filter)
   return filter
 }
-
 ;(function (global) {
   "use strict"
 
@@ -24298,7 +24254,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.ColorMatrix.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -24416,7 +24371,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Brightness.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -24792,7 +24746,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Convolute.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -24955,7 +24908,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Grayscale.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -25069,7 +25021,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Invert.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -25208,7 +25159,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Noise.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -25356,7 +25306,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Pixelate.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -25536,7 +25485,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.RemoveColor.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -25609,7 +25557,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
       fabric.Image.filters.BaseFilter.fromObject
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -25882,7 +25829,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.BlendColor.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -26158,7 +26104,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
     })
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -26716,7 +26661,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Resize.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -26835,7 +26779,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Contrast.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -26960,7 +26903,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Saturation.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -27090,7 +27032,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Vibrance.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -27316,7 +27257,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
    */
   filters.Blur.fromObject = fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -27459,7 +27399,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.Gamma.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -27537,7 +27476,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
     return instance
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -27646,7 +27584,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
   fabric.Image.filters.HueRotation.fromObject =
     fabric.Image.filters.BaseFilter.fromObject
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function (global) {
   "use strict"
 
@@ -29591,7 +29528,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
 
   fabric.util.createAccessors && fabric.util.createAccessors(fabric.Text)
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function () {
   fabric.util.object.extend(
     fabric.Text.prototype,
@@ -29939,7 +29875,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
     }
   )
 })()
-
 ;(function () {
   function parseDecoration(object) {
     if (object.textDecoration) {
@@ -30494,7 +30429,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
     fabric.Object._fromObject("IText", object, callback, "text")
   }
 })()
-
 ;(function () {
   var clone = fabric.util.object.clone
 
@@ -32921,7 +32855,6 @@ fabric.util.object.extend(
   )
 })()
 /* _TO_SVG_END_ */
-
 ;(function (global) {
   "use strict"
 
@@ -33410,7 +33343,6 @@ fabric.util.object.extend(
     return fabric.Object._fromObject("Textbox", object, callback, "text")
   }
 })(typeof exports !== "undefined" ? exports : this)
-
 ;(function () {
   var controlsUtils = fabric.controlsUtils,
     scaleSkewStyleHandler = controlsUtils.scaleSkewCursorStyleHandler,

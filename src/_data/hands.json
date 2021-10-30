@@ -1,22 +1,18 @@
 [
   {
-    "name": "hand covering up something",
-    "filename": "cover_hand.html"
-  },
-  {
     "name": "fingers crossed",
     "filename": "fingerscrossed.html"
   },
   {
-    "name": "fist",
+    "name": "punching fist",
     "filename": "fist.html"
   },
   {
-    "name": "fist bump",
+    "name": "fist bump right",
     "filename": "fistbump.html"
   },
   {
-    "name": "fist pointing left",
+    "name": "fist bump left",
     "filename": "fistleft.html"
   },
   {
@@ -24,12 +20,20 @@
     "filename": "flex.html"
   },
   {
-    "name": "raised palm of hand",
-    "filename": "hand.html"
+    "name": "raised palm",
+    "filename": "raised_hand.html"
+  },
+  {
+    "name": "back of hand",
+    "filename": "back_hand.html"
   },
   {
     "name": "pinching fingers",
     "filename": "littlebit.html"
+  },
+  {
+    "name": "hand covering up something",
+    "filename": "cover_hand.html"
   },
   {
     "name": "ok hand gesture",
