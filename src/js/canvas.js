@@ -315,7 +315,6 @@ function scaleCanvas(callback) {
   const canvasObjects = canvas.getObjects()
   canvasObjects.forEach((obj) => {
     obj.clone((c) => {
-      console.log(c)
       group.addWithUpdate(c)
       // thx i hate it
       // clone is async, but only takes an individual callback

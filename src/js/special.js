@@ -5,6 +5,7 @@ function renderAndDownloadGif(blob, filename, width, gif) {
   outputElement.src = imgUrl
   outputElement.width = width
   hideElement("canvas-container")
+  showElement("output")
   downloadButton.onclick = function (event) {
     downloadURI(imgUrl, `-${filename}.png`)
   }
@@ -149,8 +150,8 @@ function embiggen(image) {
   const height = image.height
   const segmentWidth = width / 2
   const segmentHeight = height / 2
-  canvas.width = segmentWidth
-  canvas.height = segmentHeight
+  gifCanvas.width = segmentWidth
+  gifCanvas.height = segmentHeight
 
   ctx.save()
   // top left
@@ -165,7 +166,7 @@ function embiggen(image) {
     segmentWidth,
     segmentHeight
   )
-  const img1 = canvas.toDataURL()
+  const img1 = gifCanvas.toDataURL()
   document.getElementById("output1").src = img1
 
   const link1 = document.getElementById("link1")
@@ -187,7 +188,7 @@ function embiggen(image) {
     segmentWidth,
     segmentHeight
   )
-  const img2 = canvas.toDataURL()
+  const img2 = gifCanvas.toDataURL()
   document.getElementById("output2").src = img2
   const link2 = document.getElementById("link2")
   link2.href = img2
@@ -208,7 +209,7 @@ function embiggen(image) {
     segmentWidth,
     segmentHeight
   )
-  const img3 = canvas.toDataURL()
+  const img3 = gifCanvas.toDataURL()
   document.getElementById("output3").src = img3
 
   const link3 = document.getElementById("link3")
@@ -230,7 +231,7 @@ function embiggen(image) {
     segmentWidth,
     segmentHeight
   )
-  const img4 = canvas.toDataURL()
+  const img4 = gifCanvas.toDataURL()
   document.getElementById("output4").src = img4
   const link4 = document.getElementById("link4")
   link4.href = img4
