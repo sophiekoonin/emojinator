@@ -12,7 +12,6 @@ const canvasContainer = document.getElementById("canvas")
 
 // The main emojinator canvas
 const canvas = new fabric.Canvas("c", {
-  backgroundColor: "#ffffff",
   width: SIZE,
   height: SIZE,
 })
@@ -88,7 +87,6 @@ function onItemClick(event) {
     objectInstance
       .scaleToWidth(50)
       .set({ left: itemWidth / 2 + itemWidth * 0.05, top: SIZE / 2 })
-    // accessory.top(itemEl.height / 2 + itemEl.height * 0.05)
     const item2 = objectInstance.clone((obj) => {
       obj.set({
         active: true,

@@ -28,10 +28,6 @@
   }
 }
 
-#selectionRectangle {
-  fill: var(--selection-rectangle-fill, rgba(0, 0, 0, 0.5));
-}
-
 .action-button {
   @extend .secondary;
   font-size: 0.8rem;
@@ -96,12 +92,11 @@
     }
   }
 
-  .canvas-border {
+  .canvas-container {
     display: flex;
+    margin: 0 auto;
     justify-content: center;
-    @include mq($until: tablet) {
-      margin-bottom: 1rem;
-    }
+    margin-bottom: 1rem;
     canvas {
       border: 1px solid var(--border-color) !important;
     }
