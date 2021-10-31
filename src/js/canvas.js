@@ -56,6 +56,9 @@ function updateColourSelections() {
   Object.keys(selectedColours).forEach((c) => {
     if (selectedColours[c] != null) {
       document.getElementById(`${c}-color`).value = selectedColours[c]
+      document.getElementById(
+        `${c}-preview`
+      ).style = `background-color: ${selectedColours[c]};`
       showElement(`${c}-color-label`)
     } else {
       hideElement(`${c}-color-label`)
@@ -96,7 +99,9 @@ function changeSelectedItemColour(e) {
 
   const changedColourType = id.replace("-color", "")
   selectedColours[changedColourType] = value
-
+  document.getElementById(
+    `${changedColourType}-preview`
+  ).style = `background-color: ${value};`
   canvas.getActiveObjects().forEach((obj) => {
     if (typeof obj.size !== "undefined") {
       // this is a group, so iterate
