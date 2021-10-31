@@ -112,15 +112,38 @@
       }
     }
 
-    .colour-picker {
-      &-preview {
-        border-radius: 999px;
-        width: 1rem;
-        height: 1rem;
-        display: inline-block;
-        border: 1px solid var(--border-color);
-        margin-right: 0.75rem;
+    .colour-swatch {
+      border-radius: 999px;
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      border: 1px solid var(--border-color);
+      &.blonde {
+        background-color: #ffe51f;
       }
+      &.lightbrown {
+        background-color: #963b22;
+      }
+      &.darkbrown {
+        background-color: #603529;
+      }
+      &.lightblack {
+        background-color: #292f33;
+      }
+      &.darkblack {
+        background-color: #0c0200;
+      }
+      &.lightred {
+        background-color: #ffac32;
+      }
+      &.darkred {
+        background-color: #e95f27;
+      }
+      &.grey {
+        background-color: #e1e8ec;
+      }
+    }
+    .colour-picker {
       &-input {
         width: 1px;
         height: 1px;
@@ -131,7 +154,7 @@
         &:focus {
           outline: none;
         }
-        &:focus + .colour-picker-preview {
+        &:focus + .colour-swatch {
           box-shadow: 0 0 0 3px var(--tertiary);
           [data-whatinput="mouse"] &,
           [data-whatinput="touch"] & {
@@ -146,6 +169,9 @@
           align-items: flex-start;
           margin: 0 auto;
           width: 80%;
+          .colour-swatch {
+            margin-right: 0.75rem;
+          }
           label {
             font-size: 0.9rem;
             cursor: pointer;
@@ -208,6 +234,21 @@
             }
           }
         }
+      }
+    }
+
+    .hair-preset-list {
+      h4 {
+        margin-left: 1rem;
+        text-align: left;
+      }
+      button {
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        height: 1rem;
+        border-radius: 999px;
+        margin-right: 0.25rem;
       }
     }
   }

@@ -32,5 +32,28 @@
   "prettier": {
     "semi": false,
     "tabWidth": 2
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2020
+    },
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "rules": {
+      "no-delete-var": "off"
+    },
+    "ignorePatterns": [
+      "src/assets/scripts/*.js",
+      "src/js/fabric.js"
+    ],
+    "globals": {
+      "fabric": true,
+      "GIF": true
+    }
   }
 }

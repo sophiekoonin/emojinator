@@ -10,20 +10,57 @@
         <div class="color-picker-list">
           <label for="primary-color" id="primary-color-label">
             <input class="colour-picker-input" type="color" id="primary-color"/>
-            <span class="colour-picker-preview" id="primary-preview" aria-hidden="true"></span>
+            <span class="colour-swatch" id="primary-preview" aria-hidden="true"></span>
             Primary colour/main skin colour
           </label>
           <label id="secondary-color-label" for="secondary-color">
             <input class="colour-picker-input" type="color" id="secondary-color"/>
-            <span class="colour-picker-preview" id="secondary-preview" aria-hidden="true"></span>
+            <span class="colour-swatch" id="secondary-preview" aria-hidden="true"></span>
             Secondary colour</label>
           <label id="tertiary-color-label" for="tertiary-color">
             <input class="colour-picker-input" type="color" id="tertiary-color"/>
-            <span class="colour-picker-preview" id="tertiary-preview" aria-hidden="true"></span>
+            <span class="colour-swatch" id="tertiary-preview" aria-hidden="true"></span>
             Tertiary colour</label>
         </div>
+        <div id="hair-preset-list" class="hair-preset-list hidden">
+          <h4>Hair colour presets</h4>
+          <button type="button" id="hair-preset-blonde">
+            <span class="colour-swatch blonde"></span>
+            <span class="visually-hidden">Blonde hair</span>
+          </button>
+          <button type="button" id="hair-preset-lightred">
+            <span class="colour-swatch lightred"></span>
+            <span class="visually-hidden">Light red hair</span>
+          </button>
+          <button type="button" id="hair-preset-darkred">
+            <span class="colour-swatch darkred"></span>
+            <span class="visually-hidden">Dark red hair</span>
+          </button>
+          <button type="button" id="hair-preset-lightbrown">
+            <span class="colour-swatch lightbrown"></span>
+            <span class="visually-hidden">Light brown hair</span>
+          </button>
+          <button type="button" id="hair-preset-darkbrown">
+            <span class="colour-swatch darkbrown"></span>
+            <span class="visually-hidden">Dark brown hair</span>
+          </button>
+          <button type="button" id="hair-preset-lightblack">
+            <span class="colour-swatch lightblack"></span>
+            <span class="visually-hidden">Light black hair</span>
+          </button>
+          <button type="button" id="hair-preset-darkblack">
+            <span class="colour-swatch darkblack"></span>
+            <span class="visually-hidden">Dark black hair</span>
+          </button>
+          <button type="button" id="hair-preset-grey">
+            <span class="colour-swatch grey"></span>
+            <span class="visually-hidden">Grey hair</span>
+          </button>
+        </div>
         <fieldset class="skintone-picker">
-          <legend>Default skintone</legend>
+          <legend>
+            <h4>Default skintone</h4>
+          </legend>
           <label class="skintone-picker-option" id="skintone-label-a" for="a"><input type="radio" class="skintone-picker-input" id="a" name="skintone" value="a"/>
             <span class="visually-hidden">Base</span><img src="/images/swatches/base.svg"/></label>
           <label class="skintone-picker-option" id="skintone-label-b" for="b"><input type="radio" class="skintone-picker-input" id="b" name="skintone" value="b"/>

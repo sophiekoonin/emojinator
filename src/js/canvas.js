@@ -1,3 +1,83 @@
+/* UTILS */
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = (error) => reject(error)
+  })
+}
+
+function scaleDimensions(longerSide, shorterSide, maxSize) {
+  const longScaled = Math.min(longerSide, maxSize)
+  const shortScaled = (longScaled / longerSide) * shorterSide
+  return [longScaled, shortScaled]
+}
+
+function getScaledImageDimensions(width = MAX_GIF_SIZE, height = MAX_GIF_SIZE, maxSize = MAX_GIF_SIZE) {
+  const imageAspectRatio = width / height
+  // width < height
+  if (imageAspectRatio < 1) {
+    const [newHeight, newWidth] = scaleDimensions(height, width, maxSize)
+
+    return {
+      width: newWidth,
+      height: newHeight,
+    }
+  }
+
+  // width > height
+  if (imageAspectRatio > 1) {
+    const [newWidth, newHeight] = scaleDimensions(width, height, maxSize)
+
+    return {
+      width: newWidth,
+      height: newHeight,
+    }
+  }
+
+  // width = height
+  const newSize = Math.max(Math.min(width, maxSize), MAX_GIF_SIZE)
+  return {
+    width: newSize,
+    height: newSize,
+  }
+}
+
+
+function downloadURI(uri, name) {
+  const link = document.createElement('a')
+  link.download = name
+  link.href = uri
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  delete link
+}
+
+
+function hideElement(id) {
+  document.getElementById(id).classList.add('hidden')
+}
+
+function showElement(id) {
+  document.getElementById(id).classList.remove('hidden')
+}
+
+function renderAndDownloadGif(blob, filename, width, gif) {
+  const imgUrl = URL.createObjectURL(blob)
+  const downloadButton = document.getElementById("download")
+  outputElement.src = imgUrl
+  outputElement.width = width
+  hideElement("canvas-container")
+  showElement("output")
+  downloadButton.onclick = function () {
+    downloadURI(imgUrl, `-${filename}.png`)
+  }
+  clearCanvas()
+  gif.freeWorkers.forEach((w) => w.terminate())
+}
+
 /* GLOBALS AND CONSTANTS */
 
 /* CONSTANTS */
@@ -8,7 +88,6 @@ let filename = "image"
 const gifCanvas = document.createElement("canvas")
 const ctx = gifCanvas.getContext("2d")
 const outputElement = document.getElementById("output")
-const canvasContainer = document.getElementById("c")
 
 /* COLOUR VARS */
 let skintone = "a"
@@ -45,6 +124,17 @@ const SKINTONES = Object.freeze({
   },
 })
 
+const hairColours = Object.freeze({
+  blonde: "#FFE51F",
+  lightbrown: "#963B22",
+  darkbrown: "#603529",
+  lightblack: "#292F33",
+  darkblack: "#0C0200",
+  lightred: "#FFAC32",
+  darkred: "#E95F27",
+  grey: "#E1E8EC",
+})
+
 const selectedColours = {
   primary: null,
   secondary: null,
@@ -66,9 +156,36 @@ function updateColourSelections() {
   })
 }
 
+function doColourChange(colourType, colour){
+  canvas.getActiveObjects().forEach((obj) => {
+    if (typeof obj.size !== "undefined") {
+      // this is a group, so iterate
+      obj.forEachObject((o) => {
+        if (o.colorType === colourType) {
+          o.set({ fill: colour })
+        }
+      })
+    } else {
+      if (obj.colorType === colourType) {
+        obj.set({ fill: colour })
+      }
+    }
+  })
+  canvas.renderAll()
+}
+
+function chooseHairPreset(col) {
+  const colour = hairColours[col]
+  selectedColours.primary = colour
+  document.getElementById("primary-color").value = colour
+  showElement("primary-color-label")
+  doColourChange("primary", colour)
+}
+
 function resetColours() {
   Object.keys(selectedColours).forEach((c) => (selectedColours[c] = null))
 }
+
 function loadColourFromObject(obj) {
   if (typeof obj.size !== "undefined") {
     obj.forEachObject((o) => {
@@ -96,12 +213,12 @@ function changeSelectedSkintone(e) {
       // this is a group, so iterate
       obj.forEachObject((o) => {
         if (o.isSkin) {
-          o.set({ fill: SKINTONES[value][o.colorType] })
+          o.set({ fill: SKINTONES[skintone][o.colorType] })
         }
       })
     } else {
       if (obj.isSkin) {
-        obj.set({ fill: SKINTONES[value][o.colorType] })
+        obj.set({ fill: SKINTONES[skintone][obj.colorType] })
       }
     }
   })
@@ -125,21 +242,7 @@ function changeSelectedItemColour(e) {
   document.getElementById(
     `${changedColourType}-preview`
   ).style = `background-color: ${value};`
-  canvas.getActiveObjects().forEach((obj) => {
-    if (typeof obj.size !== "undefined") {
-      // this is a group, so iterate
-      obj.forEachObject((o) => {
-        if (o.colorType === changedColourType) {
-          o.set({ fill: value })
-        }
-      })
-    } else {
-      if (obj.colorType === changedColourType) {
-        obj.set({ fill: value })
-      }
-    }
-  })
-  canvas.renderAll()
+  doColourChange(changedColourType, value)
 }
 
 /* RENDERING STUFF */
@@ -149,6 +252,7 @@ const canvas = new fabric.Canvas("c", {
   width: SIZE,
   height: SIZE,
 })
+canvas.preserveObjectStacking = true;
 
 /* Functions for rendering stuff to canvas */
 function onItemClick(event) {
@@ -162,10 +266,8 @@ function onItemClick(event) {
           })
           .cloneNode(true)
 
-  const tagName = itemEl.tagName
-  const type = itemEl.getAttribute("data-type") || "any"
+  const type = itemEl.getAttribute("data-type") || itemEl.firstElementChild.getAttribute("data-type") || "any"
   const qty = itemEl.getAttribute("data-qty") || 1
-  const canChangeColor = itemEl.getAttribute("data-colorable") || "false"
 
   resetColours()
 
@@ -175,10 +277,6 @@ function onItemClick(event) {
     typeof itemEl.width === "number"
       ? itemEl.width
       : Number(itemEl.getAttribute("width") || 0)
-  const itemHeight =
-    typeof itemEl.height === "number"
-      ? itemEl.height
-      : Number(itemEl.getAttribute("height") || 0)
 
   let targetItemWidth
   if (type === "base") {
@@ -204,6 +302,11 @@ function onItemClick(event) {
         canvas.add(obj).centerObject(obj).renderAll()
         selectObjects([obj])
         updateColourSelections()
+        if (type === "hair") {
+          showElement("hair-preset-list")
+        } else {
+          hideElement("hair-preset-list")
+        }
       })
 
       break
@@ -231,7 +334,7 @@ function onItemClick(event) {
     objectInstance
       .scaleToWidth(targetWidth)
       .set({ left: itemWidth / 2 + itemWidth * 0.05, top: SIZE / 2 })
-    const item2 = objectInstance.clone((obj) => {
+    objectInstance.clone((obj) => {
       obj.set({
         active: true,
         left: itemWidth / 2 + 75,
@@ -247,7 +350,7 @@ function onItemClick(event) {
 /* Uploading an image */
 
 function onUploadImage(image) {
-  const { width, height } = getScaledImageDimensions(
+  const { width } = getScaledImageDimensions(
     image.width,
     image.height,
     MAX_GIF_SIZE
@@ -280,13 +383,282 @@ function selectObjects(objs) {
   canvas.requestRenderAll()
 }
 
+
+/* SPECIAL */
+/* PARTYIZER */
+// With heartfelt thanks to Ændrew Rininsland for the partyizer code
+// https://github.com/aendrew/party-everything
+
+const PARROT_COLORS = [
+  "#FDD58E",
+  "#8CFD8E",
+  "#8CFFFE",
+  "#8DB6FB",
+  "#D690FC",
+  "#FD90FD",
+  "#FD6EF4",
+  "#FC6FB6",
+  "#FD6A6B",
+  "#FD8E8D",
+]
+
+function partyizeToGif(image) {
+  const width = image.width
+  const height = image.height
+  var gif = new GIF({
+    workers: 2,
+    repeat: 0,
+    quality: 10,
+    width,
+    height,
+    transparent: true,
+    workerScript:
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      "/scripts/gif.worker.js",
+  })
+  gif.on("finished", (blob) =>
+    renderAndDownloadGif(blob, `party-${filename ?? "emoji"}`, width, gif)
+  )
+
+  for (const base of PARROT_COLORS) {
+    ctx.save()
+    ctx.clearRect(0, 0, width, height)
+    ctx.drawImage(image, 0, 0, width, height)
+    ctx.globalCompositeOperation = "source-atop"
+    ctx.fillStyle = base
+    ctx.globalAlpha = 0.4
+    ctx.fillRect(0, 0, width, height)
+    gif.addFrame(ctx, { delay: 8, copy: true })
+    ctx.restore()
+  }
+  gif.render()
+}
+
+function getImageAndThen(callback) {
+  if (canvas.getObjects().length === 0) return
+
+  scaleCanvas(() => {
+    const img = new Image()
+    img.onload = function () {
+      callback(img)
+    }
+    img.src = canvas.toDataURL()
+    img.width = canvas.width
+    img.height = canvas.height
+  })
+}
+
+/* ROTATINATOR */
+function rotateAndRenderGif(image) {
+  const numSteps = 30
+  const width = image.width
+  const height = image.height
+  const rotationInDegrees = 360 / numSteps
+  var gif = new GIF({
+    workers: 2,
+    repeat: 0,
+    quality: 10,
+    width,
+    height,
+    transparent: true,
+    workerScript:
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      "/scripts/gif.worker.js",
+  })
+
+  gif.on("finished", (blob) =>
+    renderAndDownloadGif(blob, `rotating-${filename ?? "emoji"}`, width, gif)
+  )
+
+  for (let i = 0; i < numSteps; i++) {
+    ctx.clearRect(0, 0, width, height)
+    ctx.save()
+    ctx.translate(width / 2, height / 2) // set canvas context to centre
+    ctx.rotate(i * (rotationInDegrees * (Math.PI / 180)))
+
+    ctx.drawImage(image, -width / 2, -height / 2, width, height)
+    gif.addFrame(ctx, {
+      width,
+      height,
+      delay: 0.5,
+      copy: true,
+    })
+    ctx.restore()
+  }
+  gif.render()
+}
+
+/* EMBIGGENER */
+function generateOutputs() {
+  const output1 = document.createElement("a")
+  output1.id = "link1"
+  output1.innerHTML = '<img id="output1" alt="download top left"/>'
+  const output2 = document.createElement("a")
+  output2.id = "link2"
+  output2.innerHTML = '<img id="output2" alt="download top right"/>'
+  const output3 = document.createElement("a")
+  output3.id = "link3"
+  output3.innerHTML = '<img id="output3" alt="download bottom left"/>'
+  const output4 = document.createElement("a")
+  output4.id = "link4"
+  output4.innerHTML = '<img id="output4" alt="download bottom right"/>'
+  const output = document.getElementById("embiggener-output")
+  output.appendChild(output1)
+  output.appendChild(output2)
+  output.appendChild(output3)
+  output.appendChild(output4)
+}
+
+function embiggen(image) {
+  if (document.getElementById("output1") != null) {
+    return
+  }
+  generateOutputs()
+  const width = image.width
+  const height = image.height
+  const segmentWidth = width / 2
+  const segmentHeight = height / 2
+  gifCanvas.width = segmentWidth
+  gifCanvas.height = segmentHeight
+
+  ctx.save()
+  // top left
+  ctx.drawImage(
+    image,
+    0,
+    0,
+    image.width / 2,
+    image.height / 2,
+    0,
+    0,
+    segmentWidth,
+    segmentHeight
+  )
+  const img1 = gifCanvas.toDataURL()
+  document.getElementById("output1").src = img1
+
+  const link1 = document.getElementById("link1")
+  link1.href = img1
+  link1.download = `${filename}-topleft.png`
+
+  // top right
+  ctx.clearRect(0, 0, segmentWidth, segmentHeight)
+  ctx.restore()
+
+  ctx.drawImage(
+    image,
+    image.width / 2,
+    0,
+    image.width / 2,
+    image.height / 2,
+    0,
+    0,
+    segmentWidth,
+    segmentHeight
+  )
+  const img2 = gifCanvas.toDataURL()
+  document.getElementById("output2").src = img2
+  const link2 = document.getElementById("link2")
+  link2.href = img2
+  link2.download = `${filename}-topright.png`
+
+  // bottom left
+  ctx.clearRect(0, 0, segmentWidth, segmentHeight)
+  ctx.restore()
+
+  ctx.drawImage(
+    image,
+    0,
+    image.height / 2,
+    image.width / 2,
+    image.height / 2,
+    0,
+    0,
+    segmentWidth,
+    segmentHeight
+  )
+  const img3 = gifCanvas.toDataURL()
+  document.getElementById("output3").src = img3
+
+  const link3 = document.getElementById("link3")
+  link3.href = img3
+  link3.download = `${filename}-bottomleft.png`
+
+  // bottom right
+  ctx.clearRect(0, 0, segmentWidth, segmentHeight)
+  ctx.restore()
+
+  ctx.drawImage(
+    image,
+    image.width / 2,
+    image.height / 2,
+    image.width / 2,
+    image.height / 2,
+    0,
+    0,
+    segmentWidth,
+    segmentHeight
+  )
+  const img4 = gifCanvas.toDataURL()
+  document.getElementById("output4").src = img4
+  const link4 = document.getElementById("link4")
+  link4.href = img4
+  link4.download = `${filename}-bottomright.png`
+  document.getElementById("download").setAttribute("disabled", true)
+  document.getElementById(
+    "embiggener-output"
+  ).style = `max-width: ${image.width}px;`
+  showElement("embiggener-output")
+  hideElement("canvas-container")
+}
+
+/* RED */
+function makeRed(image) {
+  canvas.width = image.width
+  canvas.height = image.height
+  clearCanvas()
+  const filterImg = new fabric.Image(image, {
+    centeredRotation: true,
+    centeredScaling: true,
+    left: SIZE / 2,
+    top: SIZE / 2,
+    originY: "center",
+    originX: "center",
+  })
+  canvas.add(filterImg).renderAll()
+  const filter = new fabric.Image.filters.BlendColor({
+    color: "#cc0000",
+    mode: "overlay",
+  })
+  filterImg.filters = [filter]
+  filterImg.applyFilters()
+  canvas.renderAll()
+}
+
+/* INIT */
+function initSpecial() {
+  document.getElementById("partyize-button").onclick = () =>
+    getImageAndThen(partyizeToGif)
+  document.getElementById("rotatinate-button").onclick = () =>
+    getImageAndThen(rotateAndRenderGif)
+  document.getElementById("embiggen-button").onclick = () =>
+    getImageAndThen(embiggen)
+  document.getElementById("red-button").onclick = () => getImageAndThen(makeRed)
+}
+
+
+
 /* TOOLBAR BUTTONS */
 function initToolbar() {
   document.getElementById("move-up").onclick = () => {
-    forEachActiveObject((obj) => canvas.bringForward(obj))
+    forEachActiveObject((obj) => obj.bringForward())
   }
   document.getElementById("move-down").onclick = () => {
-    forEachActiveObject((obj) => canvas.sendBackwards(obj))
+    forEachActiveObject((obj) => obj.sendBackwards())
   }
   document.getElementById("select-all").onclick = () => {
     selectObjects(canvas.getObjects())
@@ -336,6 +708,13 @@ Array.from(document.getElementsByClassName("skintone-picker-input")).forEach(
   (el) => (el.onchange = changeSelectedSkintone)
 )
 
+Object.keys(hairColours).forEach(c => {
+  const el = document.getElementById(`hair-preset-${c}`)
+  el.onclick = () => {
+    chooseHairPreset(c)
+  }
+})
+
 function scaleCanvas(callback) {
   canvas.discardActiveObject()
   const group = new fabric.Group()
@@ -357,7 +736,9 @@ function scaleCanvas(callback) {
   })
 }
 
-document.getElementById("download").onclick = (e) => {
+
+
+document.getElementById("download").onclick = () => {
   scaleCanvas(() => {
     var dataURL = canvas.toDataURL()
     downloadURI(dataURL, ` emojinator-${filename}.png`)
@@ -391,7 +772,26 @@ canvas.on("mouse:down", (e) => {
     resetColours()
     loadColourFromObject(e.target)
     updateColourSelections()
+    if (e.target.accessoryType === "hair") {
+      showElement("hair-preset-list")
+    } else {
+      hideElement("hair-preset-list")
+    }    
   } else {
     hideColours()
   }
 })
+
+document.getElementById("form").onsubmit = async function (event) {
+  event.preventDefault()
+  const image = Array.from(event.target).find((el) => el.files).files[0]
+  filename = image.name.split(".")[0]
+  const src = await toBase64(image)
+  const img = new Image()
+  img.src = src
+  onUploadImage(img)
+}
+document.getElementById("form").onreset = resetForm
+document.getElementById("clear-canvas").onclick = startOver
+
+initSpecial()
