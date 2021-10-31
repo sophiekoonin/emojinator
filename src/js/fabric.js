@@ -4373,6 +4373,7 @@ fabric.warn = console.warn
       "image-rendering": "imageSmoothing",
       "data-colortype": "colorType",
       "data-isskin": "isSkin",
+      "data-type": "accessoryType"
     },
     colorAttributes = {
       stroke: "strokeOpacity",
@@ -15950,6 +15951,7 @@ fabric.util.object.extend(
 
       colorType: null,
       isSkin: false,
+      accessoryType: null,
       /**
        * Constructor
        * @param {Object} [options] Options object

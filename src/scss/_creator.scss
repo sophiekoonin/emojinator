@@ -317,7 +317,7 @@
     overflow: hidden;
     transition: all 0.2s ease-in-out;
     &.is-open {
-      max-height: 100vh;
+      max-height: 200vh;
       padding-top: 1rem;
     }
   }

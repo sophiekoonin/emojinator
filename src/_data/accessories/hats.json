@@ -32,14 +32,12 @@
   },
   {
     "name": "devil horns",
-    "filename": "devil-horns.html"
+    "filename": "devil-horns.html",
+    "qty": 2
   },
   {
     "name": "halo",
-    "filename": "halo.png",
-    "type": "img",
-    "qty": 1,
-    "id": "halo"
+    "filename": "halo.html"
   },
   {
     "name": "mortar board",

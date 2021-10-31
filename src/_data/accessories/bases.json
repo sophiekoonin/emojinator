@@ -1,0 +1,142 @@
+[
+  {
+    "name": "round",
+    "filename": "round.html"
+  },
+  {
+    "name": "face",
+    "filename": "face.html"
+  },
+  {
+    "name": "person wearing hijab",
+    "filename": "hijab.html"
+  },
+  {
+    "name": "imp",
+    "filename": "imp.html"
+  },
+  {
+    "name": "artist",
+    "filename": "artist.html"
+  },
+  {
+    "name": "astronaut",
+    "filename": "astronaut.html"
+  },
+  {
+    "name": "businessperson",
+    "filename": "businessperson.html"
+  },
+  {
+    "name": "medical professional",
+    "filename": "medical-professional.html"
+  },
+  {
+    "name": "parent",
+    "filename": "parent.html"
+  },
+  {
+    "name": "person at computer",
+    "filename": "person-at-computer.html"
+  },
+  {
+    "name": "scientist",
+    "filename": "scientist.html"
+  },
+  {
+    "name": "singer",
+    "filename": "singer.html"
+  },
+  {
+    "name": "teacher",
+    "filename": "teacher.html"
+  },
+  {
+    "name": "hero",
+    "filename": "hero.html"
+  },
+  {
+    "name": "feminine hero",
+    "filename": "hero-fem.html"
+  },
+  {
+    "name": "masculine hero",
+    "filename": "hero-masc.html"
+  },
+  {
+    "name": "supervillain",
+    "filename": "villain.html"
+  },
+  {
+    "name": "feminine supervillain",
+    "filename": "villain-fem.html"
+  },
+  {
+    "name": "masculine supervillain",
+    "filename": "villain-masc.html"
+  },
+  {
+    "name": "vampire 1",
+    "filename": "vampire-1.html"
+  },
+  {
+    "name": "vampire 2",
+    "filename": "vampire-2.html"
+  },
+  {
+    "name": "zombie 1",
+    "filename": "zombie-1.html"
+  },
+  {
+    "name": "zombie 2",
+    "filename": "zombie-2.html"
+  },
+  {
+    "name": "zombie 3",
+    "filename": "zombie-3.html"
+  },
+  {
+    "name": "cat",
+    "filename": "cat.html"
+  },
+  {
+    "name": "earth, australasia",
+    "filename": "earth_australasia.html"
+  },
+  {
+    "name": "earth, americas",
+    "filename": "earth_americas.html"
+  },
+  {
+    "name": "earth, europe and africa",
+    "filename": "earth_europe_africa.html"
+  },
+  {
+    "name": "dark moon",
+    "filename": "moon_dark.html"
+  },
+  {
+    "name": "light moon",
+    "filename": "moon_light.html"
+  },
+  {
+    "name": "pumpkin",
+    "filename": "pumpkin.html"
+  },
+  {
+    "name": "ghost",
+    "filename": "ghost.html"
+  },
+  {
+    "name": "egg",
+    "filename": "egg.html"
+  },
+  {
+    "name": "onion",
+    "filename": "onion.html"
+  },
+  {
+    "name": "taco",
+    "filename": "taco.html"
+  }
+]
