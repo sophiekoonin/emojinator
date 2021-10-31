@@ -85,7 +85,6 @@ function changeSelectedSkintone(e) {
       const colorType = el.getAttribute("data-colortype")
       if (colorType != null) {
         el.setAttribute("fill", SKINTONES[skintone][colorType])
-        debugger
       }
     }
   )
@@ -128,7 +127,8 @@ function onItemClick(event) {
   const itemEl =
     event.target.tagName === "BUTTON"
       ? event.target.firstElementChild
-      : event.path
+      : event
+          .composedPath()
           .find((el) => {
             return ["img", "svg"].includes(el.tagName.toLowerCase())
           })
@@ -201,8 +201,9 @@ function onItemClick(event) {
   if (qty > 1) {
     canvas.discardActiveObject()
     const noflip = itemEl.getAttribute("data-noflip") || "false"
+    const targetWidth = objectInstance.height > objectInstance.width ? 25 : 40
     objectInstance
-      .scaleToWidth(50)
+      .scaleToWidth(targetWidth)
       .set({ left: itemWidth / 2 + itemWidth * 0.05, top: SIZE / 2 })
     const item2 = objectInstance.clone((obj) => {
       obj.set({

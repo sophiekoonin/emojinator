@@ -32,10 +32,7 @@
   },
   {
     "name": "devil horns",
-    "filename": "devil_horn.png",
-    "id": "horns",
-    "qty": 2,
-    "type": "img"
+    "filename": "devil-horns.html"
   },
   {
     "name": "halo",
@@ -73,17 +70,11 @@
   },
   {
     "name": "witch hat",
-    "filename": "witch.png",
-    "id": "witch",
-    "qty": 1,
-    "type": "img"
+    "filename": "witch-hat.html"
   },
   {
     "name": "blue witch hat",
-    "filename": "wizard.png",
-    "qty": 1,
-    "type": "img",
-    "id": "witch-blue"
+    "filename": "wizard-hat.html"
   },
   {
     "name": "wizard hat",

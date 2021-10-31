@@ -35,9 +35,8 @@
   },
   {
     "name": "glasses",
-    "filename": "glasses.png",
-    "id": "glasses",
-    "type": "img"
+    "filename": "glasses.html",
+    "id": "glasses"
   },
   {
     "name": "sunglasses",
