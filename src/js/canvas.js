@@ -66,6 +66,29 @@ function updateColourSelections() {
   })
 }
 
+function resetColours() {
+  Object.keys(selectedColours).forEach((c) => (selectedColours[c] = null))
+}
+function loadColourFromObject(obj) {
+  if (typeof obj.size !== "undefined") {
+    obj.forEachObject((o) => {
+      if (o.colorType) {
+        selectedColours[o.colorType] = o.fill
+      }
+    })
+  }
+  if (obj.colorType) {
+    selectedColours[obj.colorType] = obj.fill
+  }
+}
+
+function hideColours() {
+  resetColours()
+  hideElement("primary-color-label")
+  hideElement("secondary-color-label")
+  hideElement("tertiary-color-label")
+}
+
 function changeSelectedSkintone(e) {
   skintone = e.target.value
   canvas.getActiveObjects().forEach((obj) => {
@@ -144,8 +167,7 @@ function onItemClick(event) {
   const qty = itemEl.getAttribute("data-qty") || 1
   const canChangeColor = itemEl.getAttribute("data-colorable") || "false"
 
-  // Reset selected colours
-  Object.keys(selectedColours).forEach((c) => (selectedColours[c] = null))
+  resetColours()
 
   // SVG width/height properties are not the same as image width/height properties
   // so if these properties don't return a number, get it off the SVG itself.
@@ -173,9 +195,7 @@ function onItemClick(event) {
     case "svg":
       fabric.loadSVGFromString(itemEl.outerHTML, (objects, options) => {
         objects.forEach((obj) => {
-          if (obj.colorType) {
-            selectedColours[obj.colorType] = obj.fill
-          }
+          loadColourFromObject(obj)
         })
         const obj = fabric.util
           .groupSVGElements(objects, options)
@@ -200,6 +220,7 @@ function onItemClick(event) {
       objectInstance.scale(scaleFactor)
       canvas.add(objectInstance).renderAll()
       selectObjects([objectInstance])
+      hideColours()
       break
   }
 
@@ -239,7 +260,7 @@ function onUploadImage(image) {
     originY: "center",
     originX: "center",
   }).scaleToWidth(width)
-
+  hideColours()
   canvas.add(imgEl).renderAll()
   selectObjects([imgEl])
 }
@@ -365,3 +386,12 @@ function resetForm(event) {
 
 document.getElementById("form").onreset = resetForm
 document.getElementById("clear-canvas").onclick = startOver
+canvas.on("mouse:down", (e) => {
+  if (e.target && e.target.type !== "image") {
+    resetColours()
+    loadColourFromObject(e.target)
+    updateColourSelections()
+  } else {
+    hideColours()
+  }
+})
