@@ -72,7 +72,7 @@ function renderAndDownloadGif(blob, filename, width, gif) {
   hideElement("canvas-container")
   showElement("output")
   downloadButton.onclick = function () {
-    downloadURI(imgUrl, `-${filename}.png`)
+    downloadURI(imgUrl, `${filename}.png`)
   }
   clearCanvas()
   gif.freeWorkers.forEach((w) => w.terminate())
@@ -266,7 +266,7 @@ function onItemClick(event) {
           })
           .cloneNode(true)
 
-  const type = itemEl.getAttribute("data-type") || itemEl.firstElementChild.getAttribute("data-type") || "any"
+  const type = itemEl.getAttribute("data-type") || itemEl.firstElementChild?.getAttribute("data-type") || "any"
   const qty = itemEl.getAttribute("data-qty") || 1
 
   resetColours()
@@ -436,18 +436,19 @@ function partyizeToGif(image) {
   gif.render()
 }
 
-function getImageAndThen(callback) {
+function getImageAndThen(callback, skipScale) {
   if (canvas.getObjects().length === 0) return
 
-  scaleCanvas(() => {
+  const getCanvasToDataURL = () => {
     const img = new Image()
     img.onload = function () {
       callback(img)
     }
     img.src = canvas.toDataURL()
-    img.width = canvas.width
-    img.height = canvas.height
-  })
+    img.width = canvas.width 
+    img.height = canvas.height 
+  }
+  skipScale ?  getCanvasToDataURL() : scaleCanvas(getCanvasToDataURL) 
 }
 
 /* ROTATINATOR */
@@ -455,13 +456,15 @@ function rotateAndRenderGif(image) {
   const numSteps = 30
   const width = image.width
   const height = image.height
+  const canvasWidth = width + 25
+  const canvasHeight = height + 25
   const rotationInDegrees = 360 / numSteps
   var gif = new GIF({
     workers: 2,
     repeat: 0,
     quality: 10,
-    width,
-    height,
+    width: canvasWidth,
+    height: canvasHeight,
     transparent: true,
     workerScript:
       window.location.protocol +
@@ -474,10 +477,12 @@ function rotateAndRenderGif(image) {
     renderAndDownloadGif(blob, `rotating-${filename ?? "emoji"}`, width, gif)
   )
 
+  gifCanvas.width = canvasWidth 
+  gifCanvas.height = canvasHeight 
   for (let i = 0; i < numSteps; i++) {
-    ctx.clearRect(0, 0, width, height)
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight)
     ctx.save()
-    ctx.translate(width / 2, height / 2) // set canvas context to centre
+    ctx.translate(canvasWidth / 2, canvasHeight / 2) // set canvas context to centre
     ctx.rotate(i * (rotationInDegrees * (Math.PI / 180)))
 
     ctx.drawImage(image, -width / 2, -height / 2, width, height)
@@ -644,7 +649,7 @@ function initSpecial() {
   document.getElementById("partyize-button").onclick = () =>
     getImageAndThen(partyizeToGif)
   document.getElementById("rotatinate-button").onclick = () =>
-    getImageAndThen(rotateAndRenderGif)
+    getImageAndThen(rotateAndRenderGif, true)
   document.getElementById("embiggen-button").onclick = () =>
     getImageAndThen(embiggen)
   document.getElementById("red-button").onclick = () => getImageAndThen(makeRed)
@@ -725,10 +730,10 @@ function scaleCanvas(callback) {
       // thx i hate it
       // clone is async, but only takes an individual callback
       if (group.size() === canvasObjects.length) {
-        group.set({ top: 0, left: 0 })
         canvas.clear().renderAll()
         canvas.setHeight(group.height)
         canvas.setWidth(group.width)
+        group.set({ top: 0, left: 0 })
         canvas.add(group).renderAll()
         callback()
       }
@@ -757,6 +762,7 @@ function startOver() {
   outputElement.width = null
   showElement("canvas-container")
   hideElement("output")
+  document.getElementById("download").removeAttribute("disabled")
   document.getElementById("embiggener-output").innerHTML = ""
   hideElement("embiggener-output")
 }
@@ -767,6 +773,7 @@ function resetForm(event) {
 
 document.getElementById("form").onreset = resetForm
 document.getElementById("clear-canvas").onclick = startOver
+
 canvas.on("mouse:down", (e) => {
   if (e.target && e.target.type !== "image") {
     resetColours()
@@ -788,10 +795,10 @@ document.getElementById("form").onsubmit = async function (event) {
   filename = image.name.split(".")[0]
   const src = await toBase64(image)
   const img = new Image()
+  img.onload = () => {
+    onUploadImage(img)
+  }
   img.src = src
-  onUploadImage(img)
 }
-document.getElementById("form").onreset = resetForm
-document.getElementById("clear-canvas").onclick = startOver
 
 initSpecial()
