@@ -168,6 +168,7 @@
           flex-direction: column;
           align-items: flex-start;
           margin: 0 auto;
+          margin-bottom: 1rem;
           width: 80%;
           .colour-swatch {
             margin-right: 0.75rem;
@@ -190,15 +191,19 @@
           padding: 0;
           margin: 0;
           border: 0;
-          @extend .accessory-grid;
-          padding-left: 0.25rem;
-          padding-right: 0.25rem;
-          column-gap: 4px;
-
+          &-grid {
+            @extend .accessory-grid;
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+            column-gap: 4px;
+          }
           legend {
             padding: 0.5rem 0;
             margin-left: 1rem;
             font-variation-settings: "wght" 600;
+            h4 {
+              margin: 0;
+            }
           }
 
           .skintone-picker-option {
@@ -250,6 +255,7 @@
         border-radius: 999px;
         margin-right: 0.25rem;
       }
+      margin-bottom: 1rem;
     }
   }
 
