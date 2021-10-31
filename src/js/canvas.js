@@ -266,7 +266,10 @@ function onItemClick(event) {
           })
           .cloneNode(true)
 
-  const type = itemEl.getAttribute("data-type") || itemEl.firstElementChild?.getAttribute("data-type") || "any"
+  let type = itemEl.getAttribute("data-type") || "any"
+  if (itemEl.firstElementChild != null) {
+    type = itemEl.firstElementChild.getAttribute("data-type")
+  }
   const qty = itemEl.getAttribute("data-qty") || 1
 
   resetColours()
@@ -419,7 +422,7 @@ function partyizeToGif(image) {
       "/scripts/gif.worker.js",
   })
   gif.on("finished", (blob) =>
-    renderAndDownloadGif(blob, `party-${filename ?? "emoji"}`, width, gif)
+    renderAndDownloadGif(blob, `party-${filename || "emoji"}`, width, gif)
   )
 
   for (const base of PARROT_COLORS) {
@@ -474,7 +477,7 @@ function rotateAndRenderGif(image) {
   })
 
   gif.on("finished", (blob) =>
-    renderAndDownloadGif(blob, `rotating-${filename ?? "emoji"}`, width, gif)
+    renderAndDownloadGif(blob, `rotating-${filename || "emoji"}`, width, gif)
   )
 
   gifCanvas.width = canvasWidth 
