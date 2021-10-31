@@ -9,6 +9,10 @@
     "id": "happy-eyes"
   },
   {
+    "name": "closed",
+    "filename": "closed.html"
+  },
+  {
     "name": "angry",
     "filename": "angry.html",
     "id": "angry-eyes"
@@ -16,6 +20,23 @@
   {
     "name": "silly eyes",
     "filename": "silly_eyes.html"
+  },
+  {
+    "name": "wide open eyes",
+    "filename": "open-eye.html",
+    "qty": 2
+  },
+  {
+    "name": "wink",
+    "filename": "wink.html"
+  },
+  {
+    "name": "oval eyes",
+    "filename": "oval.html"
+  },
+  {
+    "name": "round eyes",
+    "filename": "round.html"
   },
   {
     "name": "squinting",
@@ -27,6 +48,10 @@
     "qty": 2,
     "id": "sob",
     "type": "img"
+  },
+  {
+    "name": "eyebrows",
+    "filename": "eyebrows.html"
   },
   {
     "name": "glasses",
@@ -42,21 +67,24 @@
   },
   {
     "name": "hearts",
-    "filename": "heart.html"
+    "filename": "heart.html",
+    "qty": 2
   },
   {
     "name": "stars",
-    "filename": "star.html"
+    "filename": "star.html",
+    "qty": 2
   },
   {
     "name": "dollar signs",
     "filename": "dollars.html",
-    "id": "dollar-eyes"
+    "qty": 2,
+    "noflip": "true"
   },
   {
     "name": "tear",
     "filename": "tear.html",
-    "id": "tear"
+    "qty": 2
   },
   {
     "name": "monocle",
@@ -64,7 +92,14 @@
   },
   {
     "name": "pleading eyes",
-    "filename": "pleading_eye.html"
+    "filename": "pleading_eye.html",
+    "qty": 2
+  },
+  {
+    "name": "detailed eyes",
+    "filename": "eye-detailed.html",
+    "qty": 2,
+    "noflip": true
   },
   {
     "name": "disguise",
@@ -77,5 +112,17 @@
   {
     "name": "lab goggles",
     "filename": "goggles.html"
+  },
+  {
+    "name": "hero mask",
+    "filename": "hero-mask.html"
+  },
+  {
+    "name": "villainmask",
+    "filename": "villain-mask.html"
+  },
+  {
+    "name": "zombie eyes",
+    "filename": "zombie-eyes.html"
   }
 ]

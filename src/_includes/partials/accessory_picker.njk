@@ -10,14 +10,17 @@
         <div class="color-picker-list">
           <label for="primary-color" id="primary-color-label">
             <input class="colour-picker-input" type="color" id="primary-color"/>
-            <span class="colour-picker-preview" id="primary-preview" aria-hidden="true"></span> Primary colour/main skin colour
+            <span class="colour-picker-preview" id="primary-preview" aria-hidden="true"></span>
+            Primary colour/main skin colour
           </label>
           <label id="secondary-color-label" for="secondary-color">
             <input class="colour-picker-input" type="color" id="secondary-color"/>
-            <span class="colour-picker-preview" id="secondary-preview" aria-hidden="true"></span> Secondary colour</label>
+            <span class="colour-picker-preview" id="secondary-preview" aria-hidden="true"></span>
+            Secondary colour</label>
           <label id="tertiary-color-label" for="tertiary-color">
             <input class="colour-picker-input" type="color" id="tertiary-color"/>
-            <span class="colour-picker-preview" id="tertiary-preview" aria-hidden="true"></span> Tertiary colour</label>
+            <span class="colour-picker-preview" id="tertiary-preview" aria-hidden="true"></span>
+            Tertiary colour</label>
         </div>
         <fieldset class="skintone-picker">
           <legend>Default skintone</legend>
@@ -55,7 +58,7 @@
     </div>
     <div class="accordion">
       <h3>
-        <button type="button" class="accordion-trigger is-open" data-contentid="hats-options">Hats</button>
+        <button type="button" class="accordion-trigger is-open" data-contentid="hats-options">Hats & hair</button>
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="hats-options" aria-expanded="true">
         {% for hat in hats %}
@@ -76,11 +79,14 @@
       </h3>
       <div class="accordion-content is-open accessory-selector-group" id="eyes-options" aria-expanded="true">
         {% for eye in eyes %}
-          <button type="button" title="{{ eye.name }}" class="selector-option">
+          <button type="button" title="{{ eye.name }}" class="selector-option {{ " multiple" if eye.qty === 2 }} {{ " reversed" if not eye.noflip }}">
             {% if eye.type === "img" %}
               <img src="/images/eyes/{{ eye.filename }}" alt="" id="{{ eye.id }}" data-qty="{{ eye.qty }}" data-noflip="{{ "true" if eye.noflip else "false" }}"/>
             {% else %}
               {% include "partials/accessories/eyes/" + eye.filename %}
+              {% if eye.qty === 2 %}
+                {% include "partials/accessories/eyes/" + eye.filename %}
+              {% endif %}
             {% endif %}
             <span class="visually-hidden">{{ eye.name }}</span>
           </button>
