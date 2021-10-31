@@ -1,7 +1,23 @@
 [
   {
+    "name": "smile",
+    "filename": "smile.html"
+  },
+  {
+    "name": "smile 2",
+    "filename": "smile-2.html"
+  },
+  {
+    "name": "open smile",
+    "filename": "happy-open.html"
+  },
+  {
     "name": "tongue sticking out",
     "filename": "tongue.html"
+  },
+  {
+    "name": "smile with tongue",
+    "filename": "smile-tongue.html"
   },
   {
     "name": "silly tongue out",
@@ -16,12 +32,36 @@
     "filename": "open.html"
   },
   {
+    "name": "smirk",
+    "filename": "smirk.html"
+  },
+  {
     "name": "downturned",
     "filename": "downturned.html"
   },
   {
+    "name": "downturned small",
+    "filename": "downturned-sm.html"
+  },
+  {
+    "name": "downturned open",
+    "filename": "downturned-open.html"
+  },
+  {
+    "name": "kiss",
+    "filename": "kiss.html"
+  },
+  {
     "name": "sweary",
     "filename": "sweary.html"
+  },
+  {
+    "name": "fangs",
+    "filename": "fangs.html"
+  },
+  {
+    "name": "fang smile",
+    "filename": "fang-smile.html"
   },
   {
     "name": "zip",
@@ -30,6 +70,30 @@
   {
     "name": "throwing up",
     "filename": "vom.html"
+  },
+  {
+    "name": "detailed mouth",
+    "filename": "mouth-detailed.html"
+  },
+  {
+    "name": "beard 1",
+    "filename": "beard.html"
+  },
+  {
+    "name": "beard 2",
+    "filename": "beard-2.html"
+  },
+  {
+    "name": "flushed cheeks",
+    "filename": "cheeks.html"
+  },
+  {
+    "name": "nose",
+    "filename": "nose.html"
+  },
+  {
+    "name": "nose 2",
+    "filename": "nose-2.html"
   },
   {
     "name": "pumpkin 1",

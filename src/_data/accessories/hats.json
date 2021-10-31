@@ -55,6 +55,18 @@
     "id": "agent-hat"
   },
   {
+    "name": "beret",
+    "filename": "beret.html"
+  },
+  {
+    "name": "chef",
+    "filename": "chef.html"
+  },
+  {
+    "name": "fedora",
+    "filename": "fedora.html"
+  },
+  {
     "name": "magician",
     "filename": "magician_hat.html",
     "id": "magician"
@@ -80,5 +92,57 @@
     "qty": 1,
     "type": "img",
     "id": "wizard"
+  },
+  {
+    "name": "long hair 1",
+    "filename": "long-1.html"
+  },
+  {
+    "name": "long hair 2",
+    "filename": "long-2.html"
+  },
+  {
+    "name": "long hair 3",
+    "filename": "long-3.html"
+  },
+  {
+    "name": "short hair 1",
+    "filename": "short-1.html"
+  },
+  {
+    "name": "short hair 2",
+    "filename": "short-2.html"
+  },
+  {
+    "name": "short hair 3",
+    "filename": "short-3.html"
+  },
+  {
+    "name": "short hair 4",
+    "filename": "short-4.html"
+  },
+  {
+    "name": "short hair 5",
+    "filename": "short-5.html"
+  },
+  {
+    "name": "short hair 6",
+    "filename": "short-6.html"
+  },
+  {
+    "name": "short hair 7",
+    "filename": "short-7.html"
+  },
+  {
+    "name": "short hair 8",
+    "filename": "short-8.html"
+  },
+  {
+    "name": "short hair 9",
+    "filename": "short-9.html"
+  },
+  {
+    "name": "short hair 10",
+    "filename": "short-10.html"
   }
 ]
