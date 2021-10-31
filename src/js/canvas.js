@@ -182,7 +182,7 @@ function onItemClick(event) {
 
   let targetItemWidth
   if (type === "base") {
-    targetItemWidth = SIZE * 0.75
+    targetItemWidth = SIZE * 0.8
   } else {
     targetItemWidth = Math.min(SIZE / 2, itemWidth)
   }

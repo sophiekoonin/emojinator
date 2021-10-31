@@ -14,11 +14,6 @@
     "id": "angry-eyes"
   },
   {
-    "name": "eyebrows",
-    "filename": "eyebrows.html",
-    "id": "eyebrows"
-  },
-  {
     "name": "silly eyes",
     "filename": "silly_eyes.html"
   },
@@ -65,22 +60,22 @@
   },
   {
     "name": "monocle",
-    "filename": "monocle.html",
-    "id": "monocle"
+    "filename": "monocle.html"
   },
   {
     "name": "pleading eyes",
-    "filename": "pleading_eye.html",
-    "id": "pleading-eyes"
+    "filename": "pleading_eye.html"
   },
   {
     "name": "disguise",
-    "filename": "disguise.html",
-    "id": "disguise"
+    "filename": "disguise.html"
+  },
+  {
+    "name": "elf ears",
+    "filename": "elf-ears.html"
   },
   {
     "name": "lab goggles",
-    "filename": "goggles.html",
-    "id": "goggles"
+    "filename": "goggles.html"
   }
 ]

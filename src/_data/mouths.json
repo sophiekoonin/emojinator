@@ -1,32 +1,42 @@
 [
   {
     "name": "tongue sticking out",
-    "filename": "tongue.html",
-    "id": "tongue"
+    "filename": "tongue.html"
+  },
+  {
+    "name": "silly tongue out",
+    "filename": "tongue_silly.html"
   },
   {
     "name": "grimace",
-    "filename": "grimace.html",
-    "id": "grimace"
+    "filename": "grimace.html"
+  },
+  {
+    "name": "open mouth",
+    "filename": "open.html"
+  },
+  {
+    "name": "downturned",
+    "filename": "downturned.html"
   },
   {
     "name": "sweary",
-    "filename": "sweary.html",
-    "id": "sweary"
+    "filename": "sweary.html"
   },
   {
     "name": "zip",
-    "filename": "zip.html",
-    "id": "zip"
+    "filename": "zip.html"
+  },
+  {
+    "name": "throwing up",
+    "filename": "vom.html"
   },
   {
     "name": "pumpkin 1",
-    "filename": "pumpkin_mouth.html",
-    "id": "pumpkin-mouth-1"
+    "filename": "pumpkin_mouth.html"
   },
   {
     "name": "pumpkin 2",
-    "filename": "pumpkin_mouth_2.html",
-    "id": "pumpkin-mouth-2"
+    "filename": "pumpkin_mouth_2.html"
   }
 ]
