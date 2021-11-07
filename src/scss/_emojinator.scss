@@ -83,6 +83,9 @@
     #flip-horizontal svg {
       transform: rotate(90deg);
     }
+    #redo svg {
+      transform: scale(-1, 1);
+    }
   }
   &-actions {
     display: flex;

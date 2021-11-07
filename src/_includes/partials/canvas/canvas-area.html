@@ -32,6 +32,12 @@
     <button id="remove-node" class="action-button" type="button" title="Remove selected">
       <span class="visually-hidden">Remove selected</span>{% include "partials/canvas/trash.html" %}
     </button>
+    <button id="undo" class="action-button" disabled type="button" title="Undo">
+      <span class="visually-hidden">Undo</span>{% include "partials/canvas/undo.html" %}
+    </button>
+    <button id="redo" class="action-button" disabled type="button" title="Redo">
+      <span class="visually-hidden">Redo</span>{% include "partials/canvas/undo.html" %}
+    </button>
   </div>
   <canvas id="c" class="canvas-border"></canvas>
   <img class="canvas-border" id="output" />

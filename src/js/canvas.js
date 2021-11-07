@@ -245,6 +245,75 @@ function changeSelectedItemColour(e) {
   doColourChange(changedColourType, value)
 }
 
+
+/* ACTION HISTORY */
+const MAX_ACTION_HISTORY = 10
+let canvasHistory = []
+
+let currentStatePtr = 0
+
+// If there's nothing saved,
+// save the initial state before we do stuff.
+function maybeSaveInitialState(){
+  if (canvasHistory.length === 0){
+    canvasHistory.push(JSON.stringify(canvas.toJSON()))
+    currentStatePtr++
+  }
+}
+
+function saveCanvasState() {
+  document.getElementById("undo").disabled = false
+
+  // If our 'last action' is midway through the history array,
+  // make that the new end
+  if (currentStatePtr < canvasHistory.length - 1) {
+    canvasHistory = canvasHistory.slice(0, currentStatePtr)
+  }
+  // If the history is full, remove the oldest action
+  if (canvasHistory.length === MAX_ACTION_HISTORY) {
+    canvasHistory.shift()
+  }
+  // save the thing we've just done
+  canvasHistory.push(JSON.stringify(canvas.toJSON()))
+  currentStatePtr = canvasHistory.length - 1
+}
+
+
+// Restore the canvas to the state before wherever currentStatePtr is pointing
+// (currentStatePtr points to the state *after* we did the action)
+function undo() {
+  currentStatePtr--
+
+  if (canvasHistory.length === 0 || currentStatePtr < 0) {
+    return
+  }
+
+  const prevState = canvasHistory[currentStatePtr]
+  document.getElementById("redo").disabled = false
+
+  if (currentStatePtr === 0) {
+    document.getElementById("undo").disabled = true
+  }
+
+  canvas.loadFromJSON(prevState, canvas.renderAll.bind(canvas))
+}
+
+function redo() {
+  currentStatePtr++
+
+  if (canvasHistory.length <= 1) {
+    // Nothing to redo.
+    return
+  }
+
+  const nextState = canvasHistory[currentStatePtr]
+  if (currentStatePtr === canvasHistory.length - 1) {
+    // We've reached the end
+    document.getElementById("redo").disabled = true
+  }
+  canvas.loadFromJSON(nextState, canvas.renderAll.bind(canvas))
+  document.getElementById("undo").disabled = false
+}
 /* RENDERING STUFF */
 
 // The main emojinator canvas
@@ -257,6 +326,7 @@ canvas.preserveObjectStacking = true;
 
 /* Functions for rendering stuff to canvas */
 function onItemClick(event) {
+  maybeSaveInitialState()
   const itemEl =
     event.target.tagName === "BUTTON"
       ? event.target.firstElementChild
@@ -267,21 +337,21 @@ function onItemClick(event) {
           })
           .cloneNode(true)
 
-  let type = itemEl.getAttribute("data-type") || "any"
-  if (itemEl.firstElementChild != null) {
-    type = itemEl.firstElementChild.getAttribute("data-type")
+  let type = itemEl.getAttribute("data-type") 
+  if (itemEl.firstElementChild != null && type == "null") {
+    type = itemEl.firstElementChild.getAttribute("data-type") || "any"
   }
   const qty = itemEl.getAttribute("data-qty") || 1
-
+  
   resetColours()
-
+  
   // SVG width/height properties are not the same as image width/height properties
   // so if these properties don't return a number, get it off the SVG itself.
   const itemWidth =
-    typeof itemEl.width === "number"
-      ? itemEl.width
-      : Number(itemEl.getAttribute("width") || 0)
-
+  typeof itemEl.width === "number"
+  ? itemEl.width
+  : Number(itemEl.getAttribute("width") || 0)
+  
   let targetItemWidth
   if (type === "base") {
     targetItemWidth = SIZE * 0.8
@@ -290,7 +360,6 @@ function onItemClick(event) {
   }
 
   const scaleFactor = targetItemWidth / itemWidth
-
   let objectInstance
 
   switch (itemEl.tagName) {
@@ -349,11 +418,13 @@ function onItemClick(event) {
       selectObjects([objectInstance, obj])
     })
   }
+  saveCanvasState()
 }
 
 /* Uploading an image */
 
 function onUploadImage(image) {
+  maybeSaveInitialState()
   const { width } = getScaledImageDimensions(
     image.width,
     image.height,
@@ -370,6 +441,7 @@ function onUploadImage(image) {
   hideColours()
   canvas.add(imgEl).renderAll()
   selectObjects([imgEl])
+  saveCanvasState()
 }
 
 function forEachActiveObject(callback) {
@@ -660,43 +732,56 @@ function initSpecial() {
 }
 
 
-
 /* TOOLBAR BUTTONS */
+
+function doAction(callback) {
+  maybeSaveInitialState()
+  forEachActiveObject(callback)
+  saveCanvasState()
+}
+
 function initToolbar() {
   document.getElementById("move-up").onclick = () => {
-    forEachActiveObject((obj) => obj.bringForward())
+    doAction((obj) => obj.bringForward())
   }
+
   document.getElementById("move-down").onclick = () => {
-    forEachActiveObject((obj) => obj.sendBackwards())
+    doAction((obj) => obj.sendBackwards())
+    saveCanvasState()
   }
+
   document.getElementById("select-all").onclick = () => {
     selectObjects(canvas.getObjects())
   }
 
   document.getElementById("rotate-left").onclick = () => {
-    forEachActiveObject((obj) => obj.rotate(obj.angle - 45))
+    doAction((obj) => obj.rotate(obj.angle - 45))
   }
+
   document.getElementById("rotate-right").onclick = () => {
-    forEachActiveObject((obj) => obj.rotate(obj.angle + 45))
+    doAction(obj => obj.rotate(obj.angle + 45))
   }
 
   document.getElementById("flip-horizontal").onclick = () => {
-    forEachActiveObject((obj) => obj.toggle("flipX"))
+    doAction((obj) => obj.toggle("flipX"))
   }
   document.getElementById("flip-vertical").onclick = () => {
-    forEachActiveObject((obj) => obj.toggle("flipY"))
+    doAction((obj) => obj.toggle("flipY"))
   }
 
   document.getElementById("align-middle").onclick = () => {
-    forEachActiveObject((obj) => canvas.centerObjectV(obj))
+    doAction((obj) => canvas.centerObjectV(obj))
   }
 
   document.getElementById("align-center").onclick = () => {
-    forEachActiveObject((obj) => canvas.centerObjectH(obj))
+    doAction((obj) => canvas.centerObjectH(obj))
   }
 
+  document.getElementById("undo").onclick = undo
+  document.getElementById("redo").onclick = redo
+  
   document.getElementById("remove-node").onclick = () => {
-    forEachActiveObject((obj) => canvas.remove(obj))
+    doAction((obj) => canvas.remove(obj))
     canvas.discardActiveObject()
     canvas.renderAll()
   }
@@ -757,7 +842,7 @@ function startOver() {
   outputElement.width = null
   showElement("canvas-container")
   hideElement("output")
-  document.getElementById("download").removeAttribute("disabled")
+  document.getElementById("download").disabled = false
   document.getElementById("embiggener-output").innerHTML = ""
   hideElement("embiggener-output")
 }
