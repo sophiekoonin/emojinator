@@ -285,7 +285,6 @@ function registerAction() {
   // If our 'last action' is midway through the history array,
   // make that the new end
   if (currentStatePtr < actionHistory.length - 1) {
-    console.log("resetting end point of action history")
     actionHistory = actionHistory.slice(0, currentStatePtr)
   }
   // If the history is full, remove the oldest action
@@ -295,8 +294,6 @@ function registerAction() {
   // save the thing we've just done
   actionHistory.push(JSON.stringify(canvas.toJSON()))
   currentStatePtr = actionHistory.length - 1
-  console.log('actionHistory', actionHistory)
-  console.log('after registering action, currentStatePtr is now', currentStatePtr)
 }
 
 
@@ -314,89 +311,24 @@ function undo() {
     document.getElementById("undo").disabled = true
   }
   canvas.loadFromJSON(prevState, canvas.renderAll.bind(canvas))
-
-
-
-  // const { type, objects } = lastAction
-  // switch (type) {
-  //   case ActionTypes.ROTATE:
-  //     objects.forEach((obj) => {
-  //       obj.rotate(obj.angle - lastAction.newValue)
-  //     })
-  //     break
-  //     case ActionTypes.FLIPX:
-  //       case ActionTypes.FLIPY:
-  //         handleSharedAction(lastAction)
-  //         break
-  //         case ActionTypes.ALIGN_CENTER:
-  //           break
-  //           case ActionTypes.ALIGN_MIDDLE:
-  //             break
-  //             case ActionTypes.SEND_BACKWARDS:
-  //               objects.forEach(obj => obj.bringForward())
-  //               break
-  //               case ActionTypes.BRING_FORWARDS:
-  //                 objects.forEach(obj => obj.sendBackwards())
-  //                 break
-  //   default:
-  //     return null
-  //   }
   }
   
-  function handleSharedAction(action) {
-    const { type, objects } = action
-    switch (type) {
-      case ActionTypes.FLIPX:
-        objects.forEach(obj => obj.toggle("flipX"))
-    break
-  case ActionTypes.FLIPY:
-    objects.forEach(obj => obj.toggle("flipY"))
-    break
-  default:
-    break
-  }
-}
 
 function redo() {
-  const lastAction = actionHistory[currentStatePtr] 
-  if (lastAction == null) return 
-  
-  document.getElementById("undo").disabled = false
+  currentStatePtr++
 
-  const { objects, type } = lastAction
-  switch (type) {
-    case ActionTypes.ROTATE:
-      objects.forEach((obj) => {
-        obj.rotate(obj.angle + lastAction.newValue)
-      })
-      break
-      case ActionTypes.FLIPX:
-      case ActionTypes.FLIPY:
-        handleSharedAction(lastAction)
-        break
-      case ActionTypes.ALIGN_CENTER:
-        objects.forEach(obj => canvas.centerObjectV(obj))
-        break
-      case ActionTypes.ALIGN_MIDDLE:
-        objects.forEach(obj => canvas.centerObjectH(obj))
-        break
-      case ActionTypes.SEND_BACKWARDS:
-        objects.forEach(obj => obj.sendBackwards())
-        break
-      case ActionTypes.BRING_FORWARDS:
-        objects.forEach(obj => obj.bringForward())
-        break
-      default:
-        return null
-    }
-    canvas.renderAll()
-    if (currentStatePtr < actionHistory.length - 1) {
-      console.log("incrementing currentStatePtr")
-      currentStatePtr++
-    } else {
-      console.log("disabling redo, we have reached the end")
-      document.getElementById("redo").disabled = true
-    }
+  if (actionHistory.length <= 1) {
+    // Nothing to redo.
+    return
+  }
+
+  const nextState = actionHistory[currentStatePtr]
+  if (currentStatePtr === actionHistory.length - 1) {
+    // We've reached the end
+    document.getElementById("redo").disabled = true
+  }
+  canvas.loadFromJSON(nextState, canvas.renderAll.bind(canvas))
+  document.getElementById("undo").disabled = false
 }
 /* RENDERING STUFF */
 
