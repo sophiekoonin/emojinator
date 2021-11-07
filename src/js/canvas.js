@@ -261,78 +261,86 @@ const ActionTypes = Object.freeze({
   BRING_FORWARDS: 'send-forwards',
   SEND_BACKWARDS: 'send-backwards',
   REMOVE_OBJ: 'remove-obj',
+  DRAG: 'drag',
+  SCALEX: 'scaleX',
 })
 
 const MAX_ACTION_HISTORY = 10
 let actionHistory = []
 
-let undoPtr = 0
+let currentStatePtr = 0
 
-function registerAction(type, newValue, prevValue) {
+// If there's nothing saved,
+// save the initial state before we do stuff.
+function maybeSaveInitialState(){
+  if (actionHistory.length === 0){
+    actionHistory.push(JSON.stringify(canvas.toJSON()))
+    currentStatePtr++
+  }
+}
+
+function registerAction() {
   document.getElementById("undo").disabled = false
 
   // If our 'last action' is midway through the history array,
   // make that the new end
-  if (undoPtr < actionHistory.length - 1) {
+  if (currentStatePtr < actionHistory.length - 1) {
     console.log("resetting end point of action history")
-    actionHistory = actionHistory.slice(0, undoPtr)
+    actionHistory = actionHistory.slice(0, currentStatePtr)
   }
   // If the history is full, remove the oldest action
   if (actionHistory.length === MAX_ACTION_HISTORY) {
     actionHistory.shift()
   }
-  actionHistory.push({
-    type, 
-    objects: canvas.getActiveObjects(),
-    newValue,
-    prevValue,
-  })
-  undoPtr = actionHistory.length - 1
+  // save the thing we've just done
+  actionHistory.push(JSON.stringify(canvas.toJSON()))
+  currentStatePtr = actionHistory.length - 1
   console.log('actionHistory', actionHistory)
-  console.log('undoPtr', undoPtr)
+  console.log('after registering action, currentStatePtr is now', currentStatePtr)
 }
 
+
+// Restore the canvas to the state before wherever currentStatePtr is pointing
+// (currentStatePtr points to the state *after* we did the action)
 function undo() {
-  if (undoPtr > 0) {
+  currentStatePtr--
+
+  if (actionHistory.length === 0 || currentStatePtr < 0) {
     return
   }
-  const lastAction = actionHistory[undoPtr]
+  const prevState = actionHistory[currentStatePtr]
   document.getElementById("redo").disabled = false
-  console.log(lastAction)
-  if (undoPtr === 0) {
-    console.log("undoPtr is 0, setting undo disabled")
+  if (currentStatePtr === 0) {
     document.getElementById("undo").disabled = true
   }
-  
-  if (lastAction == null) return 
-  
-  const { type, objects } = lastAction
-  switch (type) {
-    case ActionTypes.ROTATE:
-      objects.forEach((obj) => {
-        obj.rotate(obj.angle - lastAction.newValue)
-      })
-      break
-      case ActionTypes.FLIPX:
-        case ActionTypes.FLIPY:
-          handleSharedAction(lastAction)
-          break
-          case ActionTypes.ALIGN_CENTER:
-            // objects.forEach(obj => obj.set)
-            break
-            case ActionTypes.ALIGN_MIDDLE:
-              break
-              case ActionTypes.SEND_BACKWARDS:
-                objects.forEach(obj => obj.bringForward())
-                break
-                case ActionTypes.BRING_FORWARDS:
-                  objects.forEach(obj => obj.sendBackwards())
-                  break
-    default:
-      return null
-    }
-    canvas.renderAll()
-    undoPtr--
+  canvas.loadFromJSON(prevState, canvas.renderAll.bind(canvas))
+
+
+
+  // const { type, objects } = lastAction
+  // switch (type) {
+  //   case ActionTypes.ROTATE:
+  //     objects.forEach((obj) => {
+  //       obj.rotate(obj.angle - lastAction.newValue)
+  //     })
+  //     break
+  //     case ActionTypes.FLIPX:
+  //       case ActionTypes.FLIPY:
+  //         handleSharedAction(lastAction)
+  //         break
+  //         case ActionTypes.ALIGN_CENTER:
+  //           break
+  //           case ActionTypes.ALIGN_MIDDLE:
+  //             break
+  //             case ActionTypes.SEND_BACKWARDS:
+  //               objects.forEach(obj => obj.bringForward())
+  //               break
+  //               case ActionTypes.BRING_FORWARDS:
+  //                 objects.forEach(obj => obj.sendBackwards())
+  //                 break
+  //   default:
+  //     return null
+  //   }
   }
   
   function handleSharedAction(action) {
@@ -350,11 +358,10 @@ function undo() {
 }
 
 function redo() {
-  const lastAction = actionHistory[undoPtr] 
-  document.getElementById("undo").disabled = false
-
-  console.log(lastAction)
+  const lastAction = actionHistory[currentStatePtr] 
   if (lastAction == null) return 
+  
+  document.getElementById("undo").disabled = false
 
   const { objects, type } = lastAction
   switch (type) {
@@ -383,9 +390,9 @@ function redo() {
         return null
     }
     canvas.renderAll()
-    if (undoPtr < actionHistory.length - 1) {
-      console.log("incrementing undoPtr")
-      undoPtr++
+    if (currentStatePtr < actionHistory.length - 1) {
+      console.log("incrementing currentStatePtr")
+      currentStatePtr++
     } else {
       console.log("disabling redo, we have reached the end")
       document.getElementById("redo").disabled = true
@@ -805,15 +812,21 @@ function initSpecial() {
 
 
 /* TOOLBAR BUTTONS */
+
+function doAction(callback) {
+  maybeSaveInitialState()
+  forEachActiveObject(callback)
+  registerAction()
+}
+
 function initToolbar() {
   document.getElementById("move-up").onclick = () => {
-    registerAction(ActionTypes.BRING_FORWARDS)
-    forEachActiveObject((obj) => obj.bringForward())
+    doAction((obj) => obj.bringForward())
   }
 
   document.getElementById("move-down").onclick = () => {
+    doAction((obj) => obj.sendBackwards())
     registerAction(ActionTypes.SEND_BACKWARDS)
-    forEachActiveObject((obj) => obj.sendBackwards())
   }
 
   document.getElementById("select-all").onclick = () => {
@@ -821,39 +834,33 @@ function initToolbar() {
   }
 
   document.getElementById("rotate-left").onclick = () => {
-    registerAction(ActionTypes.ROTATE, -45)
-    forEachActiveObject((obj) => obj.rotate(obj.angle - 45))
+    doAction((obj) => obj.rotate(obj.angle - 45))
   }
 
   document.getElementById("rotate-right").onclick = () => {
-    registerAction(ActionTypes.ROTATE, 45)
-    forEachActiveObject(obj => obj.rotate(obj.angle + 45))
+    doAction(obj => obj.rotate(obj.angle + 45))
   }
 
   document.getElementById("flip-horizontal").onclick = () => {
-    registerAction(ActionTypes.FLIPX)
-    forEachActiveObject((obj) => obj.toggle("flipX"))
+    doAction((obj) => obj.toggle("flipX"))
   }
   document.getElementById("flip-vertical").onclick = () => {
-    registerAction(ActionTypes.FLIPY)
-    forEachActiveObject((obj) => obj.toggle("flipY"))
+    doAction((obj) => obj.toggle("flipY"))
   }
 
   document.getElementById("align-middle").onclick = () => {
-    registerAction(ActionTypes.ALIGN_MIDDLE)
-    forEachActiveObject((obj) => canvas.centerObjectV(obj))
+    doAction((obj) => canvas.centerObjectV(obj))
   }
 
   document.getElementById("align-center").onclick = () => {
-    registerAction(ActionTypes.ALIGN_CENTER)
-    forEachActiveObject((obj) => canvas.centerObjectH(obj))
+    doAction((obj) => canvas.centerObjectH(obj))
   }
 
   document.getElementById("undo").onclick = undo
   document.getElementById("redo").onclick = redo
   
   document.getElementById("remove-node").onclick = () => {
-    forEachActiveObject((obj) => canvas.remove(obj))
+    doAction((obj) => canvas.remove(obj))
     canvas.discardActiveObject()
     canvas.renderAll()
   }
@@ -963,3 +970,10 @@ document.getElementById("form").onsubmit = async function (event) {
 }
 
 initSpecial()
+
+
+canvas.on("object:modified", (e) => {
+  console.log(e)
+  // const { actionHandler } = e.transform
+  // actionHandle
+})
