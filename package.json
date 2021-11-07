@@ -45,7 +45,8 @@
       "es6": true
     },
     "rules": {
-      "no-delete-var": "off"
+      "no-delete-var": "off",
+      "no-console": "warn"
     },
     "ignorePatterns": [
       "src/assets/scripts/*.js",

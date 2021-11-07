@@ -245,6 +245,152 @@ function changeSelectedItemColour(e) {
   doColourChange(changedColourType, value)
 }
 
+
+/* ACTION HISTORY */
+
+// An action may have a previous value (e.g. when transforming)
+// values may be a single value or an object (x, y).
+const ActionTypes = Object.freeze({
+  ROTATE: 'rotate',
+  FLIPX: 'flipx',
+  FLIPY: 'flipy',
+  ALIGN_MIDDLE: 'align-middle',
+  ALIGN_CENTER: 'align-center',
+  CHANGE_COLOUR: 'change-colour',
+  SCALE: 'scale',
+  BRING_FORWARDS: 'send-forwards',
+  SEND_BACKWARDS: 'send-backwards',
+  REMOVE_OBJ: 'remove-obj',
+})
+
+const MAX_ACTION_HISTORY = 10
+let actionHistory = []
+
+let undoPtr = 0
+
+function registerAction(type, newValue, prevValue) {
+  document.getElementById("undo").disabled = false
+
+  // If our 'last action' is midway through the history array,
+  // make that the new end
+  if (undoPtr < actionHistory.length - 1) {
+    console.log("resetting end point of action history")
+    actionHistory = actionHistory.slice(0, undoPtr)
+  }
+  // If the history is full, remove the oldest action
+  if (actionHistory.length === MAX_ACTION_HISTORY) {
+    actionHistory.shift()
+  }
+  actionHistory.push({
+    type, 
+    objects: canvas.getActiveObjects(),
+    newValue,
+    prevValue,
+  })
+  undoPtr = actionHistory.length - 1
+  console.log('actionHistory', actionHistory)
+  console.log('undoPtr', undoPtr)
+}
+
+function undo() {
+  if (undoPtr > 0) {
+    return
+  }
+  const lastAction = actionHistory[undoPtr]
+  document.getElementById("redo").disabled = false
+  console.log(lastAction)
+  if (undoPtr === 0) {
+    console.log("undoPtr is 0, setting undo disabled")
+    document.getElementById("undo").disabled = true
+  }
+  
+  if (lastAction == null) return 
+  
+  const { type, objects } = lastAction
+  switch (type) {
+    case ActionTypes.ROTATE:
+      objects.forEach((obj) => {
+        obj.rotate(obj.angle - lastAction.newValue)
+      })
+      break
+      case ActionTypes.FLIPX:
+        case ActionTypes.FLIPY:
+          handleSharedAction(lastAction)
+          break
+          case ActionTypes.ALIGN_CENTER:
+            // objects.forEach(obj => obj.set)
+            break
+            case ActionTypes.ALIGN_MIDDLE:
+              break
+              case ActionTypes.SEND_BACKWARDS:
+                objects.forEach(obj => obj.bringForward())
+                break
+                case ActionTypes.BRING_FORWARDS:
+                  objects.forEach(obj => obj.sendBackwards())
+                  break
+    default:
+      return null
+    }
+    canvas.renderAll()
+    undoPtr--
+  }
+  
+  function handleSharedAction(action) {
+    const { type, objects } = action
+    switch (type) {
+      case ActionTypes.FLIPX:
+        objects.forEach(obj => obj.toggle("flipX"))
+    break
+  case ActionTypes.FLIPY:
+    objects.forEach(obj => obj.toggle("flipY"))
+    break
+  default:
+    break
+  }
+}
+
+function redo() {
+  const lastAction = actionHistory[undoPtr] 
+  document.getElementById("undo").disabled = false
+
+  console.log(lastAction)
+  if (lastAction == null) return 
+
+  const { objects, type } = lastAction
+  switch (type) {
+    case ActionTypes.ROTATE:
+      objects.forEach((obj) => {
+        obj.rotate(obj.angle + lastAction.newValue)
+      })
+      break
+      case ActionTypes.FLIPX:
+      case ActionTypes.FLIPY:
+        handleSharedAction(lastAction)
+        break
+      case ActionTypes.ALIGN_CENTER:
+        objects.forEach(obj => canvas.centerObjectV(obj))
+        break
+      case ActionTypes.ALIGN_MIDDLE:
+        objects.forEach(obj => canvas.centerObjectH(obj))
+        break
+      case ActionTypes.SEND_BACKWARDS:
+        objects.forEach(obj => obj.sendBackwards())
+        break
+      case ActionTypes.BRING_FORWARDS:
+        objects.forEach(obj => obj.bringForward())
+        break
+      default:
+        return null
+    }
+    canvas.renderAll()
+    if (undoPtr < actionHistory.length - 1) {
+      console.log("incrementing undoPtr")
+      undoPtr++
+    } else {
+      console.log("disabling redo, we have reached the end")
+      document.getElementById("redo").disabled = true
+    }
+}
 /* RENDERING STUFF */
 
 // The main emojinator canvas
@@ -266,21 +412,21 @@ function onItemClick(event) {
           })
           .cloneNode(true)
 
-  let type = itemEl.getAttribute("data-type") || "any"
-  if (itemEl.firstElementChild != null) {
-    type = itemEl.firstElementChild.getAttribute("data-type")
+  let type = itemEl.getAttribute("data-type") 
+  if (itemEl.firstElementChild != null && type == "null") {
+    type = itemEl.firstElementChild.getAttribute("data-type") || "any"
   }
   const qty = itemEl.getAttribute("data-qty") || 1
-
+  
   resetColours()
-
+  
   // SVG width/height properties are not the same as image width/height properties
   // so if these properties don't return a number, get it off the SVG itself.
   const itemWidth =
-    typeof itemEl.width === "number"
-      ? itemEl.width
-      : Number(itemEl.getAttribute("width") || 0)
-
+  typeof itemEl.width === "number"
+  ? itemEl.width
+  : Number(itemEl.getAttribute("width") || 0)
+  
   let targetItemWidth
   if (type === "base") {
     targetItemWidth = SIZE * 0.8
@@ -289,7 +435,6 @@ function onItemClick(event) {
   }
 
   const scaleFactor = targetItemWidth / itemWidth
-
   let objectInstance
 
   switch (itemEl.tagName) {
@@ -659,41 +804,54 @@ function initSpecial() {
 }
 
 
-
 /* TOOLBAR BUTTONS */
 function initToolbar() {
   document.getElementById("move-up").onclick = () => {
+    registerAction(ActionTypes.BRING_FORWARDS)
     forEachActiveObject((obj) => obj.bringForward())
   }
+
   document.getElementById("move-down").onclick = () => {
+    registerAction(ActionTypes.SEND_BACKWARDS)
     forEachActiveObject((obj) => obj.sendBackwards())
   }
+
   document.getElementById("select-all").onclick = () => {
     selectObjects(canvas.getObjects())
   }
 
   document.getElementById("rotate-left").onclick = () => {
+    registerAction(ActionTypes.ROTATE, -45)
     forEachActiveObject((obj) => obj.rotate(obj.angle - 45))
   }
+
   document.getElementById("rotate-right").onclick = () => {
-    forEachActiveObject((obj) => obj.rotate(obj.angle + 45))
+    registerAction(ActionTypes.ROTATE, 45)
+    forEachActiveObject(obj => obj.rotate(obj.angle + 45))
   }
 
   document.getElementById("flip-horizontal").onclick = () => {
+    registerAction(ActionTypes.FLIPX)
     forEachActiveObject((obj) => obj.toggle("flipX"))
   }
   document.getElementById("flip-vertical").onclick = () => {
+    registerAction(ActionTypes.FLIPY)
     forEachActiveObject((obj) => obj.toggle("flipY"))
   }
 
   document.getElementById("align-middle").onclick = () => {
+    registerAction(ActionTypes.ALIGN_MIDDLE)
     forEachActiveObject((obj) => canvas.centerObjectV(obj))
   }
 
   document.getElementById("align-center").onclick = () => {
+    registerAction(ActionTypes.ALIGN_CENTER)
     forEachActiveObject((obj) => canvas.centerObjectH(obj))
   }
 
+  document.getElementById("undo").onclick = undo
+  document.getElementById("redo").onclick = redo
+  
   document.getElementById("remove-node").onclick = () => {
     forEachActiveObject((obj) => canvas.remove(obj))
     canvas.discardActiveObject()
@@ -765,7 +923,7 @@ function startOver() {
   outputElement.width = null
   showElement("canvas-container")
   hideElement("output")
-  document.getElementById("download").removeAttribute("disabled")
+  document.getElementById("download").disabled = false
   document.getElementById("embiggener-output").innerHTML = ""
   hideElement("embiggener-output")
 }
