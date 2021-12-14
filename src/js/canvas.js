@@ -251,6 +251,7 @@ function changeSelectedItemColour(e) {
 const canvas = new fabric.Canvas("c", {
   width: SIZE,
   height: SIZE,
+  preserveObjectStacking: true,
 })
 canvas.preserveObjectStacking = true;
 
@@ -725,23 +726,14 @@ Object.keys(hairColours).forEach(c => {
 
 function scaleCanvas(callback) {
   canvas.discardActiveObject()
-  const group = new fabric.Group()
-  const canvasObjects = canvas.getObjects()
-  canvasObjects.forEach((obj) => {
-    obj.clone((c) => {
-      group.addWithUpdate(c)
-      // thx i hate it
-      // clone is async, but only takes an individual callback
-      if (group.size() === canvasObjects.length) {
-        canvas.clear().renderAll()
-        canvas.setHeight(group.height)
-        canvas.setWidth(group.width)
-        group.set({ top: 0, left: 0 })
-        canvas.add(group).renderAll()
-        callback()
-      }
-    })
-  })
+  const canvasObjects = new fabric.ActiveSelection(canvas.getObjects(), {
+    canvas,
+  }).toGroup()
+  canvas.setHeight(canvasObjects.height)
+  canvas.setWidth(canvasObjects.width)
+  canvasObjects.set({ top: 0, left: 0 })
+  canvas.add(canvasObjects).renderAll()
+  callback()
 }
 
 
@@ -749,7 +741,7 @@ function scaleCanvas(callback) {
 document.getElementById("download").onclick = () => {
   scaleCanvas(() => {
     var dataURL = canvas.toDataURL()
-    downloadURI(dataURL, ` emojinator-${filename}.png`)
+    downloadURI(dataURL, `emojinator-${filename}.png`)
   })
 }
 
