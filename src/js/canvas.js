@@ -766,6 +766,18 @@ function resetForm(event) {
   event.target.reset()
 }
 
+document.getElementById("conditional-reveal-url").onclick = () => {
+  document.getElementById("conditional-url-input").classList.remove("hidden")
+  document.getElementById("creator-input-file").value = null
+  document.getElementById("conditional-file-input").classList.add("hidden")
+}
+
+document.getElementById("conditional-reveal-file").onclick = () => {
+  document.getElementById("conditional-file-input").classList.remove("hidden")
+  document.getElementById("creator-input-url").value = ""
+  document.getElementById("conditional-url-input").classList.add("hidden")
+}
+
 document.getElementById("form").onreset = resetForm
 document.getElementById("clear-canvas").onclick = startOver
 
@@ -786,14 +798,38 @@ canvas.on("mouse:down", (e) => {
 
 document.getElementById("form").onsubmit = async function (event) {
   event.preventDefault()
-  const image = Array.from(event.target).find((el) => el.files).files[0]
-  filename = image.name.split(".")[0]
-  const src = await toBase64(image)
+  const mode = event.target.querySelector('input[name="image-upload"]:checked').value
   const img = new Image()
   img.onload = () => {
     onUploadImage(img)
   }
-  img.src = src
+  img.onerror = () => {
+    const errorMsg = document.getElementById("image-upload-error")
+      errorMsg.classList.remove("hidden")
+      errorMsg.innerHTML = "Couldn't fetch that image, not allowed 😔 Try another?"
+  }
+
+  if (mode === 'url') {
+    const imageUrl = event.target.querySelector('input[id="creator-input-url"]').value
+    if (imageUrl === "") {
+      const errorMsg = document.getElementById("image-upload-error")
+      errorMsg.classList.remove("hidden")
+      errorMsg.innerHTML = "Please enter a valid image URL!"
+      return
+    }
+    img.crossOrigin = "anonymous"
+    img.src = imageUrl + "?cache=bust"
+  } else {
+   const image = Array.from(event.target).find((el) => el.files).files[0]
+   if (image == null) {
+      const errorMsg = document.getElementById("image-upload-error")
+      errorMsg.classList.remove("hidden")
+      errorMsg.text = "Please upload an image!"
+      return
+   }
+    filename = image.name.split(".")[0]
+    img.src = await toBase64(image)
+  }
 }
 
 initSpecial()

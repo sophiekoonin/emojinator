@@ -278,14 +278,26 @@
     }
 
     .upload-form {
-      label {
+      .upload-error {
+        color: red;
+        font-size: 0.9rem;
+        font-variation-settings: "wght" 400;
+      }
+      label.upload-option {
         font-variation-settings: "wght" 600;
         margin-bottom: 1rem;
       }
-      input {
-        margin-top: 1rem;
-        background: transparent;
+
+      input:not([type="radio"]) {
         margin-bottom: 1rem;
+        margin-top: 0.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 0.6rem;
+
+        &[type="file"] {
+          background: transparent;
+        }
       }
       &-content {
         display: flex;
