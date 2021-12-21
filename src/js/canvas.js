@@ -798,6 +798,9 @@ canvas.on("mouse:down", (e) => {
 
 document.getElementById("form").onsubmit = async function (event) {
   event.preventDefault()
+  const errorMsg = document.getElementById("image-upload-error")
+  errorMsg.classList.remove("hidden")
+  errorMsg.innerHTML = null
   const mode = event.target.querySelector('input[name="image-upload"]:checked').value
   const img = new Image()
   img.onload = () => {
@@ -806,7 +809,7 @@ document.getElementById("form").onsubmit = async function (event) {
   img.onerror = () => {
     const errorMsg = document.getElementById("image-upload-error")
       errorMsg.classList.remove("hidden")
-      errorMsg.innerHTML = "Couldn't fetch that image, not allowed 😔 Try another?"
+      errorMsg.innerHTML = "Couldn't fetch that image 😔 Try another, or download it first."
   }
 
   if (mode === 'url') {
@@ -818,7 +821,8 @@ document.getElementById("form").onsubmit = async function (event) {
       return
     }
     img.crossOrigin = "anonymous"
-    img.src = imageUrl + "?cache=bust"
+    img.src = `https://emojinator-proxy.sophiekoonin.workers.dev?target_url=${encodeURIComponent(imageUrl)}`
+    hideElement("image-upload-error")
   } else {
    const image = Array.from(event.target).find((el) => el.files).files[0]
    if (image == null) {
