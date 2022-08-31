@@ -75,6 +75,10 @@
     "filename": "bulb.html"
   },
   {
+    "name": "bubbles",
+    "filename": "bubbles.html"
+  },
+  {
     "name": "laptop",
     "filename": "laptop.html"
   },
@@ -125,22 +129,6 @@
   {
     "name": "money with wings",
     "filename": "money_with_wings.html"
-  },
-  {
-    "name": "pride flag",
-    "filename": "pride_flag.html"
-  },
-  {
-    "name": "trans pride flag",
-    "filename": "trans_flag.html"
-  },
-  {
-    "name": "jolly roger flag",
-    "filename": "jolly_roger.html"
-  },
-  {
-    "name": "rainbow",
-    "filename": "rainbow.html"
   },
   {
     "name": "musical notes - three quavers",

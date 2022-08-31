@@ -87,7 +87,9 @@
           {% for item in category.items %}
             <button type="button" title="{{ item.name }}" class="selector-option {{ " multiple" if item.qty === 2 }} {{ " reversed" if not item.noflip }}">
               {% if item.type === "img" %}
-                <img src="/images/{{ category.name }}/{{ item.filename }}" alt="" id="{{ item.id }}" data-qty="{{ item.qty }}" data-noflip="{{ "true" if item.noflip else "false" }}"/>
+                <img src="/images/{{ category.name }}/{{ item.filename }}" alt="{{ item.name }}" id="{{ item.id }}" data-qty="{{ item.qty }}" data-noflip="{{ "true" if item.noflip else "false" }}"/>
+              {% elif item.type === 'remote' %}
+                <img src="{{ item.src }}" alt="{{ item.name }}"/>
               {% else %}
                 {% include "partials/accessories/" +  category.name + "/" + item.filename %}
                 {% if item.qty === 2 %}
