@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "NODE_ENV=development BASE_URL=http://localhost:8080 gulp && concurrently \"gulp watch\" \"eleventy --serve\"",
-    "build": "NODE_ENV=production gulp && NODE_ENV=production eleventy"
+    "start": "NODE_ENV=development BASE_URL=http://localhost:8080 eleventy --serve",
+    "build": "NODE_ENV=production eleventy"
   },
   "repository": {
     "type": "git",
@@ -18,16 +18,14 @@
   },
   "homepage": "https://github.com/sophiekoonin/emojinator#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1",
-    "autoprefixer": "^10.0.1",
+    "@11ty/eleventy": "^1.0.2",
+    "autoprefixer": "^10.4.8",
     "concurrently": "6.3.0",
-    "gulp": "^4.0.2",
-    "gulp-clean-css": "4.3.0",
-    "gulp-minify": "3.1.0",
-    "gulp-sass": "5.0.0",
-    "postcss": "^8.1.4",
-    "postcss-cli": "^8.2.0",
-    "sass": "1.43.2"
+    "cssnano": "^5.1.13",
+    "md5": "^2.3.0",
+    "postcss": "^8.4.16",
+    "postcss-cli": "10.0.0",
+    "sass": "1.54.7"
   },
   "prettier": {
     "semi": false,
