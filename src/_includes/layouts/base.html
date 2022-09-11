@@ -1,42 +1,44 @@
-{% set assetHash = global.random() %}
+{% set cssFilename = global.cssFile() %}
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="chrome=1">
-        <meta name="HandheldFriendly" content="True">
-        <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="referrer" content="no-referrer">
-        <meta name="description" content="A very silly website for creating very silly emoji.">
-        <link rel="stylesheet" type="text/css" href="/css/style.css?ver={{assetHash}}">
-        <title>
-            {{ title }}
-            {{ " - emojinator" if not isHome }}
-        </title>
-        {% include "partials/head/openGraph.html" %}
-        {% include "partials/head/favicons.html" %}
-        {% include "partials/head/scripts.html" %}
-    </head>
 
-    <body id="top">
-        {% include "partials/header/header.html" %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="A very silly website for creating very silly emoji.">
+    <link rel="preload" as="style" href={{ cssFilename }}>
+    <link rel="stylesheet" type="text/css" href={{ cssFilename }}>
+    <title>
+        {{ title }}
+        {{ " - emojinator" if not isHome }}
+    </title>
+    {% include "partials/head/openGraph.html" %}
+    {% include "partials/head/favicons.html" %}
+    {% include "partials/head/scripts.html" %}
+</head>
 
-        <main class="main-container" id="content">
-            <article class="emojinator full-width">
+<body id="top">
+    {% include "partials/header/header.html" %}
 
-                <div class="emojinator-wrapper">
-                    {% block content %}
-                        {{ content | safe }}
-                    {% endblock %}
-                </div>
+    <main class="main-container" id="content">
+        <article class="emojinator full-width">
 
-            </article>
-        </main>
+            <div class="emojinator-wrapper">
+                {% block content %}
+                {{ content | safe }}
+                {% endblock %}
+            </div>
 
-        {% include "partials/footer/footer.html" %}
+        </article>
+    </main>
 
-    </body>
+    {% include "partials/footer/footer.html" %}
+
+</body>
 
 </html>
