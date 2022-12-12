@@ -57,3 +57,22 @@
 .intro h2 {
   margin-bottom: 1rem;
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    max-width: 90%;
+    font-size: 2rem;
+    padding: 2.5rem;
+    border: 2px dashed black;
+    color: white;
+  }
+}
