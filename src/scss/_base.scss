@@ -36,6 +36,10 @@ body {
   background: var(--background-color);
   color: var(--body);
   font-variation-settings: var(--body-font-weight);
+
+  &:not(:has(.overlay.hidden)) {
+    overflow: none;
+  }
 }
 
 a {

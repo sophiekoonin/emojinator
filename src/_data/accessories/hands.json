@@ -36,8 +36,28 @@
     "filename": "cover_hand.html"
   },
   {
+    "name": "hands covering face",
+    "filename": "cover-eyes.html"
+  },
+  {
     "name": "ok hand gesture",
     "filename": "ok.html"
+  },
+  {
+    "name": "point",
+    "filename": "point.html"
+  },
+  {
+    "name": "point up",
+    "filename": "point-up.html"
+  },
+  {
+    "name": "point right",
+    "filename": "point-right.html"
+  },
+  {
+    "name": "point left",
+    "filename": "point-left.html"
   },
   {
     "name": "peace sign",
@@ -46,6 +66,10 @@
   {
     "name": "praying hands",
     "filename": "pray.html"
+  },
+  {
+    "name": "outstretched hand",
+    "filename": "outstretched.html"
   },
   {
     "name": "raised fist",
@@ -72,7 +96,19 @@
     "filename": "wave.html"
   },
   {
+    "name": "salute",
+    "filename": "salute.html"
+  },
+  {
+    "name": "money gesture",
+    "filename": "money.html"
+  },
+  {
     "name": "italian wtf gesture",
     "filename": "wtf.html"
+  },
+  {
+    "name": "heart hands",
+    "filename": "heart-hands.html"
   }
 ]

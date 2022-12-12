@@ -14,7 +14,11 @@ function scaleDimensions(longerSide, shorterSide, maxSize) {
   return [longScaled, shortScaled]
 }
 
-function getScaledImageDimensions(width = MAX_GIF_SIZE, height = MAX_GIF_SIZE, maxSize = MAX_GIF_SIZE) {
+function getScaledImageDimensions(
+  width = MAX_GIF_SIZE,
+  height = MAX_GIF_SIZE,
+  maxSize = MAX_GIF_SIZE
+) {
   const imageAspectRatio = width / height
   // width < height
   if (imageAspectRatio < 1) {
@@ -44,9 +48,8 @@ function getScaledImageDimensions(width = MAX_GIF_SIZE, height = MAX_GIF_SIZE, m
   }
 }
 
-
 function downloadURI(uri, name) {
-  const link = document.createElement('a')
+  const link = document.createElement("a")
   link.download = name
   link.href = uri
   document.body.appendChild(link)
@@ -55,13 +58,12 @@ function downloadURI(uri, name) {
   delete link
 }
 
-
 function hideElement(id) {
-  document.getElementById(id).classList.add('hidden')
+  document.getElementById(id).classList.add("hidden")
 }
 
 function showElement(id) {
-  document.getElementById(id).classList.remove('hidden')
+  document.getElementById(id).classList.remove("hidden")
 }
 
 function renderAndDownloadGif(blob, filename, width, gif) {
@@ -156,7 +158,7 @@ function updateColourSelections() {
   })
 }
 
-function doColourChange(colourType, colour){
+function doColourChange(colourType, colour) {
   canvas.getActiveObjects().forEach((obj) => {
     if (typeof obj.size !== "undefined") {
       // this is a group, so iterate
@@ -245,7 +247,6 @@ function changeSelectedItemColour(e) {
   doColourChange(changedColourType, value)
 }
 
-
 /* ACTION HISTORY */
 const MAX_ACTION_HISTORY = 10
 let canvasHistory = []
@@ -254,8 +255,8 @@ let currentStatePtr = 0
 
 // If there's nothing saved,
 // save the initial state before we do stuff.
-function maybeSaveInitialState(){
-  if (canvasHistory.length === 0){
+function maybeSaveInitialState() {
+  if (canvasHistory.length === 0) {
     canvasHistory.push(JSON.stringify(canvas.toJSON()))
     currentStatePtr++
   }
@@ -277,7 +278,6 @@ function saveCanvasState() {
   canvasHistory.push(JSON.stringify(canvas.toJSON()))
   currentStatePtr = canvasHistory.length - 1
 }
-
 
 // Restore the canvas to the state before wherever currentStatePtr is pointing
 // (currentStatePtr points to the state *after* we did the action)
@@ -322,7 +322,7 @@ const canvas = new fabric.Canvas("c", {
   height: SIZE,
   preserveObjectStacking: true,
 })
-canvas.preserveObjectStacking = true;
+canvas.preserveObjectStacking = true
 
 /* Functions for rendering stuff to canvas */
 function onItemClick(event) {
@@ -337,21 +337,21 @@ function onItemClick(event) {
           })
           .cloneNode(true)
 
-  let type = itemEl.getAttribute("data-type") 
+  let type = itemEl.getAttribute("data-type")
   if (itemEl.firstElementChild != null && type == "null") {
     type = itemEl.firstElementChild.getAttribute("data-type") || "any"
   }
   const qty = itemEl.getAttribute("data-qty") || 1
-  
+
   resetColours()
-  
+
   // SVG width/height properties are not the same as image width/height properties
   // so if these properties don't return a number, get it off the SVG itself.
   const itemWidth =
-  typeof itemEl.width === "number"
-  ? itemEl.width
-  : Number(itemEl.getAttribute("width") || 0)
-  
+    typeof itemEl.width === "number"
+      ? itemEl.width
+      : Number(itemEl.getAttribute("width") || 0)
+
   let targetItemWidth
   if (type === "base") {
     targetItemWidth = SIZE * 0.8
@@ -459,7 +459,6 @@ function selectObjects(objs) {
   canvas.requestRenderAll()
 }
 
-
 /* SPECIAL */
 /* PARTYIZER */
 // With heartfelt thanks to Ændrew Rininsland for the partyizer code
@@ -521,10 +520,10 @@ function getImageAndThen(callback, skipScale) {
       callback(img)
     }
     img.src = canvas.toDataURL()
-    img.width = canvas.width 
-    img.height = canvas.height 
+    img.width = canvas.width
+    img.height = canvas.height
   }
-  skipScale ?  getCanvasToDataURL() : scaleCanvas(getCanvasToDataURL) 
+  skipScale ? getCanvasToDataURL() : scaleCanvas(getCanvasToDataURL)
 }
 
 /* ROTATINATOR */
@@ -553,8 +552,8 @@ function rotateAndRenderGif(image) {
     renderAndDownloadGif(blob, `rotating-${filename || "emoji"}`, width, gif)
   )
 
-  gifCanvas.width = canvasWidth 
-  gifCanvas.height = canvasHeight 
+  gifCanvas.width = canvasWidth
+  gifCanvas.height = canvasHeight
   for (let i = 0; i < numSteps; i++) {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight)
     ctx.save()
@@ -731,7 +730,6 @@ function initSpecial() {
   document.getElementById("red-button").onclick = () => getImageAndThen(makeRed)
 }
 
-
 /* TOOLBAR BUTTONS */
 
 function doAction(callback) {
@@ -759,7 +757,7 @@ function initToolbar() {
   }
 
   document.getElementById("rotate-right").onclick = () => {
-    doAction(obj => obj.rotate(obj.angle + 45))
+    doAction((obj) => obj.rotate(obj.angle + 45))
   }
 
   document.getElementById("flip-horizontal").onclick = () => {
@@ -779,14 +777,13 @@ function initToolbar() {
 
   document.getElementById("undo").onclick = undo
   document.getElementById("redo").onclick = redo
-  
+
   document.getElementById("remove-node").onclick = () => {
     doAction((obj) => canvas.remove(obj))
     canvas.discardActiveObject()
     canvas.renderAll()
   }
 }
-initToolbar()
 
 Array.from(document.getElementsByClassName("selector-option")).forEach(
   (el) => (el.onclick = onItemClick)
@@ -802,7 +799,7 @@ Array.from(document.getElementsByClassName("skintone-picker-input")).forEach(
   (el) => (el.onchange = changeSelectedSkintone)
 )
 
-Object.keys(hairColours).forEach(c => {
+Object.keys(hairColours).forEach((c) => {
   const el = document.getElementById(`hair-preset-${c}`)
   el.onclick = () => {
     chooseHairPreset(c)
@@ -820,8 +817,6 @@ function scaleCanvas(callback) {
   canvas.add(canvasObjects).renderAll()
   callback()
 }
-
-
 
 document.getElementById("download").onclick = () => {
   scaleCanvas(() => {
@@ -875,7 +870,7 @@ canvas.on("mouse:down", (e) => {
       showElement("hair-preset-list")
     } else {
       hideElement("hair-preset-list")
-    }    
+    }
   } else {
     hideColours()
   }
@@ -886,19 +881,24 @@ document.getElementById("form").onsubmit = async function (event) {
   const errorMsg = document.getElementById("image-upload-error")
   errorMsg.classList.remove("hidden")
   errorMsg.innerHTML = null
-  const mode = event.target.querySelector('input[name="image-upload"]:checked').value
+  const mode = event.target.querySelector(
+    'input[name="image-upload"]:checked'
+  ).value
   const img = new Image()
   img.onload = () => {
     onUploadImage(img)
   }
   img.onerror = () => {
     const errorMsg = document.getElementById("image-upload-error")
-      errorMsg.classList.remove("hidden")
-      errorMsg.innerHTML = "Couldn't fetch that image 😔 Try another, or download it first."
+    errorMsg.classList.remove("hidden")
+    errorMsg.innerHTML =
+      "Couldn't fetch that image 😔 Try another, or download it first."
   }
 
-  if (mode === 'url') {
-    const imageUrl = event.target.querySelector('input[id="creator-input-url"]').value
+  if (mode === "url") {
+    const imageUrl = event.target.querySelector(
+      'input[id="creator-input-url"]'
+    ).value
     if (imageUrl === "") {
       const errorMsg = document.getElementById("image-upload-error")
       errorMsg.classList.remove("hidden")
@@ -906,19 +906,57 @@ document.getElementById("form").onsubmit = async function (event) {
       return
     }
     img.crossOrigin = "anonymous"
-    img.src = `https://emojinator-proxy.sophiekoonin.workers.dev?target_url=${encodeURIComponent(imageUrl)}`
+    img.src = `https://emojinator-proxy.sophiekoonin.workers.dev?target_url=${encodeURIComponent(
+      imageUrl
+    )}`
     hideElement("image-upload-error")
   } else {
-   const image = Array.from(event.target).find((el) => el.files).files[0]
-   if (image == null) {
+    const image = Array.from(event.target).find((el) => el.files).files[0]
+    if (image == null) {
       const errorMsg = document.getElementById("image-upload-error")
       errorMsg.classList.remove("hidden")
       errorMsg.text = "Please upload an image!"
       return
-   }
-    filename = image.name.split(".")[0]
-    img.src = await toBase64(image)
+    }
   }
 }
 
-initSpecial()
+async function uploadImage(file) {
+  const img = new Image()
+  img.onload = () => {
+    onUploadImage(img)
+  }
+  filename = file.name.split(".")[0]
+  img.src = await toBase64(file)
+}
+
+window.onload = function () {
+  initSpecial()
+  initToolbar()
+
+  document.addEventListener("dragover", (e) => {
+    e.preventDefault()
+    document.getElementById("drop-overlay").classList.remove("hidden")
+  })
+
+  document.addEventListener("drop", (e) => {
+    e.preventDefault()
+    document.getElementById("drop-overlay").classList.add("hidden")
+
+    if (e.dataTransfer.items) {
+      // Use DataTransferItemList interface to access the file(s)
+      Array.from(e.dataTransfer.items).forEach((item) => {
+        // If dropped items aren't files, reject them
+        if (item.kind === "file") {
+          const file = item.getAsFile()
+          uploadImage(file)
+        }
+      })
+    } else {
+      // Use DataTransfer interface to access the file(s)
+      Array.from(...e.dataTransfer.files).forEach((file) => {
+        uploadImage(file)
+      })
+    }
+  })
+}
