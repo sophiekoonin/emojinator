@@ -918,6 +918,8 @@ document.getElementById("form").onsubmit = async function (event) {
       errorMsg.text = "Please upload an image!"
       return
     }
+    filename = image.name.split(".")[0]
+    img.src = await toBase64(image)
   }
 }
 
