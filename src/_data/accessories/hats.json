@@ -36,6 +36,10 @@
     "qty": 2
   },
   {
+    "name": "space suit",
+    "filename": "space-suit.html"
+  },
+  {
     "name": "halo",
     "filename": "halo.html"
   },
