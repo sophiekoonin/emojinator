@@ -4,7 +4,6 @@ const hats = require("./accessories/hats.json")
 const mouths = require("./accessories/mouths.json")
 const hands = require("./accessories/hands.json")
 const misc = require("./accessories/misc.json")
-const flags = require("./accessories/flags")
 
 module.exports = [
   {
@@ -36,10 +35,5 @@ module.exports = [
     heading: "Misc",
     name: "misc",
     items: misc,
-  },
-  {
-    heading: "Flags",
-    name: "flags",
-    items: flags,
   },
 ]
