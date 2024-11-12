@@ -13,7 +13,7 @@ module.exports = [
       return {
         name: e.label,
         type: "remote",
-        src: `https://twemoji.maxcdn.com/v/latest/72x72/${e.hexcode.toLowerCase()}.png`,
+        src: `https://cdnjs.cloudflare.com/ajax/libs/twemoji/15.1.0/72x72/${e.hexcode.toLowerCase()}.png`,
       }
     }),
 ]
