@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/sophiekoonin/emojinator#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.2",
+    "@11ty/eleventy": "^3.0.0",
     "autoprefixer": "^10.4.8",
     "concurrently": "6.3.0",
     "cssnano": "^5.1.13",
@@ -55,8 +55,5 @@
       "GIF": true
     }
   },
-  "dependencies": {
-    "emojibase-data": "7.0.1",
-    "twemoji": "14.0.2"
-  }
+  "dependencies": {}
 }
