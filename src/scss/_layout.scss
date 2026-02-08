@@ -1,12 +1,14 @@
+@use "mq";
+
 .full-width {
   text-align: center;
   // max-width: 900px;
   margin: 0.5rem;
-  @include mq($from: tablet) {
+  @include mq.mq($from: tablet) {
     margin: 1rem;
   }
 
-  @include mq($from: desktop) {
+  @include mq.mq($from: desktop) {
     padding: 2rem;
     padding-top: 0;
   }
@@ -40,11 +42,11 @@
   border-radius: 6px;
   border: 1px solid var(--border-color);
   padding: 2rem;
-  @include mq($from: tablet) {
+  @include mq.mq($from: tablet) {
     max-width: 75%;
   }
 
-  @include mq($until: tablet) {
+  @include mq.mq($until: tablet) {
     margin-bottom: 1rem;
   }
   .strong {

@@ -1,3 +1,5 @@
+@use "mq";
+
 .emojinator {
   &-wrapper {
     display: flex;
@@ -7,7 +9,7 @@
     text-align: center;
   }
 
-  @include mq($from: desktop) {
+  @include mq.mq($from: desktop) {
     padding: 1.5rem;
   }
   position: relative;
@@ -29,7 +31,6 @@
 }
 
 .action-button {
-  @extend .secondary;
   font-size: 0.8rem;
   font-variation-settings: "wght" 500;
   padding: 0;
@@ -45,12 +46,12 @@
   border-radius: 10px;
   grid-row: 2 / span 1;
   grid-column: 1 / span 1;
-  @include mq($from: tablet) {
+  @include mq.mq($from: tablet) {
     grid-row: 1 / span 1;
     grid-column: 2 / span 1;
   }
 
-  @include mq($from: tablet) {
+  @include mq.mq($from: tablet) {
     display: flex;
     flex-direction: column;
   }

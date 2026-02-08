@@ -1,9 +1,12 @@
+@use "sass:string";
+@use "mq";
+
 * {
   box-sizing: border-box;
 }
 
 :root {
-  @include mq($from: desktop) {
+  @include mq.mq($from: desktop) {
     font-size: 16px;
   }
 }
@@ -66,14 +69,14 @@ h4 {
 }
 
 h1 {
-  font-size: unquote("min(max(1.5rem, 6vw), 40px)");
+  font-size: string.unquote("min(max(1.5rem, 6vw), 40px)");
   margin-bottom: 1rem;
 }
 
 h2 {
   margin: 0;
   font-size: 2rem;
-  font-size: unquote("min(max(1.25rem, 2.5vw), 25px)");
+  font-size: string.unquote("min(max(1.25rem, 2.5vw), 25px)");
   line-height: 1.2em;
   a {
     text-decoration: none;
@@ -82,7 +85,7 @@ h2 {
 
 h3 {
   font-size: 1.5rem;
-  font-size: unquote("min(max(1.1rem, 4vw), 20px)");
+  font-size: string.unquote("min(max(1.1rem, 4vw), 20px)");
   margin-top: 1.5rem;
 }
 
