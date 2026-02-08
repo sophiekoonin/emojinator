@@ -20,6 +20,10 @@
     "filename": "question.html"
   },
   {
+    "name": "cross",
+    "filename": "cross.html"
+  },
+  {
     "name": "fire",
     "filename": "fire.png",
     "qty": 1,
