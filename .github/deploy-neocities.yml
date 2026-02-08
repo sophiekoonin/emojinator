@@ -1,0 +1,28 @@
+name: "Deploy to Neocities"
+on:
+  push:
+    branches:
+      - main
+  workflow_run:
+    workflows: [Generate and publish weekly link post]
+    types:
+      - completed
+jobs:
+  deploy:
+    name: "Deploy to Neocities"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "24"
+          cache: "yarn"
+      - run: npm install
+      - run: npm run build
+        env:
+          WEBMENTION_IO_TOKEN: ${{ secrets.WEBMENTION_IO_TOKEN }}
+      - uses: bcomnes/deploy-to-neocities@v1
+        with:
+          api_token: ${{ secrets.NEOCITIES_TOKEN }}
+          dist_dir: "dist/"
+          cleanup: false
